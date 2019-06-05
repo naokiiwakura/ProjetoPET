@@ -33,6 +33,11 @@
                     <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
                     <li><a asp-area="" asp-controller="Home" asp-action="About">Sobre nossa organização</a></li>
                     <li><a asp-area="" asp-controller="Home" asp-action="Contact">Entre em contato</a></li>
+                    <li><a asp-area="" asp-controller="Pet" asp-action="Index">Cadastre seu PeT</a></li>
+                    <li><a asp-area="" asp-controller="Evento" asp-action="Index">Eventos</a></li>
+                    <li><a asp-area="" asp-controller="Usuario" asp-action="Index">Cadastro Usuário</a></li>
+                    <li><a asp-area="" asp-controller="UsuarioBusiness" asp-action="Index">Cadastro Parceria</a></li>
+                    <li><a asp-area="" asp-controller="Adocao" asp-action="Index">Adoção</a></li>
                 </ul>
             </div>
         </div>
@@ -43,9 +48,16 @@
     <div class="container body-content">
         @RenderBody()
         <hr />
-        <footer>
-            <p>&copy; 2019 - PET</p>
-        </footer>
+        <h2 class="alert-success text-center">Projeto PET</h2>
+        <h3 class="text-center">O caminho para ajudar os grandes amigos das pessoas a encontrarem um lar</h3>
+        <blockquote class="blockquote text-right">
+            <p class="mb-0">Um ótimo projeto com uma grande iniciativa para a solução PET de Campo Grande-MS.</p>
+            <footer class="blockquote-footer">Ana Fátima De Souza <cite title="Source Title">
+                     Psicóloga</cite></footer>
+        </blockquote>
+        <div class="container body-content">
+            <img src="~/images/dog1.jpg" />
+        </div>
     </div>
 
     <environment include="Development">
