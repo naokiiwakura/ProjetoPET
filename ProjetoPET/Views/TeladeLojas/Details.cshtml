@@ -11,10 +11,22 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Nome)
+            @Html.DisplayNameFor(model => model.NomeEmpresa)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Nome)
+            @Html.DisplayFor(model => model.NomeEmpresa)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.RazaoSocial)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.RazaoSocial)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CNPj)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CNPj)
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.Endereco)
@@ -23,14 +35,68 @@
             @Html.DisplayFor(model => model.Endereco)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.CNPj)
+            @Html.DisplayNameFor(model => model.Numero)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.CNPj)
+            @Html.DisplayFor(model => model.Numero)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Bairro)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Bairro)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Complemento)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Complemento)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CEP)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CEP)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Estado)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Estado)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Cidade)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Cidade)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Telefone)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Telefone)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CreatedDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ModifiedDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ModifiedDate)
         </dd>
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.ID">Edit</a> |
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
     <a asp-action="Index">Back to List</a>
 </div>

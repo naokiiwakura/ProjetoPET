@@ -33,7 +33,7 @@ namespace ProjetoPET.Controllers
             }
 
             var teladeLojas = await _context.TeladeLojas
-                .FirstOrDefaultAsync(m => m.ID == id);
+                .FirstOrDefaultAsync(m => m.Id == id);
             if (teladeLojas == null)
             {
                 return NotFound();
@@ -53,7 +53,7 @@ namespace ProjetoPET.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,Nome,Endereco,CNPj")] TeladeLojas teladeLojas)
+        public async Task<IActionResult> Create([Bind("NomeEmpresa,RazaoSocial,CNPj,Endereco,Numero,Bairro,Complemento,CEP,Estado,Cidade,Telefone,Email,Id,CreatedDate,ModifiedDate")] TeladeLojas teladeLojas)
         {
             if (ModelState.IsValid)
             {
@@ -85,9 +85,9 @@ namespace ProjetoPET.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,Nome,Endereco,CNPj")] TeladeLojas teladeLojas)
+        public async Task<IActionResult> Edit(int id, [Bind("NomeEmpresa,RazaoSocial,CNPj,Endereco,Numero,Bairro,Complemento,CEP,Estado,Cidade,Telefone,Email,Id,CreatedDate,ModifiedDate")] TeladeLojas teladeLojas)
         {
-            if (id != teladeLojas.ID)
+            if (id != teladeLojas.Id)
             {
                 return NotFound();
             }
@@ -101,7 +101,7 @@ namespace ProjetoPET.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!TeladeLojasExists(teladeLojas.ID))
+                    if (!TeladeLojasExists(teladeLojas.Id))
                     {
                         return NotFound();
                     }
@@ -124,7 +124,7 @@ namespace ProjetoPET.Controllers
             }
 
             var teladeLojas = await _context.TeladeLojas
-                .FirstOrDefaultAsync(m => m.ID == id);
+                .FirstOrDefaultAsync(m => m.Id == id);
             if (teladeLojas == null)
             {
                 return NotFound();
@@ -146,7 +146,7 @@ namespace ProjetoPET.Controllers
 
         private bool TeladeLojasExists(int id)
         {
-            return _context.TeladeLojas.Any(e => e.ID == id);
+            return _context.TeladeLojas.Any(e => e.Id == id);
         }
     }
 }
