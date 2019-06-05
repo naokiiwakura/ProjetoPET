@@ -6,23 +6,22 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ProjetoPET.Models;
+using ProjetoPET.repository;
 
 namespace ProjetoPET.Controllers
 {
     public class AdocaoController : Controller
     {
-        private readonly DbContext _context;
-
-        public AdocaoController(DbContext context)
+        private readonly IGenericRepository<Adocao> _repo;
+        public AdocaoController(IGenericRepository<Adocao> repo)
         {
-            _context = context;
+            _repo = repo;
         }
 
         // GET: Adocao
         public async Task<IActionResult> Index()
         {
-            var dbContext = _context.Adocao.Include(a => a.Pet);
-            return View(await dbContext.ToListAsync());
+            return View(await _repo.ListarTodos());
         }
 
         // GET: Adocao/Details/5
@@ -33,9 +32,7 @@ namespace ProjetoPET.Controllers
                 return NotFound();
             }
 
-            var adocao = await _context.Adocao
-                .Include(a => a.Pet)
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var adocao = await _repo.BuscarPorId((int)id);
             if (adocao == null)
             {
                 return NotFound();
@@ -47,7 +44,7 @@ namespace ProjetoPET.Controllers
         // GET: Adocao/Create
         public IActionResult Create()
         {
-            ViewData["PetId"] = new SelectList(_context.Pet, "Id", "Id");
+        
             return View();
         }
 
