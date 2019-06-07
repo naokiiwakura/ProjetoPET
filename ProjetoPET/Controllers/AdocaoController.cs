@@ -57,11 +57,12 @@ namespace ProjetoPET.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Add(adocao);
-                await _context.SaveChangesAsync();
+
+                adocao.CreatedDate = DateTime.Now;
+                await _repo.Inserir(adocao);
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["PetId"] = new SelectList(_context.Pet, "Id", "Id", adocao.PetId);
+           
             return View(adocao);
         }
 
@@ -73,12 +74,12 @@ namespace ProjetoPET.Controllers
                 return NotFound();
             }
 
-            var adocao = await _context.Adocao.FindAsync(id);
+            var adocao = await _repo.BuscarPorId((int)id);
             if (adocao == null)
             {
                 return NotFound();
             }
-            ViewData["PetId"] = new SelectList(_context.Pet, "Id", "Id", adocao.PetId);
+            
             return View(adocao);
         }
 
@@ -98,12 +99,12 @@ namespace ProjetoPET.Controllers
             {
                 try
                 {
-                    _context.Update(adocao);
-                    await _context.SaveChangesAsync();
+                    var adocaoDb = _repo.Editar(id, adocao);
+                   
                 }
-                catch (DbUpdateConcurrencyException)
+                catch (Exception)
                 {
-                    if (!AdocaoExists(adocao.Id))
+                    if (! await AdocaoExists(adocao.Id))
                     {
                         return NotFound();
                     }
@@ -114,7 +115,7 @@ namespace ProjetoPET.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["PetId"] = new SelectList(_context.Pet, "Id", "Id", adocao.PetId);
+         
             return View(adocao);
         }
 
@@ -126,9 +127,8 @@ namespace ProjetoPET.Controllers
                 return NotFound();
             }
 
-            var adocao = await _context.Adocao
-                .Include(a => a.Pet)
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var adocao = await _repo.BuscarPorId((int)id);
+                
             if (adocao == null)
             {
                 return NotFound();
@@ -142,15 +142,14 @@ namespace ProjetoPET.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var adocao = await _context.Adocao.FindAsync(id);
-            _context.Adocao.Remove(adocao);
-            await _context.SaveChangesAsync();
+
+            await _repo.Excluir(id);
             return RedirectToAction(nameof(Index));
         }
 
-        private bool AdocaoExists(int id)
+        private async Task <bool> AdocaoExists(int id)
         {
-            return _context.Adocao.Any(e => e.Id == id);
+            return await _repo.Existe(id);
         }
     }
 }

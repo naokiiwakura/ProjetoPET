@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
+using ProjetoPET.repository;
 
 namespace ProjetoPET
 {
@@ -34,7 +35,7 @@ namespace ProjetoPET
 
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-
+            services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
             services.AddDbContext<DbContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("DbContext")));
         }

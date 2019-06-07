@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 namespace ProjetoPET.Models
 {
-    public class Usuario : EntityBase
+    public class Usuario : TipoUsuario
     {
         public string Nome { get; set; }
         private string Email { get; set; }

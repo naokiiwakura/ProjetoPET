@@ -3,14 +3,16 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ProjetoPET.Migrations
 {
     [DbContext(typeof(DbContext))]
-    partial class DbContextModelSnapshot : ModelSnapshot
+    [Migration("20190605195154_2")]
+    partial class _2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -98,7 +100,7 @@ namespace ProjetoPET.Migrations
                     b.ToTable("Pet");
                 });
 
-            modelBuilder.Entity("ProjetoPET.Models.TipoUsuario", b =>
+            modelBuilder.Entity("ProjetoPET.Models.Usuario", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -106,37 +108,28 @@ namespace ProjetoPET.Migrations
 
                     b.Property<DateTime>("CreatedDate");
 
-                    b.Property<string>("Descricao");
-
                     b.Property<string>("Discriminator")
                         .IsRequired();
 
-                    b.Property<int>("TipoUsuarioId");
+                    b.Property<string>("Nome");
 
                     b.Property<DateTime?>("UpdatedData");
 
-                    b.Property<int>("UsuarioId");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("UsuarioId");
-
-                    b.ToTable("UsuarioBusiness");
-
-                    b.HasDiscriminator<string>("Discriminator").HasValue("TipoUsuario");
-                });
-
-            modelBuilder.Entity("ProjetoPET.Models.Usuario", b =>
-                {
-                    b.HasBaseType("ProjetoPET.Models.TipoUsuario");
-
-                    b.Property<string>("Nome");
-
-                    b.HasIndex("TipoUsuarioId");
 
                     b.ToTable("Usuario");
 
-                    b.HasDiscriminator().HasValue("Usuario");
+                    b.HasDiscriminator<string>("Discriminator").HasValue("Usuario");
+                });
+
+            modelBuilder.Entity("ProjetoPET.Models.UsuarioBusiness", b =>
+                {
+                    b.HasBaseType("ProjetoPET.Models.Usuario");
+
+
+                    b.ToTable("UsuarioBusiness");
+
+                    b.HasDiscriminator().HasValue("UsuarioBusiness");
                 });
 
             modelBuilder.Entity("ProjetoPET.Models.Adocao", b =>
@@ -146,7 +139,7 @@ namespace ProjetoPET.Migrations
                         .HasForeignKey("PetId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("ProjetoPET.Models.TipoUsuario", "UsuarioBusiness")
+                    b.HasOne("ProjetoPET.Models.UsuarioBusiness", "UsuarioBusiness")
                         .WithMany()
                         .HasForeignKey("UsuarioBusinessId");
                 });
@@ -156,22 +149,6 @@ namespace ProjetoPET.Migrations
                     b.HasOne("ProjetoPET.Models.Adocao")
                         .WithMany("PetDoacao")
                         .HasForeignKey("AdocaoId");
-                });
-
-            modelBuilder.Entity("ProjetoPET.Models.TipoUsuario", b =>
-                {
-                    b.HasOne("ProjetoPET.Models.Usuario", "Usuario")
-                        .WithMany()
-                        .HasForeignKey("UsuarioId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("ProjetoPET.Models.Usuario", b =>
-                {
-                    b.HasOne("ProjetoPET.Models.TipoUsuario")
-                        .WithMany("Usuarios")
-                        .HasForeignKey("TipoUsuarioId")
-                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }

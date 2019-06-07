@@ -6,22 +6,22 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ProjetoPET.Models;
+using ProjetoPET.repository;
 
 namespace ProjetoPET.Controllers
 {
     public class EventoController : Controller
     {
-        private readonly DbContext _context;
-
-        public EventoController(DbContext context)
+        private readonly IGenericRepository<Eventos> _repo;
+        public EventoController(IGenericRepository<Eventos> repo)
         {
-            _context = context;
+            _repo = repo;
         }
 
         // GET: Evento
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Eventos.ToListAsync());
+            return View(await _repo.ListarTodos());
         }
 
         // GET: Evento/Details/5
@@ -32,8 +32,7 @@ namespace ProjetoPET.Controllers
                 return NotFound();
             }
 
-            var eventos = await _context.Eventos
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var eventos = await _repo.BuscarPorId((int)id);
             if (eventos == null)
             {
                 return NotFound();
@@ -57,8 +56,8 @@ namespace ProjetoPET.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Add(eventos);
-                await _context.SaveChangesAsync();
+                eventos.CreatedDate = DateTime.Now;
+                await _repo.Inserir(eventos);
                 return RedirectToAction(nameof(Index));
             }
             return View(eventos);
@@ -72,7 +71,7 @@ namespace ProjetoPET.Controllers
                 return NotFound();
             }
 
-            var eventos = await _context.Eventos.FindAsync(id);
+            var eventos = await _repo.BuscarPorId((int)id);
             if (eventos == null)
             {
                 return NotFound();
@@ -96,12 +95,11 @@ namespace ProjetoPET.Controllers
             {
                 try
                 {
-                    _context.Update(eventos);
-                    await _context.SaveChangesAsync();
+                    var eventoDb = _repo.Editar(id, eventos);
                 }
-                catch (DbUpdateConcurrencyException)
+                catch (Exception)
                 {
-                    if (!EventosExists(eventos.Id))
+                    if (!await EventosExists(eventos.Id))
                     {
                         return NotFound();
                     }
@@ -123,8 +121,7 @@ namespace ProjetoPET.Controllers
                 return NotFound();
             }
 
-            var eventos = await _context.Eventos
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var eventos = await _repo.BuscarPorId((int)id);
             if (eventos == null)
             {
                 return NotFound();
@@ -138,15 +135,14 @@ namespace ProjetoPET.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var eventos = await _context.Eventos.FindAsync(id);
-            _context.Eventos.Remove(eventos);
-            await _context.SaveChangesAsync();
+
+            await _repo.Excluir(id);
             return RedirectToAction(nameof(Index));
         }
 
-        private bool EventosExists(int id)
+        private async Task <bool> EventosExists(int id)
         {
-            return _context.Eventos.Any(e => e.Id == id);
+            return await _repo.Existe(id);
         }
     }
 }

@@ -9,7 +9,7 @@ namespace ProjetoPET.Models
     {
         public string Contato { get; set; }
         public virtual Pet Pet { get; set; }
-        public virtual UsuarioBusiness UsuarioBusiness { get; set; }
+        public virtual TipoUsuario UsuarioBusiness { get; set; }
         [ForeignKey("PetId")]
         public int PetId { get; set; }
         [ForeignKey("UsuarioId")]

@@ -14,7 +14,7 @@ using ProjetoPET.Models;
 
         public DbSet<ProjetoPET.Models.Usuario> Usuario { get; set; }
 
-        public DbSet<ProjetoPET.Models.UsuarioBusiness> UsuarioBusiness { get; set; }
+        public DbSet<ProjetoPET.Models.TipoUsuario> UsuarioBusiness { get; set; }
 
         public DbSet<ProjetoPET.Models.Pet> Pet { get; set; }
 

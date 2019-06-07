@@ -6,22 +6,22 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ProjetoPET.Models;
+using ProjetoPET.repository;
 
 namespace ProjetoPET.Controllers
 {
     public class UsuarioController : Controller
     {
-        private readonly DbContext _context;
-
-        public UsuarioController(DbContext context)
+        private readonly IGenericRepository<Usuario> _repo;
+        public UsuarioController(IGenericRepository<Usuario> repo)
         {
-            _context = context;
+            _repo = repo;
         }
 
         // GET: Usuario
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Usuario.ToListAsync());
+            return View(await _repo.ListarTodos());
         }
 
         // GET: Usuario/Details/5
@@ -32,8 +32,7 @@ namespace ProjetoPET.Controllers
                 return NotFound();
             }
 
-            var usuario = await _context.Usuario
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var usuario = await _repo.BuscarPorId((int)id);
             if (usuario == null)
             {
                 return NotFound();
@@ -57,8 +56,8 @@ namespace ProjetoPET.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Add(usuario);
-                await _context.SaveChangesAsync();
+                usuario.CreatedDate = DateTime.Now;
+                await _repo.Inserir(usuario);
                 return RedirectToAction(nameof(Index));
             }
             return View(usuario);
@@ -72,7 +71,7 @@ namespace ProjetoPET.Controllers
                 return NotFound();
             }
 
-            var usuario = await _context.Usuario.FindAsync(id);
+            var usuario = await _repo.BuscarPorId((int)id);
             if (usuario == null)
             {
                 return NotFound();
@@ -96,12 +95,12 @@ namespace ProjetoPET.Controllers
             {
                 try
                 {
-                    _context.Update(usuario);
-                    await _context.SaveChangesAsync();
+                    var UsuarioDb = _repo.Editar(id, usuario);
+                    
                 }
-                catch (DbUpdateConcurrencyException)
+                catch (Exception)
                 {
-                    if (!UsuarioExists(usuario.Id))
+                    if ( ! await UsuarioExists(usuario.Id))
                     {
                         return NotFound();
                     }
@@ -123,8 +122,7 @@ namespace ProjetoPET.Controllers
                 return NotFound();
             }
 
-            var usuario = await _context.Usuario
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var usuario = await _repo.BuscarPorId((int)id);
             if (usuario == null)
             {
                 return NotFound();
@@ -138,15 +136,14 @@ namespace ProjetoPET.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var usuario = await _context.Usuario.FindAsync(id);
-            _context.Usuario.Remove(usuario);
-            await _context.SaveChangesAsync();
+           
+            await _repo.Excluir(id);
             return RedirectToAction(nameof(Index));
         }
 
-        private bool UsuarioExists(int id)
+        private async Task <bool> UsuarioExists(int id)
         {
-            return _context.Usuario.Any(e => e.Id == id);
+            return await _repo.Existe(id);
         }
     }
 }

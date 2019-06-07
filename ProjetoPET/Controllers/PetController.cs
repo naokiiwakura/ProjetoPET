@@ -6,22 +6,22 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ProjetoPET.Models;
+using ProjetoPET.repository;
 
 namespace ProjetoPET.Controllers
 {
     public class PetController : Controller
     {
-        private readonly DbContext _context;
-
-        public PetController(DbContext context)
+        private readonly IGenericRepository<Pet> _repo;
+        public PetController(IGenericRepository<Pet> repo)
         {
-            _context = context;
+            _repo = repo;
         }
 
         // GET: Pet
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Pet.ToListAsync());
+            return View(await _repo.ListarTodos());
         }
 
         // GET: Pet/Details/5
@@ -32,8 +32,7 @@ namespace ProjetoPET.Controllers
                 return NotFound();
             }
 
-            var pet = await _context.Pet
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var pet = await _repo.BuscarPorId((int)id);
             if (pet == null)
             {
                 return NotFound();
@@ -57,8 +56,8 @@ namespace ProjetoPET.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Add(pet);
-                await _context.SaveChangesAsync();
+                pet.CreatedDate = DateTime.Now;
+                await _repo.Inserir(pet);
                 return RedirectToAction(nameof(Index));
             }
             return View(pet);
@@ -72,7 +71,7 @@ namespace ProjetoPET.Controllers
                 return NotFound();
             }
 
-            var pet = await _context.Pet.FindAsync(id);
+            var pet = await _repo.BuscarPorId((int)id);
             if (pet == null)
             {
                 return NotFound();
@@ -96,12 +95,12 @@ namespace ProjetoPET.Controllers
             {
                 try
                 {
-                    _context.Update(pet);
-                    await _context.SaveChangesAsync();
+
+                    var Pet = _repo.Editar(id, pet);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!PetExists(pet.Id))
+                    if (! await PetExists(pet.Id))
                     {
                         return NotFound();
                     }
@@ -123,8 +122,7 @@ namespace ProjetoPET.Controllers
                 return NotFound();
             }
 
-            var pet = await _context.Pet
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var pet = await _repo.BuscarPorId((int)id);
             if (pet == null)
             {
                 return NotFound();
@@ -138,15 +136,14 @@ namespace ProjetoPET.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var pet = await _context.Pet.FindAsync(id);
-            _context.Pet.Remove(pet);
-            await _context.SaveChangesAsync();
+
+            await _repo.Excluir(id);
             return RedirectToAction(nameof(Index));
         }
 
-        private bool PetExists(int id)
+        private async Task <bool> PetExists(int id)
         {
-            return _context.Pet.Any(e => e.Id == id);
+            return await _repo.Existe(id);
         }
     }
 }
