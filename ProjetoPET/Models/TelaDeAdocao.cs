@@ -10,7 +10,11 @@ namespace ProjetoPET.Models
     {
         [Key]
         public int Id { get; set; }
-        public  string Raca { get; set; }
+        public string Raca { get; set; }
         public string Descricao { get; set; }
+        public string Foto { get; set; }
+        public string Telefone { get; set; }
+        public string Endereco { get; set; }
+        public decimal Preco { get; set; }
     }
 }
