@@ -3,16 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using ProjetoPET.Areas.Identity.Data;
 using ProjetoPET.Models;
 
-    public class DbContext : Microsoft.EntityFrameworkCore.DbContext
+    public class BancoContext : Microsoft.EntityFrameworkCore.DbContext
     {
-        public DbContext (DbContextOptions<DbContext> options)
+        public BancoContext(DbContextOptions<BancoContext> options)
             : base(options)
         {
         }
 
-        public DbSet<ProjetoPET.Models.Usuario> Usuario { get; set; }
+        public DbSet<Usuario> Usuario { get; set; }
 
         public DbSet<ProjetoPET.Models.TipoUsuario> UsuarioBusiness { get; set; }
 
