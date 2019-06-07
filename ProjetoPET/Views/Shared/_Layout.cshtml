@@ -34,7 +34,9 @@
                     <li><a asp-area="" asp-controller="Home" asp-action="About">Sobre nossa organização</a></li>
                     <li><a asp-area="" asp-controller="Home" asp-action="Contact">Entre em contato</a></li>
                 </ul>
+                @Html.Partial("_LoginPartial")
             </div>
+
         </div>
     </nav>
 
@@ -47,6 +49,22 @@
             <p>&copy; 2019 - PET</p>
         </footer>
     </div>
+
+    <!-- Modal -->
+    <form asp-area="Identity" asp-controller="Account" asp-action="Logout" method="post" class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Deseja realmente sair?</h4>
+                </div>
+                <div class="modal-footer">
+                    <input type="submit" class="btn btn-danger" value="Sair" />
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </form>
 
     <environment include="Development">
         <script src="~/lib/jquery/dist/jquery.js"></script>
