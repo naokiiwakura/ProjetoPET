@@ -13,6 +13,6 @@ namespace ProjetoPET.Models
         {
         }
 
-        public DbSet<ProjetoPET.Models.TeladeLojas> TeladeLojas { get; set; }
+        public DbSet<ProjetoPET.Models.Lojas> Lojas { get; set; }
     }
 }

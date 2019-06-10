@@ -1,15 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace ProjetoPET.Models
 {
-    public class TeladeLojas : EntityBase
+    public class Lojas : EntityBase
     {
-
-        public string NomeEmpresa { get; set; }
+        public string NomeLoja { get; set; }
         public string RazaoSocial { get; set; }
         public int CNPj { get; set; }
         public string Endereco { get; set; }
@@ -21,5 +19,6 @@ namespace ProjetoPET.Models
         public string Cidade { get; set; }
         public int Telefone { get; set; }
         public string Email { get; set; }
+        public string ImagePath { get; set; }
     }
 }

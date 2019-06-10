@@ -1,30 +1,36 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ProjetoPET.Models;
+using ProjetoPET.ViewModel;
 
 namespace ProjetoPET.Controllers
 {
-    public class TeladeLojasController : Controller
+    public class LojasController : Controller
     {
         private readonly ProjetoPETContext _context;
+        private readonly IHostingEnvironment hostingEnvironment;
 
-        public TeladeLojasController(ProjetoPETContext context)
+        public LojasController(ProjetoPETContext context, IHostingEnvironment hostingEnvironment)
         {
             _context = context;
+            this.hostingEnvironment = hostingEnvironment;
+            
         }
 
-        // GET: TeladeLojas
+        // GET: Lojas
         public async Task<IActionResult> Index()
         {
-            return View(await _context.TeladeLojas.ToListAsync());
+            return View(await _context.Lojas.ToListAsync());
         }
 
-        // GET: TeladeLojas/Details/5
+        // GET: Lojas/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -32,39 +38,64 @@ namespace ProjetoPET.Controllers
                 return NotFound();
             }
 
-            var teladeLojas = await _context.TeladeLojas
+            var lojas = await _context.Lojas
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (teladeLojas == null)
+            if (lojas == null)
             {
                 return NotFound();
             }
 
-            return View(teladeLojas);
+            return View(lojas);
         }
 
-        // GET: TeladeLojas/Create
+        // GET: Lojas/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: TeladeLojas/Create
+        // POST: Lojas/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("NomeEmpresa,RazaoSocial,CNPj,Endereco,Numero,Bairro,Complemento,CEP,Estado,Cidade,Telefone,Email,Id,CreatedDate,ModifiedDate")] TeladeLojas teladeLojas)
+        public async Task<IActionResult> Create(LojasViewModel model)
         {
-            if (ModelState.IsValid)
+              if (ModelState.IsValid)
             {
-                _context.Add(teladeLojas);
+
+                string uniqueFileName = null;
+                if (model.Photo != null)
+                {
+                    string uploadsFolder = Path.Combine(hostingEnvironment.WebRootPath, "images/LojasPhotos");
+                    uniqueFileName = Guid.NewGuid().ToString() + "_" + model.Photo.FileName;
+                    string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+                    model.Photo.CopyTo(new FileStream(filePath, FileMode.Create));
+                }
+                Lojas newLojas = new Lojas
+                {
+                    NomeLoja = model.NomeLoja,
+                    RazaoSocial = model.RazaoSocial,
+                    CNPj = model.CNPj,
+                    Endereco = model.Endereco,
+                    Numero = model.Numero,
+                    Complemento = model.Complemento,
+                    CEP = model.CEP,
+                    Estado = model.Estado,
+                    Cidade = model.Cidade,
+                    Telefone = model.Telefone,
+                    Email = model.Email,
+                    ImagePath = uniqueFileName
+                    
+                };
+                _context.Add(newLojas);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(teladeLojas);
+            return View();
         }
 
-        // GET: TeladeLojas/Edit/5
+        // GET: Lojas/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -72,22 +103,22 @@ namespace ProjetoPET.Controllers
                 return NotFound();
             }
 
-            var teladeLojas = await _context.TeladeLojas.FindAsync(id);
-            if (teladeLojas == null)
+            var lojas = await _context.Lojas.FindAsync(id);
+            if (lojas == null)
             {
                 return NotFound();
             }
-            return View(teladeLojas);
+            return View(lojas);
         }
 
-        // POST: TeladeLojas/Edit/5
+        // POST: Lojas/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("NomeEmpresa,RazaoSocial,CNPj,Endereco,Numero,Bairro,Complemento,CEP,Estado,Cidade,Telefone,Email,Id,CreatedDate,ModifiedDate")] TeladeLojas teladeLojas)
+        public async Task<IActionResult> Edit(int id, [Bind("NomeLoja,RazaoSocial,CNPj,Endereco,Numero,Bairro,Complemento,CEP,Estado,Cidade,Telefone,Email,ImagePath,Id,CreatedDate,ModifiedDate")] Lojas lojas)
         {
-            if (id != teladeLojas.Id)
+            if (id != lojas.Id)
             {
                 return NotFound();
             }
@@ -96,12 +127,12 @@ namespace ProjetoPET.Controllers
             {
                 try
                 {
-                    _context.Update(teladeLojas);
+                    _context.Update(lojas);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!TeladeLojasExists(teladeLojas.Id))
+                    if (!LojasExists(lojas.Id))
                     {
                         return NotFound();
                     }
@@ -112,10 +143,10 @@ namespace ProjetoPET.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(teladeLojas);
+            return View(lojas);
         }
 
-        // GET: TeladeLojas/Delete/5
+        // GET: Lojas/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -123,30 +154,30 @@ namespace ProjetoPET.Controllers
                 return NotFound();
             }
 
-            var teladeLojas = await _context.TeladeLojas
+            var lojas = await _context.Lojas
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (teladeLojas == null)
+            if (lojas == null)
             {
                 return NotFound();
             }
 
-            return View(teladeLojas);
+            return View(lojas);
         }
 
-        // POST: TeladeLojas/Delete/5
+        // POST: Lojas/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var teladeLojas = await _context.TeladeLojas.FindAsync(id);
-            _context.TeladeLojas.Remove(teladeLojas);
+            var lojas = await _context.Lojas.FindAsync(id);
+            _context.Lojas.Remove(lojas);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool TeladeLojasExists(int id)
+        private bool LojasExists(int id)
         {
-            return _context.TeladeLojas.Any(e => e.Id == id);
+            return _context.Lojas.Any(e => e.Id == id);
         }
     }
 }
