@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using ProjetoPET.Areas.Identity.Data;
 using ProjetoPET.Models;
 
-    public class BancoContext : Microsoft.EntityFrameworkCore.DbContext
+    public class BancoContext : DbContext
     {
         public BancoContext(DbContextOptions<BancoContext> options)
             : base(options)
@@ -21,5 +22,8 @@ using ProjetoPET.Models;
 
         public DbSet<ProjetoPET.Models.Adocao> Adocao { get; set; }
 
-        public DbSet<ProjetoPET.Models.Eventos> Eventos { get; set; }
-    }
+        public DbSet<Eventos> Eventos { get; set; }
+
+        public DbSet<IdentityUserClaim<string>> IdentityUserClaims { get; set; }
+}
+
