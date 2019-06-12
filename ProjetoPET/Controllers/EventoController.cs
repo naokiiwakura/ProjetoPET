@@ -52,7 +52,7 @@ namespace ProjetoPET.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Nome,Descricao,Id,CreatedDate,UpdatedData")] Eventos eventos)
+        public async Task<IActionResult> Create([Bind("Nome,Descricao,Id,CreatedDate,Local,UpdatedData")] Eventos eventos)
         {
             if (ModelState.IsValid)
             {
@@ -84,7 +84,7 @@ namespace ProjetoPET.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Nome,Descricao,Id,CreatedDate,UpdatedData")] Eventos eventos)
+        public async Task<IActionResult> Edit(int id, [Bind("Nome,Descricao,Id,CreatedDate,Local,UpdatedData")] Eventos eventos)
         {
             if (id != eventos.Id)
             {

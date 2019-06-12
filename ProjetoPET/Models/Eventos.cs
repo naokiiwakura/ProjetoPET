@@ -9,5 +9,7 @@ namespace ProjetoPET.Models
     {
         public string Nome { get; set; }
         public string Descricao { get; set; }
+        public string Local { get; set; }
+
     }
 }

@@ -25,5 +25,9 @@ using ProjetoPET.Models;
         public DbSet<Eventos> Eventos { get; set; }
 
         public DbSet<IdentityUserClaim<string>> IdentityUserClaims { get; set; }
+
+        public DbSet<ImageData> Imagens {get;set;}
+        
+        
 }
 

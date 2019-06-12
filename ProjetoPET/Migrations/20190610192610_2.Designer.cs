@@ -3,14 +3,16 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ProjetoPET.Migrations
 {
     [DbContext(typeof(BancoContext))]
-    partial class BancoContextModelSnapshot : ModelSnapshot
+    [Migration("20190610192610_2")]
+    partial class _2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -114,8 +116,6 @@ namespace ProjetoPET.Migrations
 
                     b.Property<string>("Descricao");
 
-                    b.Property<string>("Local");
-
                     b.Property<string>("Nome");
 
                     b.Property<DateTime?>("UpdatedData");
@@ -123,31 +123,6 @@ namespace ProjetoPET.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Eventos");
-                });
-
-            modelBuilder.Entity("ProjetoPET.Models.ImageData", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Conteúdo");
-
-                    b.Property<DateTime>("CreatedDate");
-
-                    b.Property<string>("Descricao");
-
-                    b.Property<byte[]>("Image");
-
-                    b.Property<int>("ImagemId");
-
-                    b.Property<string>("Titulo");
-
-                    b.Property<DateTime?>("UpdatedData");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Imagens");
                 });
 
             modelBuilder.Entity("ProjetoPET.Models.Pet", b =>
