@@ -10,8 +10,8 @@ namespace ProjetoPET.repository
 {
     public class GenericRepository<Tentity> : IGenericRepository<Tentity> where Tentity : class, IEntity
     {
-        private readonly DbContext _db;
-        public GenericRepository(DbContext db)
+        private readonly BancoContext _db;
+        public GenericRepository(BancoContext db)
         {
             _db = db;
         }

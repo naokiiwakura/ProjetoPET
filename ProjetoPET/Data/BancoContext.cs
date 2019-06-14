@@ -16,11 +16,11 @@ public class BancoContext : DbContext
 
     public DbSet<Usuario> Usuario { get; set; }
 
-    public DbSet<ProjetoPET.Models.TipoUsuario> UsuarioBusiness { get; set; }
+    public DbSet<TipoUsuario> UsuarioBusiness { get; set; }
 
-    public DbSet<ProjetoPET.Models.Pet> Pet { get; set; }
+    public DbSet<Pet> Pet { get; set; }
 
-    public DbSet<ProjetoPET.Models.Adocao> Adocao { get; set; }
+    public DbSet<Adocao> Adocao { get; set; }
 
     public DbSet<Eventos> Eventos { get; set; }
 
