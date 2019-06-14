@@ -155,6 +155,47 @@ namespace ProjetoPET.Migrations
                     b.ToTable("Eventos");
                 });
 
+            modelBuilder.Entity("ProjetoPET.Models.Lojas", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Bairro");
+
+                    b.Property<int>("CEP");
+
+                    b.Property<int>("CNPj");
+
+                    b.Property<string>("Cidade");
+
+                    b.Property<string>("Complemento");
+
+                    b.Property<DateTime>("CreatedDate");
+
+                    b.Property<string>("Email");
+
+                    b.Property<string>("Endereco");
+
+                    b.Property<string>("Estado");
+
+                    b.Property<string>("ImagePath");
+
+                    b.Property<string>("NomeLoja");
+
+                    b.Property<int>("Numero");
+
+                    b.Property<string>("RazaoSocial");
+
+                    b.Property<int>("Telefone");
+
+                    b.Property<DateTime?>("UpdatedData");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Lojas");
+                });
+
             modelBuilder.Entity("ProjetoPET.Models.Pet", b =>
                 {
                     b.Property<int>("Id")

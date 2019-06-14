@@ -24,6 +24,8 @@ public class BancoContext : DbContext
 
     public DbSet<Eventos> Eventos { get; set; }
 
+    public DbSet<Lojas> Lojas { get; set; }
+
     public DbSet<IdentityUserClaim<string>> IdentityUserClaims { get; set; }
 
     public DbSet<IdentityUserLogin<string>> IdentityUserLogins { get; set; }

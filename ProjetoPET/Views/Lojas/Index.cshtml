@@ -5,7 +5,6 @@
 
 }
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
-
 <link href="~/css/pao_com_geleia.css" rel="stylesheet" />
 
 
@@ -24,33 +23,31 @@
         <style>
         </style>
 
-        <div class="col-md-6 form-group " style="max-height:160px">
-            <div class="col-md-4 ">
-                <img src="@photoPath" class=" imagem_loja" asp-append-version="true" />
+        <div class="col-md-6 form-group " >
+            
+            <div class="card mb-3" style="max-width: 540px;">
+                <div class="row no-gutters">
+                    <div class="col-md-4" style="margin:auto">
+                        <img src="@photoPath" class="imagem_loja"  asp-append-version="true" />
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title"> @Html.DisplayFor(modelItem => item.NomeLoja)</h5>
+                            <p class="card-text">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <a id="endereco" onclick="pinar(this)">
+                                    @Html.DisplayFor(modelItem => item.Endereco),@Html.DisplayFor(modelItem => item.Numero),@Html.DisplayFor(modelItem => item.Cidade)
+                                </a>
+                            </p>
+                            <p class="card-text"><i class="fas fa-phone"></i>@Html.DisplayFor(modelItem => item.Telefone)</p>
+                            <p>
+                                <i class="fas fa-envelope"></i>  @Html.DisplayFor(modelItem => item.Email)
+                            </p>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="col-md-5">
-                <h3>
-                    @Html.DisplayFor(modelItem => item.NomeLoja)
-                </h3>
-
-                <i class="fas fa-map-marker-alt"></i> 
-                <a id="endereco" onclick="pinar(this)">
-                    @Html.DisplayFor(modelItem => item.Endereco),@Html.DisplayFor(modelItem => item.Numero)
-                </a>
-
-
-                <br /><i class="fas fa-phone"></i>@Html.DisplayFor(modelItem => item.Telefone)
-                <br />
-
-
-                <i class="fas fa-envelope"></i>  @Html.DisplayFor(modelItem => item.Email)
-
-            </div>
-            <div>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </div>
+            
         </div>
     }
 </div>
@@ -58,89 +55,89 @@
 
 <div id="map_canvas" style="width: 95%; height: 432px"></div>
 <style>
-       /* Always set the map height explicitly to define the size of the div
+    /* Always set the map height explicitly to define the size of the div
     * element that contains the map. */
-       #map {
-           height: 100%;
-       }
-       /* Optional: Makes the sample page fill the window. */
-       html, body {
-           height: 100%;
-           margin: 0;
-           padding: 0;
-       }
+    #map {
+        height: 100%;
+    }
+    /* Optional: Makes the sample page fill the window. */
+    html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
 
-       #description {
-           font-family: Roboto;
-           font-size: 15px;
-           font-weight: 300;
-       }
+    #description {
+        font-family: Roboto;
+        font-size: 15px;
+        font-weight: 300;
+    }
 
-       #infowindow-content .title {
-           font-weight: bold;
-       }
+    #infowindow-content .title {
+        font-weight: bold;
+    }
 
-       #infowindow-content {
-           display: none;
-       }
+    #infowindow-content {
+        display: none;
+    }
 
-       #map #infowindow-content {
-           display: inline;
-       }
+    #map #infowindow-content {
+        display: inline;
+    }
 
-       .pac-card {
-           margin: 10px 10px 0 0;
-           border-radius: 2px 0 0 2px;
-           box-sizing: border-box;
-           -moz-box-sizing: border-box;
-           outline: none;
-           box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-           background-color: #fff;
-           font-family: Roboto;
-       }
+    .pac-card {
+        margin: 10px 10px 0 0;
+        border-radius: 2px 0 0 2px;
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        outline: none;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+        background-color: #fff;
+        font-family: Roboto;
+    }
 
-       #pac-container {
-           padding-bottom: 12px;
-           margin-right: 12px;
-       }
+    #pac-container {
+        padding-bottom: 12px;
+        margin-right: 12px;
+    }
 
-       .pac-controls {
-           display: inline-block;
-           padding: 5px 11px;
-       }
+    .pac-controls {
+        display: inline-block;
+        padding: 5px 11px;
+    }
 
-           .pac-controls label {
-               font-family: Roboto;
-               font-size: 13px;
-               font-weight: 300;
-           }
+        .pac-controls label {
+            font-family: Roboto;
+            font-size: 13px;
+            font-weight: 300;
+        }
 
-       #campoPesquisa {
-           background-color: #fff;
-           font-family: Roboto;
-           font-size: 15px;
-           font-weight: 300;
-           margin-left: 12px;
-           padding: 0 11px 0 13px;
-           text-overflow: ellipsis;
-           width: 400px;
-       }
+    #campoPesquisa {
+        background-color: #fff;
+        font-family: Roboto;
+        font-size: 15px;
+        font-weight: 300;
+        margin-left: 12px;
+        padding: 0 11px 0 13px;
+        text-overflow: ellipsis;
+        width: 400px;
+    }
 
-       #campoPesquisat:focus {
-           border-color: #4d90fe;
-       }
+    #campoPesquisat:focus {
+        border-color: #4d90fe;
+    }
 
-       #title {
-           color: #fff;
-           background-color: #4d90fe;
-           font-size: 25px;
-           font-weight: 500;
-           padding: 6px 12px;
-       }
+    #title {
+        color: #fff;
+        background-color: #4d90fe;
+        font-size: 25px;
+        font-weight: 500;
+        padding: 6px 12px;
+    }
 
-       #target {
-           width: 345px;
-       }
+    #target {
+        width: 345px;
+    }
 </style>
 
 @*<input id="campoPesquisa" class="controls" type="text" placeholder="Pesquisar Local">*@
@@ -161,63 +158,63 @@
         infowindow = new google.maps.InfoWindow();
 
         // Create the search box and link it to the UI element.
-        var input = document.getElementById('campoPesquisa');
-        var searchBox = new google.maps.places.SearchBox(input);
-        map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+        //var input = document.getElementById('campoPesquisa');
+        //var searchBox = new google.maps.places.SearchBox(input);
+        //map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 
-        // Bias the SearchBox results towards current map's viewport.
-        map.addListener('bounds_changed', function () {
-            searchBox.setBounds(map.getBounds());
-        });
+        //// Bias the SearchBox results towards current map's viewport.
+        //map.addListener('bounds_changed', function () {
+        //    searchBox.setBounds(map.getBounds());
+        //});
 
-        var markers = [];
-        // Listen for the event fired when the user selects a prediction and retrieve
-        // more details for that place.
-        searchBox.addListener('places_changed', function () {
-            var places = searchBox.getPlaces();
+        //var markers = [];
+        //// Listen for the event fired when the user selects a prediction and retrieve
+        //// more details for that place.
+        //searchBox.addListener('places_changed', function () {
+        //    var places = searchBox.getPlaces();
 
-            if (places.length == 0) {
-                return;
-            }
+        //    if (places.length == 0) {
+        //        return;
+        //    }
 
-            // Clear out the old markers.
-            markers.forEach(function (marker) {
-                marker.setMap(null);
-            });
-            markers = [];
+        //    // Clear out the old markers.
+        //    markers.forEach(function (marker) {
+        //        marker.setMap(null);
+        //    });
+        //    markers = [];
 
-            // For each place, get the icon, name and location.
-            var bounds = new google.maps.LatLngBounds();
-            places.forEach(function (place) {
-                if (!place.geometry) {
-                    console.log("Returned place contains no geometry");
-                    return;
-                }
-                var icon = {
-                    url: place.icon,
-                    size: new google.maps.Size(71, 71),
-                    origin: new google.maps.Point(0, 0),
-                    anchor: new google.maps.Point(17, 34),
-                    scaledSize: new google.maps.Size(25, 25)
-                };
+        //    // For each place, get the icon, name and location.
+        //    var bounds = new google.maps.LatLngBounds();
+        //    places.forEach(function (place) {
+        //        if (!place.geometry) {
+        //            console.log("Returned place contains no geometry");
+        //            return;
+        //        }
+        //        var icon = {
+        //            url: place.icon,
+        //            size: new google.maps.Size(71, 71),
+        //            origin: new google.maps.Point(0, 0),
+        //            anchor: new google.maps.Point(17, 34),
+        //            scaledSize: new google.maps.Size(25, 25)
+        //        };
 
-                // Create a marker for each place.
-                markers.push(new google.maps.Marker({
-                    map: map,
-                    icon: icon,
-                    title: place.name,
-                    position: place.geometry.location
-                }));
+        //        // Create a marker for each place.
+        //        markers.push(new google.maps.Marker({
+        //            map: map,
+        //            icon: icon,
+        //            title: place.name,
+        //            position: place.geometry.location
+        //        }));
 
-                if (place.geometry.viewport) {
-                    // Only geocodes have viewport.
-                    bounds.union(place.geometry.viewport);
-                } else {
-                    bounds.extend(place.geometry.location);
-                }
-            });
-            map.fitBounds(bounds);
-        });
+        //        if (place.geometry.viewport) {
+        //            // Only geocodes have viewport.
+        //            bounds.union(place.geometry.viewport);
+        //        } else {
+        //            bounds.extend(place.geometry.location);
+        //        }
+        //    });
+        //    map.fitBounds(bounds);
+        //});
     }
 
     function pinar(elemento) {
@@ -239,13 +236,16 @@
             }
         });
     }
+  
+        // Shapes define 
 
 
     function createMarker(place) {
         var marker = new google.maps.Marker({
             map: map,
-            position: place.geometry.location
+            position: place.geometry.location,
             
+
         });
 
         google.maps.event.addListener(marker, 'click', function () {

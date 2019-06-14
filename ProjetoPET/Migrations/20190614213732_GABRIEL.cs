@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ProjetoPET.Migrations
 {
-    public partial class inicial : Migration
+    public partial class GABRIEL : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -65,6 +65,33 @@ namespace ProjetoPET.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_IdentityUserTokens", x => x.UserId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Lojas",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    CreatedDate = table.Column<DateTime>(nullable: false),
+                    UpdatedData = table.Column<DateTime>(nullable: true),
+                    NomeLoja = table.Column<string>(nullable: true),
+                    RazaoSocial = table.Column<string>(nullable: true),
+                    CNPj = table.Column<int>(nullable: false),
+                    Endereco = table.Column<string>(nullable: true),
+                    Numero = table.Column<int>(nullable: false),
+                    Bairro = table.Column<string>(nullable: true),
+                    Complemento = table.Column<string>(nullable: true),
+                    CEP = table.Column<int>(nullable: false),
+                    Estado = table.Column<string>(nullable: true),
+                    Cidade = table.Column<string>(nullable: true),
+                    Telefone = table.Column<int>(nullable: false),
+                    Email = table.Column<string>(nullable: true),
+                    ImagePath = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Lojas", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -233,6 +260,9 @@ namespace ProjetoPET.Migrations
 
             migrationBuilder.DropTable(
                 name: "IdentityUserTokens");
+
+            migrationBuilder.DropTable(
+                name: "Lojas");
 
             migrationBuilder.DropTable(
                 name: "Pet");

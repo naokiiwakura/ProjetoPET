@@ -14,10 +14,10 @@ namespace ProjetoPET.Controllers
 {
     public class LojasController : Controller
     {
-        private readonly ProjetoPETContext _context;
+        private readonly BancoContext _context;
         private readonly IHostingEnvironment hostingEnvironment;
 
-        public LojasController(ProjetoPETContext context, IHostingEnvironment hostingEnvironment)
+        public LojasController(BancoContext context, IHostingEnvironment hostingEnvironment)
         {
             _context = context;
             this.hostingEnvironment = hostingEnvironment;
