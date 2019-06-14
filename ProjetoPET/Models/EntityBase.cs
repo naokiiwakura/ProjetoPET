@@ -5,10 +5,10 @@ using System.Threading.Tasks;
 
 namespace ProjetoPET.Models
 {
-    public class EntityBase
+    public class EntityBase : IEntity
     {
         public int Id { get; set; }
         public DateTime CreatedDate { get; set; }
-        public DateTime? ModifiedDate { get; set; }
+        public DateTime? UpdatedData { get; set; }
     }
 }

@@ -10,7 +10,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
-using ProjetoPET.Models;
+using ProjetoPET.repository;
+using Microsoft.AspNetCore.Identity;
+using ProjetoPET.Areas.Identity.Data;
 
 namespace ProjetoPET
 {
@@ -33,11 +35,19 @@ namespace ProjetoPET
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            services.AddAuthentication().AddGoogle(googleOptions =>
+            {
+                googleOptions.ClientId = Configuration["Authentication:Google:ClientId"];
+                googleOptions.ClientSecret = Configuration["Authentication:Google:ClientSecret"];
+            });
+
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            
+            services.AddDbContext<BancoContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("BancoContext")));
 
-            services.AddDbContext<ProjetoPETContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("ProjetoPETContext")));
+            services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -55,6 +65,7 @@ namespace ProjetoPET
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+            app.UseAuthentication();
             app.UseCookiePolicy();
 
             app.UseMvc(routes =>
