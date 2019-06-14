@@ -35,6 +35,38 @@ namespace ProjetoPET.Migrations
                     b.ToTable("IdentityUserClaims");
                 });
 
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
+                {
+                    b.Property<string>("UserId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("LoginProvider");
+
+                    b.Property<string>("ProviderDisplayName");
+
+                    b.Property<string>("ProviderKey");
+
+                    b.HasKey("UserId");
+
+                    b.ToTable("IdentityUserLogins");
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
+                {
+                    b.Property<string>("UserId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("LoginProvider");
+
+                    b.Property<string>("Name");
+
+                    b.Property<string>("Value");
+
+                    b.HasKey("UserId");
+
+                    b.ToTable("IdentityUserTokens");
+                });
+
             modelBuilder.Entity("ProjetoPET.Areas.Identity.Data.Usuario", b =>
                 {
                     b.Property<string>("Id")
