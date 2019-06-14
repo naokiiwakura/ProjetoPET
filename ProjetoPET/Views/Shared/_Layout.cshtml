@@ -18,7 +18,7 @@
     </environment>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-primary">
         <a class="navbar-brand" href="#">Projeto PET</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -42,12 +42,17 @@
 
         </div>
     </nav>
+
+
     <div class="container-fluid body-content">
         @RenderBody()
     </div>
 
     <footer class="footer container-fluid">
         <span class="text-muted">&copy ProjetoPET - Seu parceiro ideal mais próximo.</span>
+        <span class="float-right">
+            Powered by <strong>Fábrica de Software</strong>
+        </span>
     </footer>
 
     <environment include="Development">
