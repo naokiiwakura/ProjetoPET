@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ProjetoPET.Models;
+using ProjetoPET.ViewModel;
 
 namespace ProjetoPET.Controllers
 {
@@ -53,15 +55,33 @@ namespace ProjetoPET.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Banner,Descricao,Foto,Id,CreatedDate,UpdatedData")] Produto produto)
+        public async Task<IActionResult> Create(PropagandaViewModel propagandaViewModel)
         {
             if (ModelState.IsValid)
             {
+
+                if (propagandaViewModel.Foto == null || propagandaViewModel.Foto.Length == 0)
+                    return Content("arquivo não enviado");
+
+                var path = Path.Combine(Directory.GetCurrentDirectory(), "Arquivos/Propaganda", propagandaViewModel.Foto.FileName);
+
+                using (var stream = new FileStream(path, FileMode.Create))
+                {
+                    await propagandaViewModel.Foto.CopyToAsync(stream);
+                }
+
+                var produto = new Produto
+                {
+                    Banner = propagandaViewModel.Banner,
+                    Descricao = propagandaViewModel.Descricao,
+                    Foto = path
+                };
+
                 _context.Add(produto);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(produto);
+            return View(propagandaViewModel);
         }
 
         // GET: Produto/Edit/5

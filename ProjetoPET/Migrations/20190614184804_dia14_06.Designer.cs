@@ -9,16 +9,33 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ProjetoPET.Migrations
 {
     [DbContext(typeof(BancoContext))]
-    [Migration("20190610181313_configinii")]
-    partial class configinii
+    [Migration("20190614184804_dia14_06")]
+    partial class dia14_06
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.1.11-servicing-32099")
+                .HasAnnotation("ProductVersion", "2.1.8-servicing-32085")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ClaimType");
+
+                    b.Property<string>("ClaimValue");
+
+                    b.Property<string>("UserId");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("IdentityUserClaims");
+                });
 
             modelBuilder.Entity("ProjetoPET.Areas.Identity.Data.Usuario", b =>
                 {
@@ -140,6 +157,27 @@ namespace ProjetoPET.Migrations
                     b.HasIndex("AdocaoId");
 
                     b.ToTable("Pet");
+                });
+
+            modelBuilder.Entity("ProjetoPET.Models.Produto", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Banner");
+
+                    b.Property<DateTime>("CreatedDate");
+
+                    b.Property<string>("Descricao");
+
+                    b.Property<byte[]>("Foto");
+
+                    b.Property<DateTime?>("UpdatedData");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Produtos");
                 });
 
             modelBuilder.Entity("ProjetoPET.Models.TipoUsuario", b =>

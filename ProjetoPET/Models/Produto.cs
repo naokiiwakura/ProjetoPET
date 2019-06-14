@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
+using System.Web;
+
+
 
 namespace ProjetoPET.Models
 {
@@ -9,7 +11,7 @@ namespace ProjetoPET.Models
     {
         public string Banner { get; set; }
         public string Descricao { get; set; }
-        public byte[] Foto { get; set; }
 
+        public string Foto { get; set; }
     }
 }

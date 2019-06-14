@@ -3,23 +3,24 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ProjetoPET.Migrations
 {
-    public partial class change_identity : Migration
+    public partial class dia14_06_02 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AlterColumn<string>(
-                name: "UserId",
-                table: "IdentityUserClaims",
+                name: "Foto",
+                table: "Produtos",
                 nullable: true,
-                oldClrType: typeof(Guid));
+                oldClrType: typeof(byte[]),
+                oldNullable: true);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AlterColumn<Guid>(
-                name: "UserId",
-                table: "IdentityUserClaims",
-                nullable: false,
+            migrationBuilder.AlterColumn<byte[]>(
+                name: "Foto",
+                table: "Produtos",
+                nullable: true,
                 oldClrType: typeof(string),
                 oldNullable: true);
         }
