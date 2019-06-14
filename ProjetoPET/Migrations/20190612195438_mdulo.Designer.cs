@@ -3,14 +3,16 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ProjetoPET.Migrations
 {
     [DbContext(typeof(BancoContext))]
-    partial class BancoContextModelSnapshot : ModelSnapshot
+    [Migration("20190612195438_mdulo")]
+    partial class mdulo
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -33,38 +35,6 @@ namespace ProjetoPET.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("IdentityUserClaims");
-                });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
-                {
-                    b.Property<string>("UserId")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("LoginProvider");
-
-                    b.Property<string>("ProviderDisplayName");
-
-                    b.Property<string>("ProviderKey");
-
-                    b.HasKey("UserId");
-
-                    b.ToTable("IdentityUserLogins");
-                });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
-                {
-                    b.Property<string>("UserId")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("LoginProvider");
-
-                    b.Property<string>("Name");
-
-                    b.Property<string>("Value");
-
-                    b.HasKey("UserId");
-
-                    b.ToTable("IdentityUserTokens");
                 });
 
             modelBuilder.Entity("ProjetoPET.Areas.Identity.Data.Usuario", b =>
