@@ -5,21 +5,15 @@
 
 @if (SignInManager.IsSignedIn(User))
 {
-    <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Index", new { area = "" })" method="post" id="logoutForm">
-        <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
-            <li class="nav-item">
-                <a class="nav-link" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">@UserManager.GetUserName(User)</a>
-            </li>
-            <li class="nav-item">
-                <button type="submit" class="btn btn-link navbar-btn nav-link">Sair</button>
-            </li>
-        </ul>
-    </form>
+    <li class="nav-item">
+        <a class="nav-link" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">@UserManager.GetUserName(User)</a>
+    </li>
+    <li class="nav-item">
+        <button type="submit" class="btn btn-link navbar-btn nav-link">Sair</button>
+    </li>
 }
 else
 {
-    <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
-        <li class="nav-item"><a class="nav-link" asp-area="Identity" asp-page="/Account/Register">Registrar</a></li>
-        <li class="nav-item"><a class="nav-link" asp-area="Identity" asp-page="/Account/Login">Login</a></li>
-    </ul>
+    <li class="nav-item"><a class="nav-link" asp-area="Identity" asp-page="/Account/Register">Registrar</a></li>
+    <li class="nav-item"><a class="nav-link" asp-area="Identity" asp-page="/Account/Login">Login</a></li>
 }
