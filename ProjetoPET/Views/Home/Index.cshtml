@@ -1,83 +1,409 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Home";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@*<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="6000">
-    <ol class="carousel-indicators">
-        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-        <li data-target="#myCarousel" data-slide-to="1"></li>
-        <li data-target="#myCarousel" data-slide-to="2"></li>
-    </ol>
-    <div class="carousel-inner" role="listbox">
-        <div class="item active">
-            <img src="~/images/dog1.jpg" alt="ASP.NET" class="img-responsive" />
-            <div class="carousel-caption" role="option">
-                <p>
-                    Ame os bichinhos.
-                </p>
+
+
+<section class="site-blocks-cover overflow-hidden bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5 mr-auto align-self-center text-center text-md-left">
+                <div class="intro-text">
+                    <h1>Nós amamos os animais</h1>
+                    <p class="mb-4">Aqui pode ser o caminho mais curto para encontrar seu parceiro ideal.</p>
+                    <p><a class="btn btn-primary" asp-area="" asp-controller="Evento" asp-action="Index">Fazer um tour</a></p>
+                </div>
             </div>
-        </div>
-        <div class="item">
-            <img src="~/images/lots_of_dogs.jpg" alt="Visual Studio" class="img-responsive" />
-            <div class="carousel-caption" role="option">
-                <p>
-                    Faça uma adoção.
-                </p>
-            </div>
-        </div>
-        <div class="item">
-            <img src="~/images/produtos.jpg" alt="Microsoft Azure" class="img-responsive" />
-            <div class="carousel-caption" role="option">
-                <p>
-                    Compre produtos.
-                </p>
+            <div class="col-md-5 align-self-center text-center text-md-right">
+                <img src="images/dog_1.jpg" alt="Image" class="img-fluid cover-img">
+                <img src="images/dog_2.jpg" alt="Image" class="img-fluid cover-img2">
             </div>
         </div>
     </div>
-    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-    </a>
-    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-    </a>
-</div>*@
-<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-    <ol class="carousel-indicators">
-        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-    </ol>
-    <div class="carousel-inner">
-        <div class="carousel-item active">
-            <img class="d-block w-100" src="~/images/dog1.jpg" alt="First slide">
-            <div class="carousel-caption d-none d-md-block">
-                <h5>Encontre um parceiro ideal</h5>
-                <p>Através da nossa plataforma única você se conecta com milhares de clientes e transforma o seu negócio no principal fornecedor de serviços para Pets da sua região.</p>
+</section>
+<section class="site-section" id="about-section">
+    <div class="container">
+        <div class="row justify-content-center" data-aos="fade-up">
+            <div class="col-lg-6 text-center heading-section mb-5">
+
+                <h2 class="text-black mb-2">Bem-Vindo ao nosso ponto de encontro</h2>
+                <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
             </div>
         </div>
-        <div class="carousel-item">
-            <img class="d-block w-100" src="~/images/lots_of_dogs.jpg" alt="Second slide">
-            <div class="carousel-caption d-none d-md-block">
-                <h5>Vidas</h5>
-                <p>Ao adotar, você ajuda a reduzir o número de cães e gatos abandonados.</p>
+        <div class="row hover-1-wrap mb-5 mb-lg-0">
+            <div class="col-12">
+                <div class="row">
+                    <div class="mb-4 mb-lg-0 col-lg-6 order-lg-2" data-aos="fade-left">
+                        <a href="#" class="rotate10">
+                            <img src="images/dog_3.jpg" alt="Image" class="img-fluid">
+                        </a>
+                    </div>
+                    <div class="col-lg-5 mr-auto text-lg-right align-self-center order-lg-1" data-aos="fade-right">
+                        <h2 class="text-black">Animais felizes</h2>
+                        <p class="mb-4">Far far away, behind the word mountains, Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
+                        <p><a href="#" class="btn btn-primary">Read More</a></p>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="carousel-item">
-            <img class="d-block w-100" src="~/images/produtos.jpg" alt="Third slide">
-            <div class="carousel-caption d-none d-md-block">
-                <h5>Produtos</h5>
-                <p>Adquira os melhores produtos para o seu pet.</p>
+        <div class="row hover-1-wrap mb-5 mb-lg-0">
+            <div class="col-12">
+                <div class="row">
+                    <div class="mb-4 mb-lg-0 col-lg-6" data-aos="fade-right">
+                        <a href="#" class="rotate-reverse10">
+                            <img src="images/dog_4.jpg" alt="Image" class="img-fluid">
+                        </a>
+                    </div>
+                    <div class="col-lg-5 ml-auto align-self-center" data-aos="fade-left">
+                        <h2 class="text-black">Equipamentos modernos</h2>
+                        <p class="mb-4">Far far away, behind the word mountains, Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
+                        <p><a href="#" class="btn btn-primary">Read More</a></p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="sr-only">Anterior</span>
-    </a>
-    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="sr-only">Próximo</span>
-    </a>
-</div>
+</section>
+
+<section class="site-section bg-light trainers" id="trainers-section">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-6" data-aos="fade-right">
+                <img class="img-fluid border10 rotate-reverse10" src="images/dog_doctor.jpg" alt="Image">
+            </div>
+            <div class="col-md-5 ml-auto align-self-center" data-aos="fade-left">
+                <h2 class="mb-2 heading mb-4">Encontre o seu <strong>Veterinário</strong> ideal</h2>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste amet praesentium tenetur quos eius asperiores incidunt <a href="#">reprehenderit</a> hic labore? Officiis enim laborum facere iure voluptatem autem veritatis cupiditate magnam saepe.</p>
+                <p>Nulla, beatae ducimus? Dolor distinctio tempore hic consequatur, magni consectetur possimus tenetur eius, placeat, eveniet facilis perferendis vitae deleniti incidunt! Incidunt, illum eum? Suscipit aliquid consequatur repudiandae doloremque est nisi.</p>
+
+            </div>
+        </div>
+    </div>
+</section>
+<section class="site-section" id="faq-section">
+    <div class="container" id="accordion">
+        <div class="row justify-content-center" data-aos="fade-up">
+            <div class="col-lg-6 text-center heading-section mb-5">
+
+                <h2 class="text-black mb-2">Perguntas mais frequentes</h2>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit facere quia quas quod at, reprehenderit eaque nam.</p>
+            </div>
+        </div>
+        <div class="row accordion justify-content-center block__76208">
+            <div class="col-lg-6 order-lg-1 mb-5 mb-lg-0" data-aos="fade-up" data-aos-delay="">
+                <img src="images/dog_5.jpg" alt="Image" class="img-fluid rounded">
+            </div>
+            <div class="col-lg-5 ml-auto order-lg-2 align-self-center" data-aos="fade-up" data-aos-delay="100">
+                <div class="accordion-item">
+                    <h3 class="mb-0 heading">
+                        <a class="btn-block" data-toggle="collapse" href="#collapseFive" role="button" aria-expanded="true" aria-controls="collapseFive">Lorem ipsum dolor sit amet<span class="icon"></span></a>
+                    </h3>
+                    <div id="collapseFive" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                        <div class="body-text">
+                            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatum ipsum autem minima repellat, corrupti consequuntur sit amet atque, optio provident harum eius numquam dolores quam dolore quas! Quisquam, velit accusantium?</p>
+                        </div>
+                    </div>
+                </div> <!-- .accordion-item -->
+                <div class="accordion-item">
+                    <h3 class="mb-0 heading">
+                        <a class="btn-block" data-toggle="collapse" href="#collapseSix" role="button" aria-expanded="false" aria-controls="collapseSix">Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam, voluptas. <span class="icon"></span></a>
+                    </h3>
+                    <div id="collapseSix" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                        <div class="body-text">
+                            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Qui doloremque magnam ea, fuga deserunt dolor, atque ex libero aspernatur nobis nisi soluta nulla vitae natus omnis! Inventore beatae amet autem?</p>
+                        </div>
+                    </div>
+                </div> <!-- .accordion-item -->
+                <div class="accordion-item">
+                    <h3 class="mb-0 heading">
+                        <a class="btn-block" data-toggle="collapse" href="#collapseSeven" role="button" aria-expanded="false" aria-controls="collapseSeven">Lorem ipsum dolor sit, amet consectetur adipisicing elit. <span class="icon"></span></a>
+                    </h3>
+                    <div id="collapseSeven" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                        <div class="body-text">
+                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Illo, aspernatur exercitationem consequatur soluta vero error autem nemo cum! Consequatur illo voluptatum eos labore corrupti animi odio accusamus perferendis? Eveniet, odit.</p>
+                        </div>
+                    </div>
+                </div> <!-- .accordion-item -->
+                <div class="accordion-item">
+                    <h3 class="mb-0 heading">
+                        <a class="btn-block" data-toggle="collapse" href="#collapseEight" role="button" aria-expanded="false" aria-controls="collapseEight">consectetur, adipisicing elit?<span class="icon"></span></a>
+                    </h3>
+                    <div id="collapseEight" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                        <div class="body-text">
+                            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempore dolorem aliquam commodi magni. Animi harum voluptates odio asperiores, atque tenetur eveniet itaque pariatur ut. Est quas ducimus architecto?</p>
+                        </div>
+                    </div>
+                </div> <!-- .accordion-item -->
+            </div>
+
+        </div>
+    </div>
+</section>
+<section class="site-section bg-light block-13" id="testimonials-section" data-aos="fade">
+    <div class="container">
+
+        <div class="row justify-content-center" data-aos="fade-up">
+            <div class="col-lg-6 text-center heading-section mb-5">
+
+                <h2 class="text-black mb-2">Clientes felizes</h2>
+            </div>
+        </div>
+        <div data-aos="fade-up" data-aos-delay="200">
+            <div class="owl-carousel nonloop-block-13">
+                <div>
+                    <div class="block-testimony-1 text-center">
+
+                        <blockquote class="mb-4">
+                            <p>&ldquo;Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem porro aliquam quisquam perferendis illum ad corporis tempore voluptatum, obcaecati, a unde? Aliquam suscipit dicta, error velit quaerat eligendi quam ipsa..&rdquo;</p>
+                        </blockquote>
+                        <figure>
+                            <img src="images/person_1.jpg" alt="Image" class="img-fluid rounded-circle mx-auto">
+                        </figure>
+                        <h3 class="font-size-20 text-black">Ricky Fisher</h3>
+                    </div>
+                </div>
+                <div>
+                    <div class="block-testimony-1 text-center">
+
+                        <blockquote class="mb-4">
+                            <p>&ldquo;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat ad provident ipsa similique quidem. Fugit nam deserunt ipsam? Excepturi, possimus.&rdquo;</p>
+                        </blockquote>
+                        <figure>
+                            <img src="images/person_2.jpg" alt="Image" class="img-fluid rounded-circle mx-auto">
+                        </figure>
+                        <h3 class="font-size-20 mb-4 text-black">Ken Davis</h3>
+
+                    </div>
+                </div>
+                <div>
+                    <div class="block-testimony-1 text-center">
+
+                        <blockquote class="mb-4">
+                            <p>&ldquo;Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores numquam, animi est ratione aut explicabo fuga illum a nesciunt tempora! Incidunt laborum blanditiis quidem voluptatibus enim placeat!&rdquo;</p>
+                        </blockquote>
+                        <figure>
+                            <img src="images/person_1.jpg" alt="Image" class="img-fluid rounded-circle mx-auto">
+                        </figure>
+                        <h3 class="font-size-20 text-black">Mellisa Griffin</h3>
+
+                    </div>
+                </div>
+                <div>
+                    <div class="block-testimony-1 text-center">
+
+                        <blockquote class="mb-4">
+                            <p>&ldquo;Lorem ipsum dolor sit amet, consectetur adipisicing elit. A nemo distinctio ratione numquam. Magni quae a adipisci hic laborum voluptate optio ab tenetur. Officiis mollitia nam itaque laborum?.&rdquo;</p>
+                        </blockquote>
+                        <figure>
+                            <img src="images/person_2.jpg" alt="Image" class="img-fluid rounded-circle mx-auto">
+                        </figure>
+                        <h3 class="font-size-20 mb-4 text-black">Robert Steward</h3>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="site-section" id="blog-section">
+    <div class="container">
+        <div class="row justify-content-center" data-aos="fade-up">
+            <div class="col-lg-6 text-center heading-section mb-5">
+
+                <h2 class="text-black mb-2">Amigos disponíveis</h2>
+                <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 mb-4" data-aos="fade-up" data-aos-delay="">
+                <div class="d-lg-flex blog-entry">
+                    <figure class="mr-4">
+                        <a href="single.html"><img src="images/dog_5.jpg" alt="Image" class="img-fluid"></a>
+                    </figure>
+                    <div class="blog-entry-text">
+                        <h3><a href="single.html">How to make first aid for your dog when in the house</a></h3>
+                        <span class="post-meta mb-3 d-block">April 17, 2019</span>
+                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Obcaecati, perspiciatis debitis. Cumque nihil, laborum eos possimus quod dolor.</p>
+                        <p><a href="#" class="">Read More..</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 mb-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="d-lg-flex blog-entry">
+                    <figure class="mr-4">
+                        <a href="single.html"><img src="images/dog_6.jpg" alt="Image" class="img-fluid"></a>
+                    </figure>
+                    <div class="blog-entry-text">
+                        <h3><a href="single.html">How to make first aid for your dog when in the house</a></h3>
+                        <span class="post-meta mb-3 d-block">April 17, 2019</span>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel quaerat beatae officiis, iure odio veritatis adipisci recusandae qui?</p>
+                        <p><a href="#" class="">Read More..</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 mb-4" data-aos="fade-up" data-aos-delay="">
+                <div class="d-lg-flex blog-entry">
+                    <figure class="mr-4">
+                        <a href="single.html"><img src="images/dog_6.jpg" alt="Image" class="img-fluid"></a>
+                    </figure>
+                    <div class="blog-entry-text">
+                        <h3><a href="single.html">How to make first aid for your dog when in the house</a></h3>
+                        <span class="post-meta mb-3 d-block">April 17, 2019</span>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis ipsum illum harum odio iste et quae doloremque dicta.</p>
+                        <p><a href="#" class="">Read More..</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 mb-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="d-lg-flex blog-entry">
+                    <figure class="mr-4">
+                        <a href="single.html"><img src="images/dog_5.jpg" alt="Image" class="img-fluid"></a>
+                    </figure>
+                    <div class="blog-entry-text">
+                        <h3><a href="single.html">How to make first aid for your dog when in the house</a></h3>
+                        <span class="post-meta mb-3 d-block">April 17, 2019</span>
+                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quam veritatis minima ut voluptates aspernatur blanditiis repudiandae, voluptatem impedit.</p>
+                        <p><a href="#" class="">Read More..</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="site-section " id="services-section">
+    <div class="container">
+        <div class="row justify-content-center" data-aos="fade-up">
+            <div class="col-lg-6 text-center heading-section mb-5">
+
+                <h2 class="text-black mb-2">Nossos serviços</h2>
+                <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 mb-4 col-lg-4" data-aos="fade-up" data-aos-delay="">
+
+                <div class="block_service">
+                    <span class="icon-paw d-block display-3 text-primary mb-3"></span>
+                    <h3>Dog Checkup</h3>
+                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. </p>
+                </div>
+            </div>
+            <div class="col-md-6 mb-4 col-lg-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="block_service">
+                    <span class="icon-paw d-block display-3 text-primary mb-3"></span>
+                    <h3>Dog Dermatology</h3>
+                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. </p>
+                </div>
+            </div>
+            <div class="col-md-6 mb-4 col-lg-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="block_service">
+                    <span class="icon-paw d-block display-3 text-primary mb-3"></span>
+                    <h3>For Strong Teeth</h3>
+                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. </p>
+                </div>
+            </div>
+
+            <div class="col-md-6 mb-4 col-lg-4" data-aos="fade-up" data-aos-delay="">
+
+                <div class="block_service">
+                    <span class="icon-paw d-block display-3 text-primary mb-3"></span>
+                    <h3>Dog First Aid</h3>
+                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. </p>
+                </div>
+            </div>
+            <div class="col-md-6 mb-4 col-lg-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="block_service">
+                    <span class="icon-paw d-block display-3 text-primary mb-3"></span>
+                    <h3>Dog Dryer</h3>
+                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. </p>
+                </div>
+            </div>
+            <div class="col-md-6 mb-4 col-lg-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="block_service">
+                    <span class="icon-paw d-block display-3 text-primary mb-3"></span>
+                    <h3>Expert Veterinarian</h3>
+                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<section class="bg-light" id="contact-section">
+    <div class="container">
+        <div class="row no-gutters">
+            <div class="col-lg-6">
+                <form action="#" class="p-5 contact-form">
+
+                    <h2 class="h4 mb-5 heading">Contact Form</h2>
+                    <div class="row form-group">
+                        <div class="col-md-6 mb-3 mb-md-0">
+                            <label for="fname">Nome</label>
+                            <input type="text" id="fname" class="form-control">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="lname">Sobrenome</label>
+                            <input type="text" id="lname" class="form-control">
+                        </div>
+                    </div>
+                    <div class="row form-group">
+
+                        <div class="col-md-12">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" class="form-control">
+                        </div>
+                    </div>
+                    <div class="row form-group">
+
+                        <div class="col-md-12">
+                            <label for="subject">Assunto</label>
+                            <input type="text" id="subject" class="form-control">
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-md-12">
+                            <label for="message">Mensagem</label>
+                            <textarea name="message" id="message" cols="30" rows="7" class="form-control" placeholder="Descreva suas anotações ou perguntas..."></textarea>
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-md-12">
+                            <input type="submit" value="Enviar" class="btn btn-dark btn-md text-white">
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+            <div class="col-lg-6">
+                <div class="row justify-content-center align-items-center h-100">
+                    <div class="col-lg-6 text-center heading-section mb-5 align-self-center">
+
+                        <h2 class=" mb-5 text-black">Contato</h2>
+                        <ul class="list-unstyled text-left address">
+                            <li>
+                                <span class="d-block">Endereço:</span>
+                                <p>Avenida Eduardo Elias Zahran - Jardim Paulista, Campo Grande - MS</p>
+                            </li>
+                            <li>
+                                <span class="d-block">Telefone:</span>
+                                <p>(67) 99999-9999</p>
+                            </li>
+                            <li>
+                                <span class="d-block">Email:</span>
+                                <p>fabrica@senac.ms.br</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
