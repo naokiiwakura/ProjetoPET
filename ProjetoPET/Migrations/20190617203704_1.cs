@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ProjetoPET.Migrations
 {
-    public partial class configinii : Migration
+    public partial class _1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -22,6 +22,49 @@ namespace ProjetoPET.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Eventos", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "IdentityUserClaims",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    UserId = table.Column<string>(nullable: true),
+                    ClaimType = table.Column<string>(nullable: true),
+                    ClaimValue = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_IdentityUserClaims", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "IdentityUserLogins",
+                columns: table => new
+                {
+                    LoginProvider = table.Column<string>(nullable: true),
+                    ProviderKey = table.Column<string>(nullable: true),
+                    ProviderDisplayName = table.Column<string>(nullable: true),
+                    UserId = table.Column<string>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_IdentityUserLogins", x => x.UserId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "IdentityUserTokens",
+                columns: table => new
+                {
+                    UserId = table.Column<string>(nullable: false),
+                    LoginProvider = table.Column<string>(nullable: true),
+                    Name = table.Column<string>(nullable: true),
+                    Value = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_IdentityUserTokens", x => x.UserId);
                 });
 
             migrationBuilder.CreateTable(
@@ -181,6 +224,15 @@ namespace ProjetoPET.Migrations
 
             migrationBuilder.DropTable(
                 name: "Eventos");
+
+            migrationBuilder.DropTable(
+                name: "IdentityUserClaims");
+
+            migrationBuilder.DropTable(
+                name: "IdentityUserLogins");
+
+            migrationBuilder.DropTable(
+                name: "IdentityUserTokens");
 
             migrationBuilder.DropTable(
                 name: "Pet");
