@@ -33,4 +33,6 @@
     <None Include="wwwroot\lib\jquery-validation\LICENSE.md" />
   </ItemGroup>
 
+  <ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JSONSchema="" /></VisualStudio></ProjectExtensions>
+
 </Project>
