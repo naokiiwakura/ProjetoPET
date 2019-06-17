@@ -1,13 +1,14 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using ProjetoPET.Models;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
-using System.ComponentModel.DataAnnotations.Schema;
-using Microsoft.AspNetCore.Http;
 
-namespace ProjetoPET.Models
+namespace ProjetoPET.ViewModel
 {
-    public class Adocao : EntityBase
+    public class AdocaoViewModel : EntityBase
     {
         public string Nome { get; set; }
         public string Raca { get; set; }
@@ -16,10 +17,9 @@ namespace ProjetoPET.Models
         public string Numero { get; set; }
         public string Bairo { get; set; }
         public string Telefone { get; set; }
-        public string Photo { get; set; }
+        public IFormFile Photo { get; set; }
         [ForeignKey("UsuarioId")]
         public int UsuarioId { get; set; }
 
-        
     }
 }

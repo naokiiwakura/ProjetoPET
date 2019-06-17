@@ -21,7 +21,7 @@ namespace ProjetoPET.Controllers
         {
             _context = context;
             this.hostingEnvironment = hostingEnvironment;
-            
+
         }
 
         // GET: Lojas
@@ -61,13 +61,13 @@ namespace ProjetoPET.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(LojasViewModel model)
         {
-              if (ModelState.IsValid)
+            if (ModelState.IsValid)
             {
 
                 string uniqueFileName = null;
                 if (model.Photo != null)
                 {
-                    string uploadsFolder = Path.Combine(hostingEnvironment.WebRootPath, "images/LojasPhotos");
+                    string uploadsFolder = Path.Combine(hostingEnvironment.WebRootPath, "images/AdocaoPhotos");
                     uniqueFileName = Guid.NewGuid().ToString() + "_" + model.Photo.FileName;
                     string filePath = Path.Combine(uploadsFolder, uniqueFileName);
                     model.Photo.CopyTo(new FileStream(filePath, FileMode.Create));
@@ -86,7 +86,7 @@ namespace ProjetoPET.Controllers
                     Telefone = model.Telefone,
                     Email = model.Email,
                     ImagePath = uniqueFileName
-                    
+
                 };
                 _context.Add(newLojas);
                 await _context.SaveChangesAsync();

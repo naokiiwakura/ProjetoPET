@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ProjetoPET.Migrations
 {
     [DbContext(typeof(BancoContext))]
-    [Migration("20190617191723_inicio")]
-    partial class inicio
+    [Migration("20190617210608_123")]
+    partial class _123
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -117,23 +117,29 @@ namespace ProjetoPET.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Contato");
+                    b.Property<string>("Bairo");
 
                     b.Property<DateTime>("CreatedDate");
 
-                    b.Property<int>("PetId");
+                    b.Property<string>("Descricao");
+
+                    b.Property<string>("Endereco");
+
+                    b.Property<string>("Nome");
+
+                    b.Property<string>("Numero");
+
+                    b.Property<string>("Photo");
+
+                    b.Property<string>("Raca");
+
+                    b.Property<string>("Telefone");
 
                     b.Property<DateTime?>("UpdatedData");
-
-                    b.Property<int?>("UsuarioBusinessId");
 
                     b.Property<int>("UsuarioId");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("PetId");
-
-                    b.HasIndex("UsuarioBusinessId");
 
                     b.ToTable("Adocao");
                 });
@@ -204,8 +210,6 @@ namespace ProjetoPET.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("AdocaoId");
-
                     b.Property<DateTime>("CreatedDate");
 
                     b.Property<string>("Descricao");
@@ -226,8 +230,6 @@ namespace ProjetoPET.Migrations
                     b.Property<DateTime?>("UpdatedData");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("AdocaoId");
 
                     b.ToTable("Pet");
                 });
@@ -262,25 +264,6 @@ namespace ProjetoPET.Migrations
                     b.HasOne("ProjetoPET.Models.TipoUsuario")
                         .WithMany("Usuarios")
                         .HasForeignKey("TipoUsuarioId");
-                });
-
-            modelBuilder.Entity("ProjetoPET.Models.Adocao", b =>
-                {
-                    b.HasOne("ProjetoPET.Models.Pet", "Pet")
-                        .WithMany()
-                        .HasForeignKey("PetId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("ProjetoPET.Models.TipoUsuario", "UsuarioBusiness")
-                        .WithMany()
-                        .HasForeignKey("UsuarioBusinessId");
-                });
-
-            modelBuilder.Entity("ProjetoPET.Models.Pet", b =>
-                {
-                    b.HasOne("ProjetoPET.Models.Adocao")
-                        .WithMany("PetDoacao")
-                        .HasForeignKey("AdocaoId");
                 });
 
             modelBuilder.Entity("ProjetoPET.Models.TipoUsuario", b =>

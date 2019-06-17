@@ -4,10 +4,33 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ProjetoPET.Migrations
 {
-    public partial class inicio : Migration
+    public partial class _123 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "Adocao",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    CreatedDate = table.Column<DateTime>(nullable: false),
+                    UpdatedData = table.Column<DateTime>(nullable: true),
+                    Nome = table.Column<string>(nullable: true),
+                    Raca = table.Column<string>(nullable: true),
+                    Descricao = table.Column<string>(nullable: true),
+                    Endereco = table.Column<string>(nullable: true),
+                    Numero = table.Column<string>(nullable: true),
+                    Bairo = table.Column<string>(nullable: true),
+                    Telefone = table.Column<string>(nullable: true),
+                    Photo = table.Column<string>(nullable: true),
+                    UsuarioId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Adocao", x => x.Id);
+                });
+
             migrationBuilder.CreateTable(
                 name: "Eventos",
                 columns: table => new
@@ -107,36 +130,11 @@ namespace ProjetoPET.Migrations
                     Idade = table.Column<int>(nullable: false),
                     Sexo = table.Column<string>(maxLength: 1, nullable: false),
                     Telefone = table.Column<string>(nullable: true),
-                    Descricao = table.Column<string>(nullable: true),
-                    AdocaoId = table.Column<int>(nullable: true)
+                    Descricao = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Pet", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Adocao",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    CreatedDate = table.Column<DateTime>(nullable: false),
-                    UpdatedData = table.Column<DateTime>(nullable: true),
-                    Contato = table.Column<string>(nullable: true),
-                    UsuarioBusinessId = table.Column<int>(nullable: true),
-                    PetId = table.Column<int>(nullable: false),
-                    UsuarioId = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Adocao", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Adocao_Pet_PetId",
-                        column: x => x.PetId,
-                        principalTable: "Pet",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -190,21 +188,6 @@ namespace ProjetoPET.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Adocao_PetId",
-                table: "Adocao",
-                column: "PetId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Adocao_UsuarioBusinessId",
-                table: "Adocao",
-                column: "UsuarioBusinessId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Pet_AdocaoId",
-                table: "Pet",
-                column: "AdocaoId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Usuario_TipoUsuarioId",
                 table: "Usuario",
                 column: "TipoUsuarioId");
@@ -213,22 +196,6 @@ namespace ProjetoPET.Migrations
                 name: "IX_UsuarioBusiness_UsuarioId1",
                 table: "UsuarioBusiness",
                 column: "UsuarioId1");
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_Pet_Adocao_AdocaoId",
-                table: "Pet",
-                column: "AdocaoId",
-                principalTable: "Adocao",
-                principalColumn: "Id",
-                onDelete: ReferentialAction.Restrict);
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_Adocao_UsuarioBusiness_UsuarioBusinessId",
-                table: "Adocao",
-                column: "UsuarioBusinessId",
-                principalTable: "UsuarioBusiness",
-                principalColumn: "Id",
-                onDelete: ReferentialAction.Restrict);
 
             migrationBuilder.AddForeignKey(
                 name: "FK_UsuarioBusiness_Usuario_UsuarioId1",
@@ -242,12 +209,11 @@ namespace ProjetoPET.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropForeignKey(
-                name: "FK_Adocao_Pet_PetId",
-                table: "Adocao");
-
-            migrationBuilder.DropForeignKey(
                 name: "FK_Usuario_UsuarioBusiness_TipoUsuarioId",
                 table: "Usuario");
+
+            migrationBuilder.DropTable(
+                name: "Adocao");
 
             migrationBuilder.DropTable(
                 name: "Eventos");
@@ -266,9 +232,6 @@ namespace ProjetoPET.Migrations
 
             migrationBuilder.DropTable(
                 name: "Pet");
-
-            migrationBuilder.DropTable(
-                name: "Adocao");
 
             migrationBuilder.DropTable(
                 name: "UsuarioBusiness");

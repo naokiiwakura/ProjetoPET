@@ -1,27 +1,32 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ProjetoPET.Models;
-using ProjetoPET.repository;
+using ProjetoPET.ViewModel;
 
 namespace ProjetoPET.Controllers
 {
     public class AdocaoController : Controller
     {
-        private readonly IGenericRepository<Adocao> _repo;
-        public AdocaoController(IGenericRepository<Adocao> repo)
+        private readonly BancoContext _context;
+        private readonly IHostingEnvironment hostingEnvironment;
+
+        public AdocaoController(BancoContext context, IHostingEnvironment hostingEnvironment)
         {
-            _repo = repo;
+            _context = context;
+            this.hostingEnvironment = hostingEnvironment;
         }
 
         // GET: Adocao
         public async Task<IActionResult> Index()
         {
-            return View(await _repo.ListarTodos());
+            return View(await _context.Set<Adocao>().ToListAsync());
         }
 
         // GET: Adocao/Details/5
@@ -32,7 +37,8 @@ namespace ProjetoPET.Controllers
                 return NotFound();
             }
 
-            var adocao = await _repo.BuscarPorId((int)id);
+            var adocao = await _context.Set<Adocao>()
+                .FirstOrDefaultAsync(m => m.Id == id);
             if (adocao == null)
             {
                 return NotFound();
@@ -44,7 +50,7 @@ namespace ProjetoPET.Controllers
         // GET: Adocao/Create
         public IActionResult Create()
         {
-        
+
             return View();
         }
 
@@ -53,17 +59,37 @@ namespace ProjetoPET.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Contato,PetId,UsuarioId,Id,CreatedDate,UpdatedData")] Adocao adocao)
+        public async Task<IActionResult> Create(AdocaoViewModel model)
         {
             if (ModelState.IsValid)
             {
 
-                adocao.CreatedDate = DateTime.Now;
-                await _repo.Inserir(adocao);
+                string uniqueFileName = null;
+                if (model.Photo != null)
+                {
+                    string uploadsFolder = Path.Combine(hostingEnvironment.WebRootPath, "images/AdocaoPhotos");
+                    uniqueFileName = Guid.NewGuid().ToString() + "_" + model.Photo.FileName;
+                    string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+                    model.Photo.CopyTo(new FileStream(filePath, FileMode.Create));
+                }
+                Adocao newAdocao = new Adocao
+                {
+                    Nome = model.Nome,
+                    Raca = model.Raca,
+                    Descricao = model.Descricao,
+                    Endereco = model.Endereco,
+                    Numero = model.Numero,
+                    Bairo= model.Bairo,
+                    Telefone = model.Telefone,
+                    Photo = uniqueFileName
+                   
+
+                };
+                _context.Add(newAdocao);
+                await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-           
-            return View(adocao);
+            return View();
         }
 
         // GET: Adocao/Edit/5
@@ -74,12 +100,11 @@ namespace ProjetoPET.Controllers
                 return NotFound();
             }
 
-            var adocao = await _repo.BuscarPorId((int)id);
+            var adocao = await _context.Set<Adocao>().FindAsync(id);
             if (adocao == null)
             {
                 return NotFound();
             }
-            
             return View(adocao);
         }
 
@@ -88,7 +113,7 @@ namespace ProjetoPET.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Contato,PetId,UsuarioId,Id,CreatedDate,UpdatedData")] Adocao adocao)
+        public async Task<IActionResult> Edit(int id, [Bind("Nome,Raca,Descricao,Endereco,Numero,Bairo,Telefone,Photo,UsuarioId,Id,CreatedDate,UpdatedData")] Adocao adocao)
         {
             if (id != adocao.Id)
             {
@@ -99,12 +124,12 @@ namespace ProjetoPET.Controllers
             {
                 try
                 {
-                    var adocaoDb = _repo.Editar(id, adocao);
-                   
+                    _context.Update(adocao);
+                    await _context.SaveChangesAsync();
                 }
-                catch (Exception)
+                catch (DbUpdateConcurrencyException)
                 {
-                    if (! await AdocaoExists(adocao.Id))
+                    if (!AdocaoExists(adocao.Id))
                     {
                         return NotFound();
                     }
@@ -115,7 +140,6 @@ namespace ProjetoPET.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-         
             return View(adocao);
         }
 
@@ -127,8 +151,8 @@ namespace ProjetoPET.Controllers
                 return NotFound();
             }
 
-            var adocao = await _repo.BuscarPorId((int)id);
-                
+            var adocao = await _context.Set<Adocao>()
+                .FirstOrDefaultAsync(m => m.Id == id);
             if (adocao == null)
             {
                 return NotFound();
@@ -142,14 +166,15 @@ namespace ProjetoPET.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-
-            await _repo.Excluir(id);
+            var adocao = await _context.Set<Adocao>().FindAsync(id);
+            _context.Set<Adocao>().Remove(adocao);
+            await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private async Task <bool> AdocaoExists(int id)
+        private bool AdocaoExists(int id)
         {
-            return await _repo.Existe(id);
+            return _context.Set<Adocao>().Any(e => e.Id == id);
         }
     }
 }
