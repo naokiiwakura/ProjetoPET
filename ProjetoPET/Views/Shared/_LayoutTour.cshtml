@@ -48,13 +48,12 @@
                     <div class="col-12 col-md-10 d-none d-xl-block">
                         <nav class="site-navigation position-relative text-right" role="navigation">
                             <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
-                                <li><a href="#home-section" class="nav-link">Home</a></li>
-                                <li><a href="#about-section" class="nav-link">Sobre</a></li>
-                                <li><a href="#trainers-section" class="nav-link">Veterinários</a></li>
-                                <li><a href="#blog-section" class="nav-link">Amigos disponíveis</a></li>
-                                <li><a href="#services-section" class="nav-link">Serviços</a></li>
-                                <li><a href="#contact-section" class="nav-link">Contato</a></li>
+                                <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+                                <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Pet" asp-action="Index">Cadastre seu PeT</a></li>
+                                <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Evento" asp-action="Index">Eventos</a></li>
+                                <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Adocao" asp-action="Index">Adoção</a></li>
                             </ul>
+                            @await Html.PartialAsync("_LoginPartial")
                         </nav>
                     </div>
 
@@ -77,11 +76,12 @@
                             <div class="col-md-3 ml-auto">
                                 <h2 class="footer-heading mb-4">Quick Links</h2>
                                 <ul class="list-unstyled">
-                                    <li><a href="#about-section" class="smoothscroll">Sobre Nós</a></li>
-                                    <li><a href="#trainers-section" class="smoothscroll">Veterinários</a></li>
-                                    <li><a href="#services-section" class="smoothscroll">Serviços</a></li>
-                                    <li><a href="#testimonials-section" class="smoothscroll">Testimoniais</a></li>
-                                    <li><a href="#contact-section" class="smoothscroll">Contato</a></li>
+                                    <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+                                    <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Home" asp-action="About">Sobre nossa organização</a></li>
+                                    <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Home" asp-action="Contact">Entre em contato</a></li>
+                                    <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Pet" asp-action="Index">Cadastre seu PeT</a></li>
+                                    <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Evento" asp-action="Index">Eventos</a></li>
+                                    <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Adocao" asp-action="Index">Adoção</a></li>
                                 </ul>
                             </div>
                             <div class="col-md-3">
@@ -111,7 +111,7 @@
                             <p>
                                 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                                 Copyright &copy;
-                                <script>document.write(new Date().getFullYear());</script> Todos os direitos reservados | Projeto feito com
+                                <script>document.write(new Date().getFullYear());</script> All rights reserved | Projeto feito com
                                 <i class="icon-heart-o" aria-hidden="true"></i> by <a>Fábrica de Software</a>
                                 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                             </p>
