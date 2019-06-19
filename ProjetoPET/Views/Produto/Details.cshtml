@@ -1,0 +1,48 @@
+﻿@model ProjetoPET.Models.Produto
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Produto</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Banner)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Banner)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Descricao)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Descricao)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.FotoPath)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FotoPath)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CreatedDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.UpdatedData)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.UpdatedData)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

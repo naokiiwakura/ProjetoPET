@@ -1,0 +1,51 @@
+﻿@model ProjetoPET.ViewModel.ProdutoViewModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>Create</h2>
+
+<h4>Produto</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form enctype="multipart/form-data" asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Banner" class="control-label"></label>
+                <input asp-for="Banner" class="form-control" />
+                <span asp-validation-for="Banner" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Descricao" class="control-label"></label>
+                <input asp-for="Descricao" class="form-control" />
+                <span asp-validation-for="Descricao" class="text-danger"></span>
+            </div>
+            @*<div class="form-group">
+            <label asp-for="FotoPath" class="control-label"></label>
+            <input asp-for="FotoPath" class="form-control" />
+            <span asp-validation-for="FotoPath" class="text-danger"></span>
+        </div>*@
+            <div class="form-group">
+                <label asp-for="Photo" class="control-label"></label>
+                <input asp-for="Photo" class="Tomate form-control" id="Photo" name="Photo" type="file" accept="image/png, image/jpeg" onsubmit="Checkfiles(this)" />
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Criar" class="btn btn-default" />
+            </div>
+
+
+            
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
