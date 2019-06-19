@@ -20,7 +20,7 @@ public class BancoContext : DbContext
 
     public DbSet<Pet> Pet { get; set; }
 
-    public DbSet<Adocao> Adocao { get; set; }
+    public DbSet<Anuncio> Anuncio { get; set; }
 
     public DbSet<Eventos> Eventos { get; set; }
 

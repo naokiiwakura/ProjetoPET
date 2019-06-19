@@ -21,6 +21,7 @@
 
   <ItemGroup>
     <Folder Include="Areas\Identity\Services\" />
+    <Folder Include="wwwroot\images\AdocaoPhotos\" />
   </ItemGroup>
 
   <ItemGroup>

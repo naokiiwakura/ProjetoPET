@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ProjetoPET.Models.Adocao>
+﻿@model IEnumerable<ProjetoPET.Models.Anuncio>
 
 @{
     ViewData["Title"] = "Index";
@@ -13,13 +13,16 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Contato)
+                @Html.DisplayNameFor(model => model.Titulo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CorpoAnuncio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Foto)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Pet)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.UsuarioId)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.CreatedDate)
@@ -34,13 +37,16 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Contato)
+                @Html.DisplayFor(modelItem => item.Titulo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CorpoAnuncio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Foto)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Pet.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UsuarioId)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.CreatedDate)
