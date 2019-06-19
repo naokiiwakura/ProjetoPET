@@ -16,19 +16,28 @@
     <a asp-action="Create">Create New</a>
 </p>
 
-<div class="container">
+
+<div class="row col-md-12">
     @foreach (var item in Model)
     {
         var photoPath = "~/images/LojasPhotos/" + (item.ImagePath ?? "imagem.png");
+
         <style>
+            .imagem_loja{
+                width: 100%;
+                height: 100%;
+            }
         </style>
 
-        <div class="col-md-6 form-group " >
-            
-            <div class="card mb-3" style="max-width: 540px;">
+        <div class="col-md-4 form-group ">
+            <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+            <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+            <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+
+            <div class="card mb-4" style="max-width: 540px;">
                 <div class="row no-gutters">
-                    <div class="col-md-4" style="margin:auto">
-                        <img src="@photoPath" class="imagem_loja"  asp-append-version="true" />
+                    <div class="col-md-4">
+                        <img src="@photoPath" class="imagem_loja" asp-append-version="true" />
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">
@@ -43,18 +52,42 @@
                             <p>
                                 <i class="fas fa-envelope"></i>  @Html.DisplayFor(modelItem => item.Email)
                             </p>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ExemploModalCentralizado" onclick='pinar("@item.Endereco,@item.Numero.ToString(),@item.Cidade")'>
+                                Visualizar Localização
+                            </button>
+
+
                         </div>
                     </div>
                 </div>
             </div>
-            
+
+        </div>
+
+        <div class="modal fade" id="ExemploModalCentralizado" tabindex="-1" role="dialog" aria-labelledby="TituloModalCentralizado" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="TituloModalCentralizado">Título do modal</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div id="map_canvas" style="width: 95%; height: 432px"></div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                        
+                    </div>
+                </div>
+            </div>
         </div>
     }
 </div>
-
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAA8hwz5MoE8hs1FwRnJVMhcTQZZVGp9iw&libraries=places&callback=initAutocomplete" async defer></script>
 
-<div id="map_canvas" style="width: 95%; height: 432px"></div>
 
 
 
@@ -67,7 +100,7 @@
     function initAutocomplete() {
         map = new google.maps.Map(document.getElementById('map_canvas'), {
             center: { lat: -20.44278, lng: - 54.64639 },
-            zoom: 20,
+            zoom: 15,
             mapTypeId: 'roadmap'
         });
 
@@ -77,10 +110,8 @@
     }
 
     function pinar(elemento) {
-        console.log(elemento);
-
         var request = {
-            query: elemento.innerText,
+            query: elemento,
             fields: ['name', 'geometry'],
         };
 
@@ -112,7 +143,7 @@
             infowindow.open(map, this);
         });
     }
-
+   
 </script>
 
 
