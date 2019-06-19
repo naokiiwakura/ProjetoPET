@@ -51,6 +51,7 @@
                                 <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Pet" asp-action="Index">Cadastre seu PeT</a></li>
                                 <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Evento" asp-action="Index">Eventos</a></li>
                                 <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Adocao" asp-action="Index">Adoção</a></li>
+                                <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Lojas" asp-action="Index">Lojas</a></li>
                                 @await Html.PartialAsync("_LoginPartial")
                             </ul>
                         </nav>
@@ -70,8 +71,8 @@
 
         <div class="site-blocks-cover bg-light" data-aos="fade">
             <div class="container">
-                <div class="row align-items-center justify-content-center">
-                    <div class="col-md-12 mt-lg-5 text-center">
+                <div class="row align-items justify-content-center">
+                    <div style="margin-top:200px;" class="col-md-12 mt-lg-5 text-center">
                         @RenderBody()
                     </div>
                 </div>
