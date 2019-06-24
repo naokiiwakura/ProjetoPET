@@ -32,6 +32,12 @@ public class BancoContext : DbContext
 
     public DbSet<IdentityUserToken<string>> IdentityUserTokens { get; set; }
 
+    public DbSet<Cidade> Cidade { get; set; }
+
+    public DbSet<Estado> Estado { get; set; }
+
+    public DbSet<TipoAnuncio> TipoAnuncio { get; set; }
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);

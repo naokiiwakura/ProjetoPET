@@ -150,6 +150,27 @@ namespace ProjetoPET.Migrations
                     b.ToTable("Anuncio");
                 });
 
+            modelBuilder.Entity("ProjetoPET.Models.Cidade", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("CreatedDate");
+
+                    b.Property<int?>("EstadoId");
+
+                    b.Property<string>("Nome");
+
+                    b.Property<DateTime?>("UpdatedData");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EstadoId");
+
+                    b.ToTable("Cidade");
+                });
+
             modelBuilder.Entity("ProjetoPET.Models.Endereco", b =>
                 {
                     b.Property<int>("Id")
@@ -171,6 +192,25 @@ namespace ProjetoPET.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Endereco");
+                });
+
+            modelBuilder.Entity("ProjetoPET.Models.Estado", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("CreatedDate");
+
+                    b.Property<string>("Nome");
+
+                    b.Property<string>("Sigla");
+
+                    b.Property<DateTime?>("UpdatedData");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Estado");
                 });
 
             modelBuilder.Entity("ProjetoPET.Models.Eventos", b =>
@@ -376,6 +416,13 @@ namespace ProjetoPET.Migrations
                     b.HasOne("ProjetoPET.Models.TipoAnuncio", "TipoAnuncio")
                         .WithMany()
                         .HasForeignKey("TipoAnuncioId");
+                });
+
+            modelBuilder.Entity("ProjetoPET.Models.Cidade", b =>
+                {
+                    b.HasOne("ProjetoPET.Models.Estado", "Estado")
+                        .WithMany("Cidades")
+                        .HasForeignKey("EstadoId");
                 });
 
             modelBuilder.Entity("ProjetoPET.Models.Telefone", b =>

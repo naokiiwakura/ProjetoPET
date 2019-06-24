@@ -20,11 +20,17 @@ namespace ProjetoPET.Models
 
         public virtual Usuario Anunciante { get; set; }
 
+        [ForeignKey("TipoAnuncioId")]
         public TipoAnuncio TipoAnuncio { get; set; }
-                
+
+        public int TipoAnuncioId { get; set; }
+
         public int PetId { get; set; }
 
+        [ForeignKey("EnderecoId")]
         public Endereco Endereco { get; set; }
+
+        public int EnderecoId { get; set; }
 
         public ICollection<Telefone> Telefones { get; set; }
     }
