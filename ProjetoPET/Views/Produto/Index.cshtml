@@ -13,6 +13,9 @@
         <thead>
             <tr>
                 <th>
+                    Miniatura
+                </th>
+                <th>
                     @Html.DisplayNameFor(model => model.Banner)
                 </th>
                 <th>
@@ -27,7 +30,9 @@
                 <th>
                     @Html.DisplayNameFor(model => model.UpdatedData)
                 </th>
-                <th></th>
+                <th>
+
+                </th>
             </tr>
         </thead>
         <tbody>
@@ -36,17 +41,20 @@
                 var photoPath = "~/images/Produtos/" + (item.FotoPath ?? "imagem.png");
                 <tr>
                     <td>
+                        <div>
+                            <div class=" row no-gutters">
+                                <img src="@photoPath " asp-append-version="true" style="width:60px;height:60px;"/>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
                         @Html.DisplayFor(modelItem => item.Banner)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Descricao)
                     </td>
                     <td>
-                        <div style="max-width: 540px;">
-                            <div class=" row no-gutters">
-                                <img src="@photoPath " asp-append-version="true" style="width:100%;height:100%;" />
-                            </div>
-                        </div>
+                        
                         @Html.DisplayFor(modelItem => item.FotoPath)
                     </td>
                     <td>
@@ -65,16 +73,3 @@
         </tbody>
     </table>
 </div>
-@*<div class="row">
-    @foreach (var item in Model)
-    {
-        var photoPath = "~/images/Produtos/" + (item.FotoPath ?? "imagem.png");
-        <div class=" card col-md-6 form-check-group">
-            <div style="max-width: 540px;">
-                <div class=" row no-gutters">
-                    <img src="@photoPath " asp-append-version="true" style="width:100%;height:100%;" />
-                </div>
-            </div>
-        </div>
-    }
-</div>*@
