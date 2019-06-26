@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ProjetoPET.Models.Anuncio>
+﻿@model IEnumerable<ProjetoPET.ViewModel.AnuncioViewModel>
 
 @{
     ViewData["Title"] = "Index";
@@ -13,29 +13,27 @@
     <thead>
         <tr>
             <th>
+                @Html.DisplayNameFor(model => model.CaminhoDaFoto)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Titulo)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.CorpoAnuncio)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Foto)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Pet)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CreatedDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.UpdatedData)
+                @Html.DisplayNameFor(model => model.NomeDoPet)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+        @foreach (var item in Model)
+        {
         <tr>
+            <td>
+                <img src="@item.CaminhoDaFoto" style="width:60px;height:60px;"/>
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Titulo)
             </td>
@@ -43,16 +41,7 @@
                 @Html.DisplayFor(modelItem => item.CorpoAnuncio)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Foto)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Pet.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CreatedDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UpdatedData)
+                @Html.DisplayFor(modelItem => item.NomeDoPet)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
@@ -60,6 +49,6 @@
                 <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
             </td>
         </tr>
-}
+        }
     </tbody>
 </table>
