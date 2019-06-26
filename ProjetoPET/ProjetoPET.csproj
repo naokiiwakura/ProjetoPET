@@ -6,6 +6,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Views\Eventos\**" />
+    <Content Remove="Views\Eventos\**" />
+    <EmbeddedResource Remove="Views\Eventos\**" />
+    <None Remove="Views\Eventos\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove=".bowerrc" />
   </ItemGroup>
 
