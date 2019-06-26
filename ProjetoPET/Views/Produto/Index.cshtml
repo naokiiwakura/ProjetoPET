@@ -8,68 +8,48 @@
 <p>
     <a asp-action="Create">Criar</a>
 </p>
-<div class="row">
-    <table class="table">
-        <thead>
-            <tr>
-                <th>
-                    Miniatura
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Banner)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Descricao)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.FotoPath)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.CreatedDate)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.UpdatedData)
-                </th>
-                <th>
+<div class="row site-section">
+    <div class="col-md-12">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>
+                        Miniatura
+                    </th>
+                   
+                    <th>
+                        @Html.DisplayNameFor(model => model.Descricao)
+                    </th>
 
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
-                var photoPath = "~/images/Produtos/" + (item.FotoPath ?? "imagem.png");
+
+                </tr>
+            </thead>
+            <tbody class="col-md-12">
+                @foreach (var item in Model)
+                {
+                    var photoPath = "~/images/Produtos/" + (item.FotoPath ?? "imagem.png");
                 <tr>
                     <td>
                         <div>
                             <div class=" row no-gutters">
-                                <img src="@photoPath " asp-append-version="true" style="width:60px;height:60px;"/>
+                                <img src="@photoPath " asp-append-version="true" style="width:200px;height:100%;" />
                             </div>
                         </div>
                     </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Banner)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Descricao)
-                    </td>
-                    <td>
-                        
-                        @Html.DisplayFor(modelItem => item.FotoPath)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.CreatedDate)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.UpdatedData)
-                    </td>
+
+
+
                     <td>
                         <a asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
                         <a asp-action="Details" asp-route-id="@item.Id">Detalhes</a> |
                         <a asp-action="Delete" asp-route-id="@item.Id">Deletar</a>
                     </td>
                 </tr>
-            }
-        </tbody>
-    </table>
+                }
+            </tbody>
+        </table>    
+
+    </div>
+
+    
 </div>
