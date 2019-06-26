@@ -3,14 +3,16 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ProjetoPET.Migrations
 {
     [DbContext(typeof(BancoContext))]
-    partial class BancoContextModelSnapshot : ModelSnapshot
+    [Migration("20190617202621_1")]
+    partial class _1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -142,25 +144,11 @@ namespace ProjetoPET.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Bairro");
-
-                    b.Property<string>("CEP");
-
-                    b.Property<string>("Cidade");
-
                     b.Property<DateTime>("CreatedDate");
-
-                    b.Property<DateTime>("DataHora");
 
                     b.Property<string>("Descricao");
 
-                    b.Property<string>("Estado");
-
                     b.Property<string>("Nome");
-
-                    b.Property<int>("Numero");
-
-                    b.Property<string>("Rua");
 
                     b.Property<DateTime?>("UpdatedData");
 

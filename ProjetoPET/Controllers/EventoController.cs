@@ -6,22 +6,22 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ProjetoPET.Models;
-using ProjetoPET.repository;
 
 namespace ProjetoPET.Controllers
 {
     public class EventoController : Controller
     {
-        private readonly IGenericRepository<Eventos> _repo;
-        public EventoController(IGenericRepository<Eventos> repo)
+        private readonly BancoContext _context;
+
+        public EventoController(BancoContext context)
         {
-            _repo = repo;
+            _context = context;
         }
 
         // GET: Evento
         public async Task<IActionResult> Index()
         {
-            return View(await _repo.ListarTodos());
+            return View(await _context.Set<Eventos>().ToListAsync());
         }
 
         // GET: Evento/Details/5
@@ -32,7 +32,8 @@ namespace ProjetoPET.Controllers
                 return NotFound();
             }
 
-            var eventos = await _repo.BuscarPorId((int)id);
+            var eventos = await _context.Set<Eventos>()
+                .FirstOrDefaultAsync(m => m.Id == id);
             if (eventos == null)
             {
                 return NotFound();
@@ -52,12 +53,12 @@ namespace ProjetoPET.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Nome,Descricao,Id,CreatedDate,UpdatedData")] Eventos eventos)
+        public async Task<IActionResult> Create([Bind("Nome,Descricao,DataHora,Cidade,Estado,Bairro,CEP,Rua,Numero,Id,CreatedDate,UpdatedData")] Eventos eventos)
         {
             if (ModelState.IsValid)
             {
-                eventos.CreatedDate = DateTime.Now;
-                await _repo.Inserir(eventos);
+                _context.Add(eventos);
+                await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
             return View(eventos);
@@ -71,7 +72,7 @@ namespace ProjetoPET.Controllers
                 return NotFound();
             }
 
-            var eventos = await _repo.BuscarPorId((int)id);
+            var eventos = await _context.Set<Eventos>().FindAsync(id);
             if (eventos == null)
             {
                 return NotFound();
@@ -84,7 +85,7 @@ namespace ProjetoPET.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Nome,Descricao,Id,CreatedDate,UpdatedData")] Eventos eventos)
+        public async Task<IActionResult> Edit(int id, [Bind("Nome,Descricao,DataHora,Cidade,Estado,Bairro,CEP,Rua,Numero,Id,CreatedDate,UpdatedData")] Eventos eventos)
         {
             if (id != eventos.Id)
             {
@@ -95,11 +96,12 @@ namespace ProjetoPET.Controllers
             {
                 try
                 {
-                    var eventoDb = _repo.Editar(id, eventos);
+                    _context.Update(eventos);
+                    await _context.SaveChangesAsync();
                 }
-                catch (Exception)
+                catch (DbUpdateConcurrencyException)
                 {
-                    if (!await EventosExists(eventos.Id))
+                    if (!EventosExists(eventos.Id))
                     {
                         return NotFound();
                     }
@@ -121,7 +123,8 @@ namespace ProjetoPET.Controllers
                 return NotFound();
             }
 
-            var eventos = await _repo.BuscarPorId((int)id);
+            var eventos = await _context.Set<Eventos>()
+                .FirstOrDefaultAsync(m => m.Id == id);
             if (eventos == null)
             {
                 return NotFound();
@@ -135,14 +138,15 @@ namespace ProjetoPET.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-
-            await _repo.Excluir(id);
+            var eventos = await _context.Set<Eventos>().FindAsync(id);
+            _context.Set<Eventos>().Remove(eventos);
+            await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private async Task <bool> EventosExists(int id)
+        private bool EventosExists(int id)
         {
-            return await _repo.Existe(id);
+            return _context.Set<Eventos>().Any(e => e.Id == id);
         }
     }
 }

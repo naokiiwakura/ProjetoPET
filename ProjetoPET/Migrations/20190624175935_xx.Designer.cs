@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ProjetoPET.Migrations
 {
     [DbContext(typeof(BancoContext))]
-    [Migration("20190614213732_GABRIEL")]
-    partial class GABRIEL
+    [Migration("20190624175935_xx")]
+    partial class xx
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -144,11 +144,25 @@ namespace ProjetoPET.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("Bairro");
+
+                    b.Property<string>("CEP");
+
+                    b.Property<string>("Cidade");
+
                     b.Property<DateTime>("CreatedDate");
+
+                    b.Property<DateTime>("DataHora");
 
                     b.Property<string>("Descricao");
 
+                    b.Property<string>("Estado");
+
                     b.Property<string>("Nome");
+
+                    b.Property<int>("Numero");
+
+                    b.Property<string>("Rua");
 
                     b.Property<DateTime?>("UpdatedData");
 
