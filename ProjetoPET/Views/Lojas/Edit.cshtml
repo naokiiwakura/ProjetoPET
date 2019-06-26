@@ -1,4 +1,4 @@
-﻿@model ProjetoPET.Models.Lojas
+﻿@model ProjetoPET.ViewModel.LojasViewModel
 
 @{
     ViewData["Title"] = "Edit";
@@ -10,7 +10,7 @@
 <hr />
 <div class="row">
     <div class="col-md-12">
-        <form asp-action="Edit">
+        <form enctype="multipart/form-data" asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="NomeLoja" class="control-label"></label>
@@ -72,22 +72,13 @@
                 <input asp-for="Email" class="form-control" />
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="ImagePath" class="control-label"></label>
-                <input asp-for="ImagePath" class="form-control" />
-                <span asp-validation-for="ImagePath" class="text-danger"></span>
+           <div class="form-group">
+                <label asp-for="Photo" class="control-label"></label>
+                <input asp-for="Photo" class="banana form-control" id="Photo" name="Photo" type="file" accept="image/png, image/jpeg" onsubmit="Checkfiles(this)" />
             </div>
             <input type="hidden" asp-for="Id" />
-            <div class="form-group">
-                <label asp-for="CreatedDate" class="control-label"></label>
-                <input asp-for="CreatedDate" class="form-control" />
-                <span asp-validation-for="CreatedDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="UpdatedData" class="control-label"></label>
-                <input asp-for="UpdatedData" class="form-control" />
-                <span asp-validation-for="UpdatedData" class="text-danger"></span>
-            </div>
+        
+           
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-default" />
             </div>
