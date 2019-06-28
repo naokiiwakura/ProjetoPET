@@ -5,6 +5,7 @@ project.lock.json
 *.pyc
 nupkg/
 ProjetoPET/wwwroot/uploads
+ProjetoPET/wwwroot/images/LojasPhotos
 
 # Visual Studio Code
 .vscode
