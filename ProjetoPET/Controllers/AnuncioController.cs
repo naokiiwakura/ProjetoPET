@@ -63,7 +63,7 @@ namespace ProjetoPET.Controllers
             ViewBag.EstadoId = new SelectList(_context.Set<Estado>(), "Id", "Nome");
             ViewBag.TipoAnuncioId = new SelectList(_context.Set<TipoAnuncio>(), "Id", "Descricao");
             ViewBag.CidadeId = new SelectList(_context.Set<Cidade>().Where(p => p.Estado.Nome == "Acre"), "Id", "Nome");
-            
+
             return View();
         }
 
@@ -72,7 +72,7 @@ namespace ProjetoPET.Controllers
             return Json(_context.Cidade.Where(p => p.Estado.Id == id).ToList());
         }
 
-        
+
         private string GetUniqueFileName(string fileName)
         {
             fileName = Path.GetFileName(fileName);
@@ -116,7 +116,7 @@ namespace ProjetoPET.Controllers
                         Numero = anuncio.Numero,
                         Rua = anuncio.Rua
                     }
-            };
+                };
 
                 _context.Add(anuncioInsert);
                 await _context.SaveChangesAsync();
@@ -148,8 +148,15 @@ namespace ProjetoPET.Controllers
             ViewBag.EstadoId = new SelectList(_context.Set<Estado>(), "Id", "Nome");
             ViewBag.TipoAnuncioId = new SelectList(_context.Set<TipoAnuncio>(), "Id", "Descricao");
             ViewBag.CidadeId = new SelectList(_context.Set<Cidade>(), "Id", "Nome");
-            
-            return View(anuncio);
+
+            var anuncioViewModel = new AnuncioViewModel
+            {
+                //TODO - fazer a carga da view model
+                Bairro = anuncio.Endereco.Bairro,
+
+            };
+
+            return View(anuncioViewModel);
         }
 
         // POST: Anuncio/Edit/5
@@ -157,23 +164,31 @@ namespace ProjetoPET.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Titulo,CorpoAnuncio,Foto,PetId,Id,CreatedDate,UpdatedData")] Anuncio anuncio)
+        public async Task<IActionResult> Edit(int id, AnuncioViewModel anuncio)
         {
-            if (id != anuncio.Id)
-            {
-                return NotFound();
-            }
-
             if (ModelState.IsValid)
             {
                 try
                 {
-                    _context.Update(anuncio);
+                    var anuncioBanco = await _context.Set<Anuncio>().FindAsync(id);
+
+                    if (anuncioBanco == null)
+                        return NotFound();
+
+
+                    anuncioBanco.CorpoAnuncio = anuncio.CorpoAnuncio;
+                    anuncioBanco.CorpoAnuncio = anuncio.Bairro;
+                    anuncioBanco.CorpoAnuncio = anuncio.Cep;
+                    anuncioBanco.CorpoAnuncio = anuncio.CorpoAnuncio;
+                    anuncioBanco.CorpoAnuncio = anuncio.CorpoAnuncio;
+
+
+                    _context.Update(anuncioBanco);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!AnuncioExists(anuncio.Id))
+                    if (!AnuncioExists(id))
                     {
                         return NotFound();
                     }

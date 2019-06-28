@@ -9,34 +9,75 @@
 <h4>Anuncio</h4>
 <hr />
 <div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Titulo" class="control-label"></label>
-                <input asp-for="Titulo" class="form-control" />
-                <span asp-validation-for="Titulo" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CorpoAnuncio" class="control-label"></label>
-                <input asp-for="CorpoAnuncio" class="form-control" />
-                <span asp-validation-for="CorpoAnuncio" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Foto" class="control-label"></label>
-                <input asp-for="Foto" class="form-control" />
-                <span asp-validation-for="Foto" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="PetId" class="control-label"></label>
-                <select asp-for="PetId" class="form-control" asp-items="ViewBag.PetId"></select>
-                <span asp-validation-for="PetId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-default" />
-            </div>
-        </form>
-    </div>
+
+    <form asp-action="Edit">
+        <div class="form-group">
+            <label asp-for="Foto" class="control-label"></label>
+            <input asp-for="Foto" class="form-control-file border" />
+            <span asp-validation-for="Foto" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Titulo" class="control-label"></label>
+            <input asp-for="Titulo" class="form-control" />
+            <span asp-validation-for="Titulo" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="CorpoAnuncio" class="control-label"></label>
+            <textarea asp-for="CorpoAnuncio" class="form-control"></textarea>
+            <span asp-validation-for="CorpoAnuncio" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="TipoAnuncioId" class="control-label"></label>
+            <select asp-for="TipoAnuncioId" class="form-control" asp-items="ViewBag.TipoAnuncioId"></select>
+            <span asp-validation-for="TipoAnuncioId" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="PetId" class="control-label"></label>
+            <select asp-for="PetId" class="form-control" asp-items="ViewBag.PetId"></select>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="EstadoId" class="control-label"></label>
+            <select asp-for="EstadoId" class="form-control" asp-items="ViewBag.EstadoId"></select>
+            <span asp-validation-for="EstadoId" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="CidadeId" class="control-label"></label>
+            <select asp-for="CidadeId" class="form-control" asp-items="ViewBag.CidadeId"></select>
+            <span asp-validation-for="CidadeId" class="text-danger"></span>
+        </div>
+
+
+
+        <div class="form-group">
+            <label asp-for="Rua" class="control-label"></label>
+            <input asp-for="Rua" class="form-control" />
+            <span asp-validation-for="Rua" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Numero" class="control-label"></label>
+            <input asp-for="Numero" class="form-control" />
+            <span asp-validation-for="Numero" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Cep" class="control-label"></label>
+            <input asp-for="Cep" class="form-control" />
+            <span asp-validation-for="Cep" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Bairro" class="control-label"></label>
+            <input asp-for="Bairro" class="form-control" />
+            <span asp-validation-for="Bairro" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <input type="submit" value="Save" class="btn btn-default" />
+        </div>
+    </form>
 </div>
 
 <div>
