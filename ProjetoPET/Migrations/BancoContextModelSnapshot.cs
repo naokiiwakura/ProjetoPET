@@ -258,7 +258,7 @@ namespace ProjetoPET.Migrations
 
                     b.Property<int>("CNPj");
 
-                    b.Property<string>("Cidade");
+                    b.Property<int>("CidadeId");
 
                     b.Property<string>("Complemento");
 
@@ -267,8 +267,6 @@ namespace ProjetoPET.Migrations
                     b.Property<string>("Email");
 
                     b.Property<string>("Endereco");
-
-                    b.Property<string>("Estado");
 
                     b.Property<string>("ImagePath");
 
@@ -283,6 +281,8 @@ namespace ProjetoPET.Migrations
                     b.Property<DateTime?>("UpdatedData");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CidadeId");
 
                     b.ToTable("Lojas");
                 });
@@ -437,6 +437,14 @@ namespace ProjetoPET.Migrations
                     b.HasOne("ProjetoPET.Models.Estado", "Estado")
                         .WithMany("Cidades")
                         .HasForeignKey("EstadoId");
+                });
+
+            modelBuilder.Entity("ProjetoPET.Models.Lojas", b =>
+                {
+                    b.HasOne("ProjetoPET.Models.Cidade", "Cidade")
+                        .WithMany()
+                        .HasForeignKey("CidadeId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("ProjetoPET.Models.Telefone", b =>

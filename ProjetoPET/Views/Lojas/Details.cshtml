@@ -1,72 +1,102 @@
-﻿@model ProjetoPET.Models.Lojas
+﻿@model ProjetoPET.ViewModel.LojasViewModel
 
 @{
     ViewData["Title"] = "Details";
-     var photoPath = "~/images/LojasPhotos/" + (Model.ImagePath ?? "imagem.png");
+    var photoPath = "~/images/LojasPhotos/" + (Model.CaminhoDaFoto ?? "imagem.png");
 }
 
 <h2>Detalhes</h2>
 
 <div>
-    
+
     <hr />
 
     <dt>
         <img src="@photoPath" width="200" height="200" asp-append-version="true" />
 
-        
+
     </dt>
     <div class="form-group">
 
-        <div><label>
-    @Html.DisplayNameFor(model => model.NomeLoja)
-       </label>
-       <label> @Html.DisplayFor(model => model.NomeLoja)</label></div>
-
-        <div><label> @Html.DisplayNameFor(model => model.RazaoSocial)</label>
-             <label>@Html.DisplayFor(model => model.RazaoSocial)</label></div>
-
-       <div><label>@Html.DisplayNameFor(model => model.CNPj)  </label>
-            <label>@Html.DisplayFor(model => model.CNPj)</label></div>
-
-          <div><label>@Html.DisplayNameFor(model => model.Endereco) </label>
-               <label>@Html.DisplayFor(model => model.Endereco)</label></div>
-
-        <div><label>  @Html.DisplayNameFor(model => model.Numero)</label>
-             <label>@Html.DisplayFor(model => model.Numero)</label></div>
-
-            <div><label> @Html.DisplayNameFor(model => model.Bairro)</label>
-                 <label>@Html.DisplayFor(model => model.Bairro)</label></div>
-
-            <div><label>@Html.DisplayNameFor(model => model.Complemento)</label>
-                 <label>@Html.DisplayFor(model => model.Complemento)</label></div>
-        
-            <div><label>@Html.DisplayNameFor(model => model.CEP)</label>
-                 <label> @Html.DisplayFor(model => model.CEP)</label></div>
-
-        <div><label>@Html.DisplayNameFor(model => model.Estado)</label>
-             <label> @Html.DisplayFor(model => model.Estado)</label></div>
+        <div>
+            <label>
+                @Html.DisplayNameFor(model => model.NomeLoja)
+            </label>
+            <label> @Html.DisplayFor(model => model.NomeLoja)</label>
         </div>
-            
-            <div><label>@Html.DisplayNameFor(model => model.Cidade)</label>
-                 <label> @Html.DisplayFor(model => model.Cidade)</label></div>
-  
-    <div><label> @Html.DisplayNameFor(model => model.Telefone)</label>
-         <label>@Html.DisplayFor(model => model.Telefone)</label></div>
-           
-        <div><label> @Html.DisplayNameFor(model => model.Email)</label>
-             <label> @Html.DisplayFor(model => model.Email)</label></div>
-           
-        <div><label>@Html.DisplayNameFor(model => model.ImagePath)</label>
-             <label> @Html.DisplayFor(model => model.ImagePath)</label></div>
-       
-    <div><label> @Html.DisplayNameFor(model => model.CreatedDate)</label>
-         <label>@Html.DisplayFor(model => model.CreatedDate)</label></div>
-           
-    <div><label>@Html.DisplayNameFor(model => model.UpdatedData)</label>
-         <label> @Html.DisplayFor(model => model.UpdatedData)</label></div>
-       
+
+        <div>
+            <label> @Html.DisplayNameFor(model => model.RazaoSocial)</label>
+            <label>@Html.DisplayFor(model => model.RazaoSocial)</label>
+        </div>
+
+        <div>
+            <label>@Html.DisplayNameFor(model => model.CNPj)  </label>
+            <label>@Html.DisplayFor(model => model.CNPj)</label>
+        </div>
+
+        <div>
+            <label>@Html.DisplayNameFor(model => model.Endereco) </label>
+            <label>@Html.DisplayFor(model => model.Endereco)</label>
+        </div>
+
+        <div>
+            <label>  @Html.DisplayNameFor(model => model.Numero)</label>
+            <label>@Html.DisplayFor(model => model.Numero)</label>
+        </div>
+
+        <div>
+            <label> @Html.DisplayNameFor(model => model.Bairro)</label>
+            <label>@Html.DisplayFor(model => model.Bairro)</label>
+        </div>
+
+        <div>
+            <label>@Html.DisplayNameFor(model => model.Complemento)</label>
+            <label>@Html.DisplayFor(model => model.Complemento)</label>
+        </div>
+
+        <div>
+            <label>@Html.DisplayNameFor(model => model.CEP)</label>
+            <label> @Html.DisplayFor(model => model.CEP)</label>
+        </div>
+
+        <div>
+            <label>@Html.DisplayNameFor(model => model.EstadoId)</label>
+            <label> @Html.DisplayFor(model => model.EstadoId)</label>
+        </div>
     </div>
+
+    <div>
+        <label>@Html.DisplayNameFor(model => model.CidadeId)</label>
+        <label> @Html.DisplayFor(model => model.CidadeId)</label>
+    </div>
+
+    <div>
+        <label> @Html.DisplayNameFor(model => model.Telefone)</label>
+        <label>@Html.DisplayFor(model => model.Telefone)</label>
+    </div>
+
+    <div>
+        <label> @Html.DisplayNameFor(model => model.Email)</label>
+        <label> @Html.DisplayFor(model => model.Email)</label>
+    </div>
+
+    <div>
+        <label>@Html.DisplayNameFor(model => model.CaminhoDaFoto)</label>
+        <label> @Html.DisplayFor(model => model.CaminhoDaFoto)</label>
+    </div>
+
+    <div>
+        <label> @Html.DisplayNameFor(model => model.CreatedDate)</label>
+        <label>@Html.DisplayFor(model => model.CreatedDate)</label>
+    </div>
+
+    <div>
+        <label>@Html.DisplayNameFor(model => model.UpdatedData)</label>
+        <label> @Html.DisplayFor(model => model.UpdatedData)</label>
+    </div>
+
+</div>
 <div>
     <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
     <a asp-action="Index">Back to List</a>

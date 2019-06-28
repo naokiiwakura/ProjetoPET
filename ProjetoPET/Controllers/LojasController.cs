@@ -51,7 +51,15 @@ namespace ProjetoPET.Controllers
         // GET: Lojas/Create
         public IActionResult Create()
         {
+            ViewBag.EstadoId = new SelectList(_context.Set<Estado>(), "Id", "Nome");
+            ViewBag.CidadeId = new SelectList(_context.Set<Cidade>().Where(p => p.Estado.Nome == "Acre"), "Id", "Nome");
+
             return View();
+        }
+
+        public IActionResult GetCidades(int id)
+        {
+            return Json(_context.Cidade.Where(p => p.Estado.Id == id).ToList());
         }
 
         // POST: Lojas/Create
@@ -81,8 +89,7 @@ namespace ProjetoPET.Controllers
                     Numero = model.Numero,
                     Complemento = model.Complemento,
                     CEP = model.CEP,
-                    Estado = model.Estado,
-                    Cidade = model.Cidade,
+                    CidadeId = model.CidadeId,
                     Telefone = model.Telefone,
                     Email = model.Email,
                     ImagePath = uniqueFileName
@@ -92,6 +99,10 @@ namespace ProjetoPET.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+
+            ViewBag.EstadoId = new SelectList(_context.Set<Estado>(), "Id", "Nome");
+            ViewBag.CidadeId = new SelectList(_context.Set<Cidade>().Where(p => p.Estado.Nome == "Acre"), "Id", "Nome");
+
             return View();
         }
 
@@ -142,8 +153,7 @@ namespace ProjetoPET.Controllers
                     Numero = model.Numero,
                     Complemento = model.Complemento,
                     CEP = model.CEP,
-                    Estado = model.Estado,
-                    Cidade = model.Cidade,
+                    CidadeId = model.CidadeId,
                     Telefone = model.Telefone,
                     Email = model.Email,
                     ImagePath = uniqueFileName

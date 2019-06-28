@@ -3,106 +3,125 @@
 @{
     ViewData["Title"] = "Create";
 }
-    <h2>Cadastrar nova Loja</h2>
+
+<h2>Cadastrar nova Loja</h2>
 
 
+<form enctype="multipart/form-data" asp-action="Create" class="col-md-12">
+    <div class="row">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group col-md-12" s>
+            <label asp-for="NomeLoja" class="control-label"></label>
+            <input asp-for="NomeLoja" class="form-control" />
+            <span asp-validation-for="NomeLoja" class="text-danger"></span>
 
-           <form enctype="multipart/form-data" asp-action="Create" class="col-md-12">
-               <div class="form-row" >
-                   <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                   <div class="form-group col-md-12" s>
-                       <label asp-for="NomeLoja" class="control-label"></label>
-                       <input asp-for="NomeLoja" class="form-control" />
-                       <span asp-validation-for="NomeLoja" class="text-danger"></span>
-                       
-                   </div>
-                   <div class="form-group col-md-6">
-                       <label asp-for="RazaoSocial" class="control-label"></label>
-                       <input asp-for="RazaoSocial" class="form-control" />
-                       <span asp-validation-for="RazaoSocial" class="text-danger"></span>
-                   </div>
-                   <div class="form-group col-md-6">
-                       <label asp-for="CNPj" class="control-label"></label>
-                       <input asp-for="CNPj" class="form-control" />
-                       <span asp-validation-for="CNPj" class="text-danger"></span>
-                   </div>
-                   <div class="form-group col-md-10">
-                       <label asp-for="Endereco" class="control-label"></label>
-                       <input asp-for="Endereco" class="form-control" />
-                       <span asp-validation-for="Endereco" class="text-danger"></span>
-                   </div>
-                   <div class="form-group col-md-2">
-                       <label asp-for="Numero" class="control-label"></label>
-                       <input asp-for="Numero" class="form-control" />
-                       <span asp-validation-for="Numero" class="text-danger"></span>
-                   </div>
-                   <div class="form-group col-md-6">
-                       <label asp-for="Bairro" class="control-label"></label>
-                       <input asp-for="Bairro" class="form-control" />
-                       <span asp-validation-for="Bairro" class="text-danger"></span>
-                   </div>
-                   <div class="form-group col-md-6">
-                       <label asp-for="Complemento" class="control-label"></label>
-                       <input asp-for="Complemento" class="form-control" />
-                       <span asp-validation-for="Complemento" class="text-danger"></span>
-                   </div>
-                   <div class="form-group col-md-4">
-                       <label asp-for="CEP" class="control-label"></label>
-                       <input asp-for="CEP" class="form-control" />
-                       <span asp-validation-for="CEP" class="text-danger"></span>
-                   </div>
-                   <div class="form-group col-md-4">
-                       <label asp-for="Estado" class="control-label"></label>
-                       <input asp-for="Estado" class="form-control" />
-                       <span asp-validation-for="Estado" class="text-danger"></span>
-                   </div>
-                   <div class="form-group col-md-4">
-                       <label asp-for="Cidade" class="control-label"></label>
-                       <input asp-for="Cidade" class="form-control" />
-                       <span asp-validation-for="Cidade" class="text-danger"></span>
-                   </div>
-                   <div class="form-group col-md-5">
-                       <label asp-for="Telefone" class="control-label"></label>
-                       <input asp-for="Telefone" class="form-control" />
-                       <span asp-validation-for="Telefone" class="text-danger"></span>
-                   </div>
-                   <div class="form-group col-md-7" accesskey="">
-                       <label asp-for="Email" class="control-label"></label>
-                       <input asp-for="Email" class="form-control" />
-                       <span asp-validation-for="Email" class="text-danger"></span>
-                   </div>
-                   <div class="form-group col-md-12">
-                       <label asp-for="Photo" class="control-label"></label>
-                       <input asp-for="Photo" class="banana form-control" id="Photo" name="Photo" type="file" accept="image/png, image/jpeg" onsubmit="Checkfiles(this)" />
-                   </div>
+        </div>
+        <div class="form-group col-md-6">
+            <label asp-for="RazaoSocial" class="control-label"></label>
+            <input asp-for="RazaoSocial" class="form-control" />
+            <span asp-validation-for="RazaoSocial" class="text-danger"></span>
+        </div>
+        <div class="form-group col-md-6">
+            <label asp-for="CNPj" class="control-label"></label>
+            <input asp-for="CNPj" class="form-control" />
+            <span asp-validation-for="CNPj" class="text-danger"></span>
+        </div>
+        <div class="form-group col-md-10">
+            <label asp-for="Endereco" class="control-label"></label>
+            <input asp-for="Endereco" class="form-control" />
+            <span asp-validation-for="Endereco" class="text-danger"></span>
+        </div>
+        <div class="form-group col-md-2">
+            <label asp-for="Numero" class="control-label"></label>
+            <input asp-for="Numero" class="form-control" />
+            <span asp-validation-for="Numero" class="text-danger"></span>
+        </div>
+        <div class="form-group col-md-6">
+            <label asp-for="Bairro" class="control-label"></label>
+            <input asp-for="Bairro" class="form-control" />
+            <span asp-validation-for="Bairro" class="text-danger"></span>
+        </div>
+        <div class="form-group col-md-6">
+            <label asp-for="Complemento" class="control-label"></label>
+            <input asp-for="Complemento" class="form-control" />
+            <span asp-validation-for="Complemento" class="text-danger"></span>
+        </div>
+        <div class="form-group col-md-4">
+            <label asp-for="CEP" class="control-label"></label>
+            <input asp-for="CEP" class="form-control" />
+            <span asp-validation-for="CEP" class="text-danger"></span>
+        </div>
+        <div class="form-group col-md-4">
+            <label asp-for="EstadoId" class="control-label"></label>
+            <select asp-for="EstadoId" class="form-control" asp-items="ViewBag.EstadoId"></select>
+            <span asp-validation-for="EstadoId" class="text-danger"></span>
+        </div>
 
-                   <div class="form-group">
-                       <input type="submit" value="Create" class="btn btn-default" />
-                   </div>
-               </div>
-        </form>
- 
-    <div>
-        <a asp-action="Index">Voltar para tela de lojas</a>
+        <div class="form-group col-md-4">
+            <label asp-for="CidadeId" class="control-label"></label>
+            <select asp-for="CidadeId" class="form-control" asp-items="ViewBag.CidadeId"></select>
+            <span asp-validation-for="CidadeId" class="text-danger"></span>
+        </div>
+        <div class="form-group col-md-5">
+            <label asp-for="Telefone" class="control-label"></label>
+            <input asp-for="Telefone" class="form-control" />
+            <span asp-validation-for="Telefone" class="text-danger"></span>
+        </div>
+        <div class="form-group col-md-7" accesskey="">
+            <label asp-for="Email" class="control-label"></label>
+            <input asp-for="Email" class="form-control" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+        <div class="form-group col-md-12">
+            <label asp-for="Photo" class="control-label"></label>
+            <input asp-for="Photo" class="banana form-control" id="Photo" name="Photo" type="file" accept="image/png, image/jpeg" onsubmit="Checkfiles(this)" />
+        </div>
+
+
     </div>
+    <div class="row float-right">
+        <input type="submit" value="Cadastrar" class="btn btn-primary" />
+        <a asp-action="Index" class="btn btn-info">Voltar para tela de lojas</a>
+    </div>
+</form>
 
 @section Scripts {
-        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-        <script>
-            function Checkfiles() {
-                var fup = document.getElementById('filename');
-                var fileName = fup.value;
-                var ext = fileName.substring(fileName.lastIndexOf('.') + 1);
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
 
-                if (ext == "jpeg" || ext == "png") {
-                    return true;
+        $("#EstadoId").on("change", function () {
+            $list = $("#CidadeId");
+            $.ajax({
+                url: "GetCidades/" + $("#EstadoId").val(),
+                type: "GET",
+                success: function (result) {
+
+                    $list.empty();
+                    result.forEach((item) => {
+                        $list.append('<option value="' + item.id + '"> ' + item.nome + ' </option>');
+                    });
+                },
+                error: function () {
+                    alert("Erro ocorreu no processamento");
                 }
-                else {
-                    return false;
-                }
+            });
+
+        });
+
+        function Checkfiles() {
+            var fup = document.getElementById('filename');
+            var fileName = fup.value;
+            var ext = fileName.substring(fileName.lastIndexOf('.') + 1);
+
+            if (ext == "jpeg" || ext == "png") {
+                return true;
             }
-        </script>
+            else {
+                return false;
+            }
+        }
+    </script>
 
 
 
-    }
+}

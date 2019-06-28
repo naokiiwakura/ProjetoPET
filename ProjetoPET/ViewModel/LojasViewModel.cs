@@ -19,7 +19,7 @@ namespace ProjetoPET.ViewModel
         [Required(ErrorMessage = "* O Campo Razão Social é obrigatório")]
         public string RazaoSocial { get; set; }
 
-        [Display(Name = "Cnpj")]
+        [Display(Name = "CNPJ")]
         [Required(ErrorMessage = "* O Campo CNPJ é obrigatório")]
         public int CNPj { get; set; }
 
@@ -45,11 +45,13 @@ namespace ProjetoPET.ViewModel
 
         
         [Required(ErrorMessage = "* O Campo Estado é obrigatório")]
-        public string Estado { get; set; }
+        [Display(Name = "Estado")]
+        public int EstadoId { get; set; }
 
         
         [Required(ErrorMessage = "* O Campo Cidade é obrigatório")]
-        public string Cidade { get; set; }
+        [Display(Name = "Cidade")]
+        public int CidadeId { get; set; }
 
        
         [Required(ErrorMessage = "* O Campo Telefone é obrigatório")]
@@ -57,5 +59,7 @@ namespace ProjetoPET.ViewModel
 
         public string Email { get; set; }
         public IFormFile Photo { get; set; }
+
+        public string CaminhoDaFoto { get; set; }
     }
 }

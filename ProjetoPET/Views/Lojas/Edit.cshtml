@@ -1,4 +1,4 @@
-﻿@model ProjetoPET.Models.Lojas
+﻿@model ProjetoPET.ViewModel.LojasViewModel
 
 @{
     ViewData["Title"] = "Edit";
@@ -9,7 +9,7 @@
 
 <hr />
 
-   
+
 <form asp-action="Edit">
     <div class="form-row">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -54,14 +54,14 @@
             <span asp-validation-for="CEP" class="text-danger"></span>
         </div>
         <div class="form-group col-md-4">
-            <label asp-for="Estado" class="control-label"></label>
-            <input asp-for="Estado" class="form-control" />
-            <span asp-validation-for="Estado" class="text-danger"></span>
+            <label asp-for="EstadoId" class="control-label"></label>
+            <input asp-for="EstadoId" class="form-control" />
+            <span asp-validation-for="EstadoId" class="text-danger"></span>
         </div>
         <div class="form-group col-md-4">
-            <label asp-for="Cidade" class="control-label"></label>
-            <input asp-for="Cidade" class="form-control" />
-            <span asp-validation-for="Cidade" class="text-danger"></span>
+            <label asp-for="CidadeId" class="control-label"></label>
+            <input asp-for="CidadeId" class="form-control" />
+            <span asp-validation-for="CidadeId" class="text-danger"></span>
         </div>
         <div class="form-group col-md-5">
             <label asp-for="Telefone" class="control-label"></label>
@@ -74,27 +74,27 @@
             <span asp-validation-for="Email" class="text-danger"></span>
         </div>
         <div class="form-group col-md-12">
-            <label asp-for="ImagePath" class="control-label"></label>
-            <input asp-for="ImagePath" class="form-control" type="file"/>
-            <span asp-validation-for="ImagePath" class="text-danger"></span>
+            <label asp-for="Photo" class="control-label"></label>
+            <input asp-for="Photo" class="form-control" type="file" />
+            <span asp-validation-for="Photo" class="text-danger"></span>
         </div>
         <input type="hidden" asp-for="Id" />
         @*<div class="form-group">
-            <label asp-for="CreatedDate" class="control-label"></label>
-            <input asp-for="CreatedDate" class="form-control" />
-            <span asp-validation-for="CreatedDate" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="UpdatedData" class="control-label"></label>
-            <input asp-for="UpdatedData" class="form-control" />
-            <span asp-validation-for="UpdatedData" class="text-danger"></span>
-        </div>*@
+                <label asp-for="CreatedDate" class="control-label"></label>
+                <input asp-for="CreatedDate" class="form-control" />
+                <span asp-validation-for="CreatedDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UpdatedData" class="control-label"></label>
+                <input asp-for="UpdatedData" class="form-control" />
+                <span asp-validation-for="UpdatedData" class="text-danger"></span>
+            </div>*@
         <div class="form-group">
             <input type="submit" value="Save" class="btn btn-default" />
         </div>
     </div>
 </form>
-    
+
 
 <div>
     <a asp-action="Index">Back to List</a>

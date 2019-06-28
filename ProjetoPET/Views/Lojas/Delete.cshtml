@@ -1,4 +1,4 @@
-﻿@model ProjetoPET.Models.Lojas
+﻿@model ProjetoPET.ViewModel.LojasViewModel
 
 @{
     ViewData["Title"] = "Delete";
@@ -9,9 +9,9 @@
 <h3><center>Deseja Excluir esse arquivo?</center></h3>
 <div class="row">
     <br />
-    
- @*<hr />
-    
+
+    @*<hr />
+
         <dt>
             @Html.DisplayNameFor(model => model.NomeLoja)
         </dt>
@@ -102,8 +102,8 @@
         <dd>
             @Html.DisplayFor(model => model.UpdatedData)
         </dd>*@
-   
-    
+
+
     <form asp-action="Delete">
         <input type="hidden" asp-for="Id" />
         <input type="submit" value="Excluir" class="btn btn-default" /> |
