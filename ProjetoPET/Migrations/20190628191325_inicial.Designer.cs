@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ProjetoPET.Migrations
 {
     [DbContext(typeof(BancoContext))]
-    [Migration("20190614213732_GABRIEL")]
-    partial class GABRIEL
+    [Migration("20190628191325_inicial")]
+    partial class inicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -82,6 +82,8 @@ namespace ProjetoPET.Migrations
 
                     b.Property<bool>("EmailConfirmed");
 
+                    b.Property<int?>("EnderecoId");
+
                     b.Property<bool>("LockoutEnabled");
 
                     b.Property<DateTimeOffset?>("LockoutEnd");
@@ -106,36 +108,111 @@ namespace ProjetoPET.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("EnderecoId");
+
                     b.HasIndex("TipoUsuarioId");
 
                     b.ToTable("Usuario");
                 });
 
-            modelBuilder.Entity("ProjetoPET.Models.Adocao", b =>
+            modelBuilder.Entity("ProjetoPET.Models.Anuncio", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Contato");
+                    b.Property<string>("AnuncianteId");
+
+                    b.Property<string>("CorpoAnuncio");
 
                     b.Property<DateTime>("CreatedDate");
 
+                    b.Property<int>("EnderecoId");
+
+                    b.Property<string>("Foto");
+
                     b.Property<int>("PetId");
+
+                    b.Property<int>("TipoAnuncioId");
+
+                    b.Property<string>("Titulo");
 
                     b.Property<DateTime?>("UpdatedData");
 
-                    b.Property<int?>("UsuarioBusinessId");
-
-                    b.Property<int>("UsuarioId");
-
                     b.HasKey("Id");
+
+                    b.HasIndex("AnuncianteId");
+
+                    b.HasIndex("EnderecoId");
 
                     b.HasIndex("PetId");
 
-                    b.HasIndex("UsuarioBusinessId");
+                    b.HasIndex("TipoAnuncioId");
 
-                    b.ToTable("Adocao");
+                    b.ToTable("Anuncio");
+                });
+
+            modelBuilder.Entity("ProjetoPET.Models.Cidade", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("CreatedDate");
+
+                    b.Property<int?>("EstadoId");
+
+                    b.Property<string>("Nome");
+
+                    b.Property<DateTime?>("UpdatedData");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EstadoId");
+
+                    b.ToTable("Cidade");
+                });
+
+            modelBuilder.Entity("ProjetoPET.Models.Endereco", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Bairro");
+
+                    b.Property<string>("Cep");
+
+                    b.Property<DateTime>("CreatedDate");
+
+                    b.Property<int>("Numero");
+
+                    b.Property<string>("Rua");
+
+                    b.Property<DateTime?>("UpdatedData");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Endereco");
+                });
+
+            modelBuilder.Entity("ProjetoPET.Models.Estado", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("CreatedDate");
+
+                    b.Property<string>("Nome");
+
+                    b.Property<string>("Sigla");
+
+                    b.Property<DateTime?>("UpdatedData");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Estado");
                 });
 
             modelBuilder.Entity("ProjetoPET.Models.Eventos", b =>
@@ -144,11 +221,25 @@ namespace ProjetoPET.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("Bairro");
+
+                    b.Property<string>("CEP");
+
+                    b.Property<string>("Cidade");
+
                     b.Property<DateTime>("CreatedDate");
+
+                    b.Property<DateTime>("DataHora");
 
                     b.Property<string>("Descricao");
 
+                    b.Property<string>("Estado");
+
                     b.Property<string>("Nome");
+
+                    b.Property<int>("Numero");
+
+                    b.Property<string>("Rua");
 
                     b.Property<DateTime?>("UpdatedData");
 
@@ -204,8 +295,6 @@ namespace ProjetoPET.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("AdocaoId");
-
                     b.Property<DateTime>("CreatedDate");
 
                     b.Property<string>("Descricao");
@@ -217,8 +306,6 @@ namespace ProjetoPET.Migrations
                     b.Property<string>("Raca");
 
                     b.Property<string>("Sexo")
-                        .IsRequired()
-                        .HasConversion(new ValueConverter<string, string>(v => default(string), v => default(string), new ConverterMappingHints(size: 1)))
                         .HasMaxLength(1);
 
                     b.Property<string>("Telefone");
@@ -227,9 +314,66 @@ namespace ProjetoPET.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AdocaoId");
-
                     b.ToTable("Pet");
+                });
+
+            modelBuilder.Entity("ProjetoPET.Models.Telefone", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("AnuncioId");
+
+                    b.Property<DateTime>("CreatedDate");
+
+                    b.Property<string>("Numero");
+
+                    b.Property<int?>("TipoId");
+
+                    b.Property<DateTime?>("UpdatedData");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AnuncioId");
+
+                    b.HasIndex("TipoId");
+
+                    b.ToTable("Telefone");
+                });
+
+            modelBuilder.Entity("ProjetoPET.Models.TipoAnuncio", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("CreatedDate");
+
+                    b.Property<string>("Descricao");
+
+                    b.Property<DateTime?>("UpdatedData");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("TipoAnuncio");
+                });
+
+            modelBuilder.Entity("ProjetoPET.Models.TipoTelefone", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("CreatedDate");
+
+                    b.Property<string>("Descricao");
+
+                    b.Property<DateTime?>("UpdatedData");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("TipoTelefone");
                 });
 
             modelBuilder.Entity("ProjetoPET.Models.TipoUsuario", b =>
@@ -259,28 +403,53 @@ namespace ProjetoPET.Migrations
 
             modelBuilder.Entity("ProjetoPET.Areas.Identity.Data.Usuario", b =>
                 {
+                    b.HasOne("ProjetoPET.Models.Endereco", "Endereco")
+                        .WithMany()
+                        .HasForeignKey("EnderecoId");
+
                     b.HasOne("ProjetoPET.Models.TipoUsuario")
                         .WithMany("Usuarios")
                         .HasForeignKey("TipoUsuarioId");
                 });
 
-            modelBuilder.Entity("ProjetoPET.Models.Adocao", b =>
+            modelBuilder.Entity("ProjetoPET.Models.Anuncio", b =>
                 {
+                    b.HasOne("ProjetoPET.Areas.Identity.Data.Usuario", "Anunciante")
+                        .WithMany()
+                        .HasForeignKey("AnuncianteId");
+
+                    b.HasOne("ProjetoPET.Models.Endereco", "Endereco")
+                        .WithMany()
+                        .HasForeignKey("EnderecoId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
                     b.HasOne("ProjetoPET.Models.Pet", "Pet")
                         .WithMany()
                         .HasForeignKey("PetId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("ProjetoPET.Models.TipoUsuario", "UsuarioBusiness")
+                    b.HasOne("ProjetoPET.Models.TipoAnuncio", "TipoAnuncio")
                         .WithMany()
-                        .HasForeignKey("UsuarioBusinessId");
+                        .HasForeignKey("TipoAnuncioId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("ProjetoPET.Models.Pet", b =>
+            modelBuilder.Entity("ProjetoPET.Models.Cidade", b =>
                 {
-                    b.HasOne("ProjetoPET.Models.Adocao")
-                        .WithMany("PetDoacao")
-                        .HasForeignKey("AdocaoId");
+                    b.HasOne("ProjetoPET.Models.Estado", "Estado")
+                        .WithMany("Cidades")
+                        .HasForeignKey("EstadoId");
+                });
+
+            modelBuilder.Entity("ProjetoPET.Models.Telefone", b =>
+                {
+                    b.HasOne("ProjetoPET.Models.Anuncio")
+                        .WithMany("Telefones")
+                        .HasForeignKey("AnuncioId");
+
+                    b.HasOne("ProjetoPET.Models.TipoTelefone", "Tipo")
+                        .WithMany()
+                        .HasForeignKey("TipoId");
                 });
 
             modelBuilder.Entity("ProjetoPET.Models.TipoUsuario", b =>
