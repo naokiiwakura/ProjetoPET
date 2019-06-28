@@ -9,6 +9,8 @@ namespace ProjetoPET.Models
 {
     public class Anuncio : EntityBase
     {
+        internal object uniqueFileName;
+
         public string Titulo { get; set; }
 
         public string CorpoAnuncio { get; set; }

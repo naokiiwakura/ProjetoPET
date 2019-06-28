@@ -125,13 +125,13 @@ namespace ProjetoPET.Migrations
 
                     b.Property<DateTime>("CreatedDate");
 
-                    b.Property<int?>("EnderecoId");
+                    b.Property<int>("EnderecoId");
 
                     b.Property<string>("Foto");
 
                     b.Property<int>("PetId");
 
-                    b.Property<int?>("TipoAnuncioId");
+                    b.Property<int>("TipoAnuncioId");
 
                     b.Property<string>("Titulo");
 
@@ -290,8 +290,6 @@ namespace ProjetoPET.Migrations
                     b.Property<string>("Raca");
 
                     b.Property<string>("Sexo")
-                        .IsRequired()
-                        .HasConversion(new ValueConverter<string, string>(v => default(string), v => default(string), new ConverterMappingHints(size: 1)))
                         .HasMaxLength(1);
 
                     b.Property<string>("Telefone");
@@ -406,7 +404,8 @@ namespace ProjetoPET.Migrations
 
                     b.HasOne("ProjetoPET.Models.Endereco", "Endereco")
                         .WithMany()
-                        .HasForeignKey("EnderecoId");
+                        .HasForeignKey("EnderecoId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("ProjetoPET.Models.Pet", "Pet")
                         .WithMany()
@@ -415,7 +414,8 @@ namespace ProjetoPET.Migrations
 
                     b.HasOne("ProjetoPET.Models.TipoAnuncio", "TipoAnuncio")
                         .WithMany()
-                        .HasForeignKey("TipoAnuncioId");
+                        .HasForeignKey("TipoAnuncioId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("ProjetoPET.Models.Cidade", b =>

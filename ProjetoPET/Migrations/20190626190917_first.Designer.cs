@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ProjetoPET.Migrations
 {
     [DbContext(typeof(BancoContext))]
-    [Migration("20190624185450_cidade_estado")]
-    partial class cidade_estado
+    [Migration("20190626190917_first")]
+    partial class first
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -127,13 +127,13 @@ namespace ProjetoPET.Migrations
 
                     b.Property<DateTime>("CreatedDate");
 
-                    b.Property<int?>("EnderecoId");
+                    b.Property<int>("EnderecoId");
 
                     b.Property<string>("Foto");
 
                     b.Property<int>("PetId");
 
-                    b.Property<int?>("TipoAnuncioId");
+                    b.Property<int>("TipoAnuncioId");
 
                     b.Property<string>("Titulo");
 
@@ -160,11 +160,15 @@ namespace ProjetoPET.Migrations
 
                     b.Property<DateTime>("CreatedDate");
 
+                    b.Property<int?>("EstadoId");
+
                     b.Property<string>("Nome");
 
                     b.Property<DateTime?>("UpdatedData");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("EstadoId");
 
                     b.ToTable("Cidade");
                 });
@@ -288,8 +292,6 @@ namespace ProjetoPET.Migrations
                     b.Property<string>("Raca");
 
                     b.Property<string>("Sexo")
-                        .IsRequired()
-                        .HasConversion(new ValueConverter<string, string>(v => default(string), v => default(string), new ConverterMappingHints(size: 1)))
                         .HasMaxLength(1);
 
                     b.Property<string>("Telefone");
@@ -404,7 +406,8 @@ namespace ProjetoPET.Migrations
 
                     b.HasOne("ProjetoPET.Models.Endereco", "Endereco")
                         .WithMany()
-                        .HasForeignKey("EnderecoId");
+                        .HasForeignKey("EnderecoId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("ProjetoPET.Models.Pet", "Pet")
                         .WithMany()
@@ -413,7 +416,15 @@ namespace ProjetoPET.Migrations
 
                     b.HasOne("ProjetoPET.Models.TipoAnuncio", "TipoAnuncio")
                         .WithMany()
-                        .HasForeignKey("TipoAnuncioId");
+                        .HasForeignKey("TipoAnuncioId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("ProjetoPET.Models.Cidade", b =>
+                {
+                    b.HasOne("ProjetoPET.Models.Estado", "Estado")
+                        .WithMany("Cidades")
+                        .HasForeignKey("EstadoId");
                 });
 
             modelBuilder.Entity("ProjetoPET.Models.Telefone", b =>

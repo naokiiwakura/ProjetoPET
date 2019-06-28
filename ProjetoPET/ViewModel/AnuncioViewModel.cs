@@ -10,6 +10,8 @@ namespace ProjetoPET.ViewModel
 {
     public class AnuncioViewModel
     {
+        public int Id { get; set; }
+
         [Required(ErrorMessage = "Título é obrigatório")]
         public string Titulo { get; set; }
 
@@ -20,11 +22,18 @@ namespace ProjetoPET.ViewModel
         [Required(ErrorMessage = "Uma foto é obrigatório")]
         public IFormFile Foto { get; set; }
 
+        [Display(Name = "Imagem")]
+        public string CaminhoDaFoto { get; set; }
+
         [Required(ErrorMessage = "Escolha um Tipo")]
         [Display(Name = "Tipo Anúncio")]
         public int TipoAnuncioId { get; set; }
 
+        [Required(ErrorMessage = "Escolha um PET")]
         public int PetId { get; set; }
+
+        [Display(Name = "Nome")]
+        public string NomeDoPet { get; set; }
 
         [Required(ErrorMessage = "Digite o nome da rua")]
         public string Rua { get; set; }

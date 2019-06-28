@@ -14,8 +14,7 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Foto" class="control-label"></label>
-                <input asp-for="Foto" class="form-control-file border" />
-                <span asp-validation-for="Foto" class="text-danger"></span>
+                <input asp-for="Foto" class="banana form-control" id="Foto" type="file" accept="image/png, image/jpeg" onsubmit="Checkfiles(this)" />
             </div>
             <div class="form-group">
                 <label asp-for="Titulo" class="control-label"></label>
@@ -111,4 +110,17 @@
         });
 
     });
+
+    function Checkfiles() {
+        var fup = document.getElementById('filename');
+        var fileName = fup.value;
+        var ext = fileName.substring(fileName.lastIndexOf('.') + 1);
+
+        if (ext == "jpeg" || ext == "png") {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
 </script>
