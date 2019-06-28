@@ -20,7 +20,7 @@ public class BancoContext : DbContext
 
     public DbSet<Pet> Pet { get; set; }
 
-    public DbSet<Adocao> Adocao { get; set; }
+    public DbSet<Anuncio> Anuncio { get; set; }
 
     public DbSet<Eventos> Eventos { get; set; }
 
@@ -31,6 +31,12 @@ public class BancoContext : DbContext
     public DbSet<IdentityUserLogin<string>> IdentityUserLogins { get; set; }
 
     public DbSet<IdentityUserToken<string>> IdentityUserTokens { get; set; }
+
+    public DbSet<Cidade> Cidade { get; set; }
+
+    public DbSet<Estado> Estado { get; set; }
+
+    public DbSet<TipoAnuncio> TipoAnuncio { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

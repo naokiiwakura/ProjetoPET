@@ -13,8 +13,7 @@ using Microsoft.EntityFrameworkCore;
 using ProjetoPET.repository;
 using Microsoft.AspNetCore.Identity;
 using ProjetoPET.Areas.Identity.Data;
-using Microsoft.AspNetCore.Identity.UI.Services;
-using ProjetoPET.Helper;
+using ProjetoPET.Mock;
 
 namespace ProjetoPET
 {
@@ -43,27 +42,20 @@ namespace ProjetoPET
                 googleOptions.ClientSecret = Configuration["Authentication:Google:ClientSecret"];
             });
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            
             services.AddDbContext<BancoContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("BancoContext")));
 
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
-
-
-            services.AddTransient<IEmailSender, EmailSender>(i =>
-                new EmailSender(
-                    Configuration["EmailSender:Host"],
-                    Configuration.GetValue<int>("EmailSender:Port"),
-                    Configuration.GetValue<bool>("EmailSender:EnableSSL"),
-                    Configuration["EmailSender:UserName"],
-                    Configuration["EmailSender:Password"]
-                ));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, IServiceProvider services)
         {
+            SeedData.Initialize(services);
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
