@@ -32,11 +32,13 @@ namespace ProjetoPET.Controllers
         }
 
         // GET: Lojas/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details(int? id, LojasViewModel model)
         {
             if (id == null)
             {
                 return NotFound();
+
+
             }
 
             var lojas = await _context.Lojas
@@ -45,8 +47,33 @@ namespace ProjetoPET.Controllers
             {
                 return NotFound();
             }
+            string uniqueFileName = null;
+            if (model.Photo != null)
+            {
+                string uploadsFolder = Path.Combine(hostingEnvironment.WebRootPath, "images/LojasPhotos");
+                uniqueFileName = Guid.NewGuid().ToString() + "_" + model.Photo.FileName;
+                string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+                model.Photo.CopyTo(new FileStream(filePath, FileMode.Create));
+            }
+            Lojas newLojas = new Lojas
+            {
+                NomeLoja = model.NomeLoja,
+                RazaoSocial = model.RazaoSocial,
+                CNPj = model.CNPj,
+                Endereco = model.Endereco,
+                Numero = model.Numero,
+                Complemento = model.Complemento,
+                CEP = model.CEP,
+                CidadeId = model.CidadeId,
+                Telefone = model.Telefone,
+                Email = model.Email,
+                ImagePath = uniqueFileName
 
-            return View(lojas);
+
+
+            };
+
+            return View(model);
         }
 
 
