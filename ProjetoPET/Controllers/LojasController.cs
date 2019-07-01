@@ -51,7 +51,15 @@ namespace ProjetoPET.Controllers
         // GET: Lojas/Create
         public IActionResult Create()
         {
+            ViewBag.EstadoId = new SelectList(_context.Set<Estado>(), "Id", "Nome");
+            ViewBag.CidadeId = new SelectList(_context.Set<Cidade>().Where(p => p.Estado.Nome == "Acre"), "Id", "Nome");
+
             return View();
+        }
+
+        public IActionResult GetCidades(int id)
+        {
+            return Json(_context.Cidade.Where(p => p.Estado.Id == id).ToList());
         }
 
         // POST: Lojas/Create
@@ -81,8 +89,7 @@ namespace ProjetoPET.Controllers
                     Numero = model.Numero,
                     Complemento = model.Complemento,
                     CEP = model.CEP,
-                    Estado = model.Estado,
-                    Cidade = model.Cidade,
+                    CidadeId = model.CidadeId,
                     Telefone = model.Telefone,
                     Email = model.Email,
                     ImagePath = uniqueFileName
@@ -92,6 +99,10 @@ namespace ProjetoPET.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+
+            ViewBag.EstadoId = new SelectList(_context.Set<Estado>(), "Id", "Nome");
+            ViewBag.CidadeId = new SelectList(_context.Set<Cidade>().Where(p => p.Estado.Nome == "Acre"), "Id", "Nome");
+
             return View();
         }
 
@@ -116,23 +127,47 @@ namespace ProjetoPET.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("NomeLoja,RazaoSocial,CNPj,Endereco,Numero,Bairro,Complemento,CEP,Estado,Cidade,Telefone,Email,ImagePath,Id,CreatedDate,ModifiedDate")] Lojas lojas)
+        public async Task<IActionResult> Edit(int id, LojasViewModel model)
         {
-            if (id != lojas.Id)
+            if (id != model.Id)
             {
                 return NotFound();
             }
 
             if (ModelState.IsValid)
             {
+                string uniqueFileName = null;
+                if (model.Photo != null)
+                {
+                    string uploadsFolder = Path.Combine(hostingEnvironment.WebRootPath, "images/LojasPhotos");
+                    uniqueFileName = Guid.NewGuid().ToString() + "_" + model.Photo.FileName;
+                    string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+                    model.Photo.CopyTo(new FileStream(filePath, FileMode.Create));
+                }
+                Lojas newLojas = new Lojas
+                {
+                    NomeLoja = model.NomeLoja,
+                    RazaoSocial = model.RazaoSocial,
+                    CNPj = model.CNPj,
+                    Endereco = model.Endereco,
+                    Numero = model.Numero,
+                    Complemento = model.Complemento,
+                    CEP = model.CEP,
+                    CidadeId = model.CidadeId,
+                    Telefone = model.Telefone,
+                    Email = model.Email,
+                    ImagePath = uniqueFileName
+
+                };
+
                 try
                 {
-                    _context.Update(lojas);
+                    _context.Update(newLojas);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!LojasExists(lojas.Id))
+                    if (!LojasExists(model.Id))
                     {
                         return NotFound();
                     }
@@ -143,7 +178,8 @@ namespace ProjetoPET.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(lojas);
+
+            return View(model);
         }
 
         // GET: Lojas/Delete/5

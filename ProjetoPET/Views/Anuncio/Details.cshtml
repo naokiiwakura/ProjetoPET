@@ -1,4 +1,4 @@
-﻿@model ProjetoPET.Models.Adocao
+﻿@model ProjetoPET.Models.Anuncio
 
 @{
     ViewData["Title"] = "Details";
@@ -7,26 +7,32 @@
 <h2>Details</h2>
 
 <div>
-    <h4>Adocao</h4>
+    <h4>Anuncio</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Contato)
+            @Html.DisplayNameFor(model => model.Titulo)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Contato)
+            @Html.DisplayFor(model => model.Titulo)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CorpoAnuncio)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CorpoAnuncio)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Foto)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Foto)
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.Pet)
         </dt>
         <dd>
             @Html.DisplayFor(model => model.Pet.Id)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.UsuarioId)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.UsuarioId)
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.CreatedDate)

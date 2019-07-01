@@ -105,22 +105,32 @@
                 </div>
 
             </div>
-            
-
-            @*<div class="form-group">
-            <label asp-for="CreatedDate" class="control-label"></label>
-            <input asp-for="CreatedDate" class="form-control" />
-            <span asp-validation-for="CreatedDate" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="UpdatedData" class="control-label"></label>
-            <input asp-for="UpdatedData" class="form-control" />
-            <span asp-validation-for="UpdatedData" class="text-danger"></span>
-        </div>*@
-            <div class="form-group float-right">
-                <input type="submit" value="Cadastrar" class="btn btn-primary" />
-                <a class="btn btn-info" asp-action="Index">Voltar a listagem</a>
+            @*<div class="form-group col-md-4">
+                <label asp-for="EstadoId" class="control-label"></label>
+                <select asp-for="EstadoId" class="form-control" asp-items="ViewBag.EstadoId"></select>
+                <span asp-validation-for="EstadoId" class="text-danger"></span>
             </div>
+
+            <div class="form-group col-md-4">
+                <label asp-for="CidadeId" class="control-label"></label>
+                <select asp-for="CidadeId" class="form-control" asp-items="ViewBag.CidadeId"></select>
+                <span asp-validation-for="CidadeId" class="text-danger"></span>
+            </div>
+</div>*@
+                @*<div class="form-group">
+                <label asp-for="CreatedDate" class="control-label"></label>
+                <input asp-for="CreatedDate" class="form-control" />
+                <span asp-validation-for="CreatedDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UpdatedData" class="control-label"></label>
+                <input asp-for="UpdatedData" class="form-control" />
+                <span asp-validation-for="UpdatedData" class="text-danger"></span>
+            </div>*@
+                <div class="form-group float-right">
+                    <input type="submit" value="Cadastrar" class="btn btn-primary" />
+                    <a class="btn btn-info" asp-action="Index">Voltar a listagem</a>
+                </div>
         </form>
     </div>
 </div>

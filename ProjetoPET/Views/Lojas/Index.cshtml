@@ -9,11 +9,12 @@
 <h2>Index</h2>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    
+    <a asp-action="Create">Cadastrar nova Loja</a>
 </p>
 
 
-<div class="row col-md-12">
+<div class="row col-md-12 ">
     @foreach (var item in Model)
     {
         var photoPath = "~/images/LojasPhotos/" + (item.ImagePath ?? "imagem.png");
@@ -25,18 +26,17 @@
             }
         </style>
 
-        <div class="col-md-4 form-group ">
-            <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-            <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-            <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+        <div class="col-md-6 form-group ">
+           
 
-            <div class="card mb-4" style="max-width: 540px;">
+            <div class="card md-8" style="max-width: 500px;">
                 <div class="row no-gutters">
                     <div class="col-md-4">
-                        <img src="@photoPath" class="imagem_loja" asp-append-version="true" />
+                        <img src="@photoPath" asp-append-version="true" style="width:150px;height:280px;"/>
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">
+
                             <h5 class="card-title"> @Html.DisplayFor(modelItem => item.NomeLoja)</h5>
                             <p class="card-text">
                                 <i class="fas fa-map-marker-alt"></i>
@@ -48,7 +48,8 @@
                             <p>
                                 <i class="fas fa-envelope"></i>  @Html.DisplayFor(modelItem => item.Email)
                             </p>
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ExemploModalCentralizado" onclick='pinar("@item.Endereco,@item.Numero.ToString(),@item.Cidade")'>
+                            
+                            <button type="button" class="btn btn-primary" onclick='pinar("@item.Endereco,@item.Numero.ToString(),@item.Cidade")'>
                                 Visualizar Localização
                             </button>
 
@@ -60,27 +61,28 @@
 
         </div>
 
-        <div class="modal fade" id="ExemploModalCentralizado" tabindex="-1" role="dialog" aria-labelledby="TituloModalCentralizado" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="TituloModalCentralizado">Título do modal</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div id="map_canvas" style="width: 95%; height: 432px"></div>
+        
+    }
 
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                        
-                    </div>
-                </div>
+</div>
+
+
+<div class="modal fade" id="ExemploModalCentralizado">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="TituloModalCentralizado">Título do modal</h5>
+            </div>
+            <div class="modal-body">
+                <div id="map_canvas" style="width: 95%; height: 432px"></div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+
             </div>
         </div>
-    }
+    </div>
 </div>
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAA8hwz5MoE8hs1FwRnJVMhcTQZZVGp9iw&libraries=places&callback=initAutocomplete" async defer></script>
 
@@ -121,6 +123,11 @@
                 map.setCenter(results[0].geometry.location);
             }
         });
+
+        
+
+        $("#ExemploModalCentralizado").modal();
+        $('.modal-backdrop').removeClass("modal-backdrop");    
     }
   
      

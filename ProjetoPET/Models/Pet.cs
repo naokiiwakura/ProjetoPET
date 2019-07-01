@@ -12,7 +12,7 @@ namespace ProjetoPET.Models
         public int Idade{get;set;}
         [StringLength(1)]
         [RegularExpression("[F-M]")]
-        public char Sexo{get;set;}
+        public string Sexo{get;set;}
         public string Telefone{get;set;}
         public string Descricao { get; set; }
 
