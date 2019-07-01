@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -48,7 +49,9 @@ namespace ProjetoPET.Controllers
             return View(lojas);
         }
 
+
         // GET: Lojas/Create
+        [Authorize]
         public IActionResult Create()
         {
             ViewBag.EstadoId = new SelectList(_context.Set<Estado>(), "Id", "Nome");
@@ -65,8 +68,7 @@ namespace ProjetoPET.Controllers
         // POST: Lojas/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+        [HttpPost, Authorize, ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(LojasViewModel model)
         {
               if (ModelState.IsValid)

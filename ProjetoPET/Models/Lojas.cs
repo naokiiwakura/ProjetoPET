@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProjetoPET.Areas.Identity.Data;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -16,6 +17,8 @@ namespace ProjetoPET.Models
         public string Bairro { get; set; }
         public string Complemento { get; set; }
         public int CEP { get; set; }
+
+        public Usuario Usuario { get; set; }
         
         [ForeignKey("CidadeId")]
         public Cidade Cidade { get; set; }

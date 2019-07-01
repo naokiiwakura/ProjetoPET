@@ -9,7 +9,7 @@
 <h2>Index</h2>
 
 <p>
-    
+
     <a asp-action="Create">Cadastrar nova Loja</a>
 </p>
 
@@ -20,19 +20,19 @@
         var photoPath = "~/images/LojasPhotos/" + (item.ImagePath ?? "imagem.png");
 
         <style>
-            .imagem_loja{
+            .imagem_loja {
                 width: 100%;
                 height: 100%;
             }
         </style>
 
         <div class="col-md-6 form-group ">
-           
+
 
             <div class="card md-8" style="max-width: 500px;">
                 <div class="row no-gutters">
                     <div class="col-md-4">
-                        <img src="@photoPath" asp-append-version="true" style="width:150px;height:280px;"/>
+                        <img src="@photoPath" asp-append-version="true" style="width:150px;height:280px;" />
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">
@@ -48,11 +48,17 @@
                             <p>
                                 <i class="fas fa-envelope"></i>  @Html.DisplayFor(modelItem => item.Email)
                             </p>
-                            
+
                             <button type="button" class="btn btn-primary" onclick='pinar("@item.Endereco,@item.Numero.ToString(),@item.Cidade")'>
                                 Visualizar Localização
                             </button>
 
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a><span>|</span>
+                                <a asp-action="Details" asp-route-id="@item.Id">Details</a><span>|</span>
+                                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                            }
 
                         </div>
                     </div>
@@ -61,7 +67,7 @@
 
         </div>
 
-        
+
     }
 
 </div>
@@ -78,7 +84,7 @@
 
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Fechar</button>
 
             </div>
         </div>
@@ -104,7 +110,7 @@
 
         infowindow = new google.maps.InfoWindow();
 
-     
+
     }
 
     function pinar(elemento) {
@@ -124,20 +130,20 @@
             }
         });
 
-        
+
 
         $("#ExemploModalCentralizado").modal();
-        $('.modal-backdrop').removeClass("modal-backdrop");    
+        $('.modal-backdrop').removeClass("modal-backdrop");
     }
-  
-     
+
+
 
 
     function createMarker(place) {
         var marker = new google.maps.Marker({
             map: map,
             position: place.geometry.location,
-            
+
 
         });
 
@@ -146,7 +152,7 @@
             infowindow.open(map, this);
         });
     }
-   
+
 </script>
 
 
