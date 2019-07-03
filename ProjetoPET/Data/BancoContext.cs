@@ -16,6 +16,8 @@ public class BancoContext : DbContext
 
     public DbSet<Usuario> Usuario { get; set; }
 
+    public DbSet<Produto> Produto { get; set; }
+
     public DbSet<TipoUsuario> UsuarioBusiness { get; set; }
 
     public DbSet<Pet> Pet { get; set; }

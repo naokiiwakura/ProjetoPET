@@ -1,0 +1,55 @@
+﻿@model IEnumerable<ProjetoPET.Models.Produto>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Propaganda</h1>
+<p>
+    <a asp-action="Create">Criar</a>
+</p>
+<div class="row site-section">
+    <div class="col-md-12">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>
+                        Miniatura
+                    </th>
+                   
+                    <th>
+                        @Html.DisplayNameFor(model => model.Descricao)
+                    </th>
+
+
+                </tr>
+            </thead>
+            <tbody class="col-md-12">
+                @foreach (var item in Model)
+                {
+                    var photoPath = "~/images/Produtos/" + (item.FotoPath ?? "imagem.png");
+                <tr>
+                    <td>
+                        <div>
+                            <div class=" row no-gutters">
+                                <img src="@photoPath " asp-append-version="true" style="width:200px;height:100%;" />
+                            </div>
+                        </div>
+                    </td>
+
+
+
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
+                        <a asp-action="Details" asp-route-id="@item.Id">Detalhes</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id">Deletar</a>
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>    
+
+    </div>
+
+    
+</div>
