@@ -3,7 +3,23 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.645
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjetoPET", "ProjetoPET\ProjetoPET.csproj", "{29C2EE76-B191-471D-8E45-21D188BDCBB6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProjetoPET", "ProjetoPET\ProjetoPET.csproj", "{29C2EE76-B191-471D-8E45-21D188BDCBB6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1-Presenter", "1-Presenter", "{52748422-4602-4B62-B075-C2B524EBC695}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2-Domain", "2-Domain", "{3113B945-7246-455C-B19A-71D4F3E988D5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3-Repository", "3-Repository", "{A04B8098-C6CB-426E-B52F-03797283809E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4-Data", "4-Data", "{8DE57826-6BE4-4B76-9395-E1131B287CE4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5-CrossCutting", "5-CrossCutting", "{E883089D-9E3E-4570-9E61-DDF8A837F92F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "6-Business", "6-Business", "{15EE834F-6879-4A6F-8594-17E0DA4185CD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "7-UnitTest", "7-UnitTest", "{148A3FB8-2038-4CCB-81DE-817AE05DD374}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presenter", "Presenter", "{A1C07A25-E45A-4C87-87CB-1B1D1818F126}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -18,6 +34,10 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{29C2EE76-B191-471D-8E45-21D188BDCBB6} = {52748422-4602-4B62-B075-C2B524EBC695}
+		{A1C07A25-E45A-4C87-87CB-1B1D1818F126} = {148A3FB8-2038-4CCB-81DE-817AE05DD374}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A0B83187-2571-48C7-B080-63FDFFE1EC01}

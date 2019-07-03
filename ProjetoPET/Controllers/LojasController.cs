@@ -148,7 +148,16 @@ namespace ProjetoPET.Controllers
             {
                 return NotFound();
             }
-            return View(lojas);
+
+            var lojaVm = new LojasViewModel
+            {
+                NomeLoja = lojas.NomeLoja,
+                RazaoSocial = lojas.RazaoSocial,
+
+            };
+
+
+            return View(lojaVm);
         }
 
         // POST: Lojas/Edit/5

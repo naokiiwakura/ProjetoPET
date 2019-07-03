@@ -14,7 +14,7 @@
 </p>
 
 
-<div class="row col-md-12 ">
+<div class="row">
     @foreach (var item in Model)
     {
         var photoPath = "~/images/LojasPhotos/" + (item.ImagePath ?? "imagem.png");
@@ -28,44 +28,87 @@
 
         <div class="col-md-6 form-group ">
 
-
-            <div class="card md-8" style="max-width: 500px;">
+            <div class="card mb-3" style="max-width: 540px;">
                 <div class="row no-gutters">
-                    <div class="col-md-4">
-                        <img src="@photoPath" asp-append-version="true" style="width:150px;height:280px;" />
+                    <div class="circular--landscape " style="margin:auto">
+                        <img src="@photoPath" asp-append-version="true" />
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">
 
-                            <h5 class="card-title"> @Html.DisplayFor(modelItem => item.NomeLoja)</h5>
-                            <p class="card-text">
-                                <i class="fas fa-map-marker-alt"></i>
+
+                            <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle btn-sm" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                   Opções
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <a asp-action="Edit" asp-route-id="@item.Id" class="dropdown-item">Edit</a> 
+                                    <a asp-action="Details" asp-route-id="@item.Id" class="dropdown-item">Details</a> 
+                                    <a asp-action="Delete" asp-route-id="@item.Id" class="dropdowntem">Delete</a>
+                                </div>
+                            </div>
+                           
+
+                            <h3> @Html.DisplayFor(modelItem => item.NomeLoja)</h3>
+                            <br />
+                            <i class="fas fa-map-marker-alt">
                                 <a id="endereco" onclick="pinar(this)">
                                     @Html.DisplayFor(modelItem => item.Endereco),@Html.DisplayFor(modelItem => item.Numero),@Html.DisplayFor(modelItem => item.Cidade)
                                 </a>
-                            </p>
-                            <p class="card-text"><i class="fas fa-phone"></i>@Html.DisplayFor(modelItem => item.Telefone)</p>
-                            <p>
-                                <i class="fas fa-envelope"></i>  @Html.DisplayFor(modelItem => item.Email)
-                            </p>
+                            </i>
 
-                            <button type="button" class="btn btn-primary" onclick='pinar("@item.Endereco,@item.Numero.ToString(),@item.Cidade")'>
+                            <br /> <i class="fas fa-phone">@Html.DisplayFor(modelItem => item.Telefone)</i>
+                            <br />
+                            <i class="fas fa-envelope">@Html.DisplayFor(modelItem => item.Email)</i>
+                            <button type="button" class="btn btn-primary btn-sm" onclick='pinar("@item.Endereco,@item.Numero.ToString(),@item.Cidade")'>
                                 Visualizar Localização
                             </button>
-
-                            @if (User.Identity.IsAuthenticated)
-                            {
-                                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a><span>|</span>
-                                <a asp-action="Details" asp-route-id="@item.Id">Details</a><span>|</span>
-                                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                            }
-
                         </div>
                     </div>
                 </div>
             </div>
 
         </div>
+        @*<div class="col-md-6 form-group ">
+
+
+                <div class="card md-8" style="max-width: 500px;">
+                    <div class="row no-gutters">
+                        <div class="col-md-4">
+                            <img src="@photoPath" asp-append-version="true" style="width:150px;height:280px;" />
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+
+                                <h5 class="card-title"> @Html.DisplayFor(modelItem => item.NomeLoja)</h5>
+                                <p class="card-text">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <a id="endereco" onclick="pinar(this)">
+                                        @Html.DisplayFor(modelItem => item.Endereco),@Html.DisplayFor(modelItem => item.Numero),@Html.DisplayFor(modelItem => item.Cidade)
+                                    </a>
+                                </p>
+                                <p class="card-text"><i class="fas fa-phone"></i>@Html.DisplayFor(modelItem => item.Telefone)</p>
+                                <p>
+                                    <i class="fas fa-envelope"></i>  @Html.DisplayFor(modelItem => item.Email)
+                                </p>
+
+                                <button type="button" class="btn btn-primary" onclick='pinar("@item.Endereco,@item.Numero.ToString(),@item.Cidade")'>
+                                    Visualizar Localização
+                                </button>
+
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a><span>|</span>
+                                    <a asp-action="Details" asp-route-id="@item.Id">Details</a><span>|</span>
+                                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                                }
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>*@
 
 
     }
