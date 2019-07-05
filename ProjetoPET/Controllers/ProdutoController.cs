@@ -9,6 +9,7 @@ using ProjetoPET.Models;
 using Microsoft.AspNetCore.Hosting;
 using ProjetoPET.ViewModel;
 using System.IO;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ProjetoPET.Controllers
 {
@@ -48,6 +49,7 @@ namespace ProjetoPET.Controllers
         }
 
         // GET: Produto/Create
+        [Authorize]
         public IActionResult Create()
         {
             return View();
@@ -58,6 +60,7 @@ namespace ProjetoPET.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> Create(ProdutoViewModel model)
        
             {

@@ -16,7 +16,7 @@
                     <th>
                         Miniatura
                     </th>
-                   
+
                     <th>
                         @Html.DisplayNameFor(model => model.Descricao)
                     </th>
@@ -28,28 +28,35 @@
                 @foreach (var item in Model)
                 {
                     var photoPath = "~/images/Produtos/" + (item.FotoPath ?? "imagem.png");
-                <tr>
-                    <td>
-                        <div>
-                            <div class=" row no-gutters">
-                                <img src="@photoPath " asp-append-version="true" style="width:200px;height:100%;" />
+                    <tr>
+                        <td>
+                            <div>
+                                <div class=" row no-gutters">
+                                    <img src="@photoPath " asp-append-version="true" style="width:200px;height:100%;" />
+                                </div>
                             </div>
-                        </div>
-                    </td>
+                        </td>
 
 
 
-                    <td>
-                        <a asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
-                        <a asp-action="Details" asp-route-id="@item.Id">Detalhes</a> |
-                        <a asp-action="Delete" asp-route-id="@item.Id">Deletar</a>
-                    </td>
-                </tr>
+                        <td>
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <a asp-action="Edit" asp-route-id="@item.Id">Editar</a>
+                                <a asp-action="Details" asp-route-id="@item.Id">Detalhes</a>
+                                <a asp-action="Delete" asp-route-id = "@item.Id" > Deletar </a>
+                            }
+                            else
+                            {
+                                <p>Realize a autenticação</p>
+                            }
+                        </td>
+                    </tr>
                 }
             </tbody>
-        </table>    
+        </table>
 
     </div>
 
-    
+
 </div>
