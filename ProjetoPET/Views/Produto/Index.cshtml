@@ -6,7 +6,11 @@
 
 <h1>Propaganda</h1>
 <p>
-    <a asp-action="Create">Criar</a>
+    @if (User.Identity.IsAuthenticated)
+    {
+        <a asp-action="Create">Criar</a>
+    }
+
 </p>
 <div class="row site-section">
     <div class="col-md-12">
@@ -17,9 +21,9 @@
                         Miniatura
                     </th>
 
-                    <th>
+                    @*<th>
                         @Html.DisplayNameFor(model => model.Descricao)
-                    </th>
+                    </th>*@
 
 
                 </tr>
@@ -28,18 +32,18 @@
                 @foreach (var item in Model)
                 {
                     var photoPath = "~/images/Produtos/" + (item.FotoPath ?? "imagem.png");
-                    <tr>
-                        <td>
-                            <div>
-                                <div class=" row no-gutters">
-                                    <img src="@photoPath " asp-append-version="true" style="width:200px;height:100%;" />
+                    <tr >
+                        <td class="col-md-10" >
+                            <div style="height:150px;" >
+                                <div class=" row no-gutters col-md-10 text-center" style="max-height:150px; min-height:150px " >
+                                    <img src="@photoPath " asp-append-version="true" style="max-height:150px; min-height:150px "  />
                                 </div>
                             </div>
                         </td>
 
 
 
-                        <td>
+                        @*<td>
                             @if (User.Identity.IsAuthenticated)
                             {
                                 <a asp-action="Edit" asp-route-id="@item.Id">Editar</a>
@@ -50,7 +54,7 @@
                             {
                                 <p>Realize a autenticação</p>
                             }
-                        </td>
+                        </td>*@
                     </tr>
                 }
             </tbody>
@@ -60,3 +64,7 @@
 
 
 </div>
+<style>
+
+
+</style>
