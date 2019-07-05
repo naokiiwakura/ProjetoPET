@@ -153,6 +153,16 @@ namespace ProjetoPET.Controllers
             {
                 NomeLoja = lojas.NomeLoja,
                 RazaoSocial = lojas.RazaoSocial,
+                CNPj = lojas.CNPj,
+                Endereco = lojas.Endereco,
+                Numero = lojas.Numero,
+                Bairro = lojas.Bairro,
+                Complemento = lojas.Complemento,
+                CEP = lojas.CEP,
+                CidadeId = lojas.CidadeId,
+                Telefone = lojas.Telefone,
+                Email = lojas.Email,
+             
 
             };
 
@@ -165,47 +175,43 @@ namespace ProjetoPET.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, LojasViewModel model)
+        public async Task<IActionResult> Edit(int id, Lojas lojas)
         {
-            if (id != model.Id)
+
+            if(id!= lojas.Id)
             {
                 return NotFound();
             }
+            
 
+           
             if (ModelState.IsValid)
             {
-                string uniqueFileName = null;
-                if (model.Photo != null)
+                var lojaVm = new LojasViewModel
                 {
-                    string uploadsFolder = Path.Combine(hostingEnvironment.WebRootPath, "images/LojasPhotos");
-                    uniqueFileName = Guid.NewGuid().ToString() + "_" + model.Photo.FileName;
-                    string filePath = Path.Combine(uploadsFolder, uniqueFileName);
-                    model.Photo.CopyTo(new FileStream(filePath, FileMode.Create));
-                }
-                Lojas newLojas = new Lojas
-                {
-                    NomeLoja = model.NomeLoja,
-                    RazaoSocial = model.RazaoSocial,
-                    CNPj = model.CNPj,
-                    Endereco = model.Endereco,
-                    Numero = model.Numero,
-                    Complemento = model.Complemento,
-                    CEP = model.CEP,
-                    CidadeId = model.CidadeId,
-                    Telefone = model.Telefone,
-                    Email = model.Email,
-                    ImagePath = uniqueFileName
+                    NomeLoja = lojas.NomeLoja,
+                    RazaoSocial = lojas.RazaoSocial,
+                    CNPj = lojas.CNPj,
+                    Endereco = lojas.Endereco,
+                    Numero = lojas.Numero,
+                    Bairro = lojas.Bairro,
+                    Complemento = lojas.Complemento,
+                    CEP = lojas.CEP,
+                    CidadeId = lojas.CidadeId,
+                    Telefone = lojas.Telefone,
+                    Email = lojas.Email,
+
 
                 };
 
                 try
                 {
-                    _context.Update(newLojas);
+                    _context.Update(lojas);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!LojasExists(model.Id))
+                    if (!LojasExists(lojas.Id))
                     {
                         return NotFound();
                     }
@@ -217,7 +223,7 @@ namespace ProjetoPET.Controllers
                 return RedirectToAction(nameof(Index));
             }
 
-            return View(model);
+            return View(lojas);
         }
 
         // GET: Lojas/Delete/5
