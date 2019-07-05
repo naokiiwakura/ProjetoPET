@@ -23,22 +23,25 @@
                 <span asp-validation-for="Descricao" class="text-danger"></span>
             </div>
             @*<div class="form-group">
-            <label asp-for="FotoPath" class="control-label"></label>
-            <input asp-for="FotoPath" class="form-control" />
-            <span asp-validation-for="FotoPath" class="text-danger"></span>
-        </div>*@
+                    <label asp-for="FotoPath" class="control-label"></label>
+                    <input asp-for="FotoPath" class="form-control" />
+                    <span asp-validation-for="FotoPath" class="text-danger"></span>
+                </div>*@
+            <label>Testao</label>
+            <img id="imagemPreview" style="max-height:150px; min-height:150px "/>
             <div class="form-group">
                 <label asp-for="Photo" class="control-label"></label>
                 <input asp-for="Photo" class="Tomate form-control" id="Photo" name="Photo" type="file" accept="image/png, image/jpeg" onsubmit="Checkfiles(this)" />
             </div>
-
-
-            <div class="form-group">
-                <input type="submit" value="Criar" class="btn btn-default" />
-            </div>
-
-
             
+
+
+<div class="form-group">
+    <input type="submit" value="Criar" class="btn btn-default" />
+</div>
+
+
+
         </form>
     </div>
 </div>
@@ -50,3 +53,22 @@
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
+<script>
+
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#imagemPreview').attr('src', e.target.result);
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    $("#Photo").change(function () {
+        readURL(this);
+    });
+
+</script>
