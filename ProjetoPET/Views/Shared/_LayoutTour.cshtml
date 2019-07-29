@@ -28,6 +28,8 @@
     <script src="~/js/jquery.fancybox.min.js"></script>
     <script src="~/js/jquery.sticky.js"></script>
     <script src="~/js/isotope.pkgd.min.js"></script>
+    <script src="~/js/jstelaloja.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.0/jquery.mask.js"></script>
 
 </head>
 <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300" id="home-section">
@@ -62,7 +64,8 @@
                                 <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Pet" asp-action="Index">Cadastre seu PeT</a></li>
                                 <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Evento" asp-action="Index">Eventos</a></li>
                                 <li class="nav-item">
-                                <a class="nav-link" asp-area="" asp-controller="Lojas" asp-action="Index">Lojas</a></li>
+                                    <a class="nav-link" asp-area="" asp-controller="Lojas" asp-action="Index">Lojas</a>
+                                </li>
 
                                 <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Anuncio" asp-action="Index">Anúncio</a></li>
                                 @await Html.PartialAsync("_LoginPartial")
@@ -80,17 +83,17 @@
             <div class="container">
                 @RenderBody()
             </div>
-        </section>        
+        </section>
 
         @*<div class="site-blocks-cover bg-light" data-aos="fade">
-            <div class="container">
-                <div class="row ">
-                    <div class="col-md-12 mt-lg-5 ">
-                        @RenderBody()
+                <div class="container">
+                    <div class="row ">
+                        <div class="col-md-12 mt-lg-5 ">
+                            @RenderBody()
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>*@
+            </div>*@
 
         <footer class="site-footer">
             <div class="container">
@@ -151,8 +154,8 @@
             </div>
         </footer>
     </div> <!-- .site-wrap -->
-
-
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.0/jquery.mask.js"></script>
+    <script src="~/js/jstelaloja.js"></script>
     <script src="~/js/main.js"></script>
     @RenderSection("Scripts", required: false)
 </body>

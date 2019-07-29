@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ProjetoPET.Migrations
 {
-    public partial class inicial : Migration
+    public partial class asdasdsadhffjkjk : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -181,38 +181,6 @@ namespace ProjetoPET.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Lojas",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    CreatedDate = table.Column<DateTime>(nullable: false),
-                    UpdatedData = table.Column<DateTime>(nullable: true),
-                    NomeLoja = table.Column<string>(nullable: true),
-                    RazaoSocial = table.Column<string>(nullable: true),
-                    CNPj = table.Column<int>(nullable: false),
-                    Endereco = table.Column<string>(nullable: true),
-                    Numero = table.Column<int>(nullable: false),
-                    Bairro = table.Column<string>(nullable: true),
-                    Complemento = table.Column<string>(nullable: true),
-                    CEP = table.Column<int>(nullable: false),
-                    CidadeId = table.Column<int>(nullable: false),
-                    Telefone = table.Column<int>(nullable: false),
-                    Email = table.Column<string>(nullable: true),
-                    ImagePath = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Lojas", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Lojas_Cidade_CidadeId",
-                        column: x => x.CidadeId,
-                        principalTable: "Cidade",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Telefone",
                 columns: table => new
                 {
@@ -233,6 +201,39 @@ namespace ProjetoPET.Migrations
                         principalTable: "TipoTelefone",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Lojas",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    CreatedDate = table.Column<DateTime>(nullable: false),
+                    UpdatedData = table.Column<DateTime>(nullable: true),
+                    NomeLoja = table.Column<string>(nullable: true),
+                    RazaoSocial = table.Column<string>(nullable: true),
+                    CNPj = table.Column<int>(nullable: false),
+                    Endereco = table.Column<string>(nullable: true),
+                    Numero = table.Column<int>(nullable: false),
+                    Bairro = table.Column<string>(nullable: true),
+                    Complemento = table.Column<string>(nullable: true),
+                    CEP = table.Column<int>(nullable: false),
+                    UsuarioId = table.Column<string>(nullable: true),
+                    CidadeId = table.Column<int>(nullable: false),
+                    Telefone = table.Column<int>(nullable: false),
+                    Email = table.Column<string>(nullable: true),
+                    ImagePath = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Lojas", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Lojas_Cidade_CidadeId",
+                        column: x => x.CidadeId,
+                        principalTable: "Cidade",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -362,6 +363,11 @@ namespace ProjetoPET.Migrations
                 column: "CidadeId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Lojas_UsuarioId",
+                table: "Lojas",
+                column: "UsuarioId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Telefone_AnuncioId",
                 table: "Telefone",
                 column: "AnuncioId");
@@ -391,6 +397,14 @@ namespace ProjetoPET.Migrations
                 table: "Telefone",
                 column: "AnuncioId",
                 principalTable: "Anuncio",
+                principalColumn: "Id",
+                onDelete: ReferentialAction.Restrict);
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_Lojas_Usuario_UsuarioId",
+                table: "Lojas",
+                column: "UsuarioId",
+                principalTable: "Usuario",
                 principalColumn: "Id",
                 onDelete: ReferentialAction.Restrict);
 

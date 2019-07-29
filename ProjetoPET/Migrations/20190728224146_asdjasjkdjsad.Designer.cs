@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ProjetoPET.Migrations
 {
     [DbContext(typeof(BancoContext))]
-    [Migration("20190702232116_teste")]
-    partial class teste
+    [Migration("20190728224146_asdjasjkdjsad")]
+    partial class asdjasjkdjsad
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -256,9 +256,9 @@ namespace ProjetoPET.Migrations
 
                     b.Property<string>("Bairro");
 
-                    b.Property<int>("CEP");
+                    b.Property<string>("CEP");
 
-                    b.Property<int>("CNPj");
+                    b.Property<string>("CNPj");
 
                     b.Property<int>("CidadeId");
 
@@ -270,6 +270,8 @@ namespace ProjetoPET.Migrations
 
                     b.Property<string>("Endereco");
 
+                    b.Property<int>("EstadoId");
+
                     b.Property<string>("ImagePath");
 
                     b.Property<string>("NomeLoja");
@@ -278,7 +280,7 @@ namespace ProjetoPET.Migrations
 
                     b.Property<string>("RazaoSocial");
 
-                    b.Property<int>("Telefone");
+                    b.Property<string>("Telefone");
 
                     b.Property<DateTime?>("UpdatedData");
 

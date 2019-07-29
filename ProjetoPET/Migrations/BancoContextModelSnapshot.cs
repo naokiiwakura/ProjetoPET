@@ -14,7 +14,7 @@ namespace ProjetoPET.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.1.8-servicing-32085")
+                .HasAnnotation("ProductVersion", "2.1.11-servicing-32099")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -254,9 +254,9 @@ namespace ProjetoPET.Migrations
 
                     b.Property<string>("Bairro");
 
-                    b.Property<int>("CEP");
+                    b.Property<string>("CEP");
 
-                    b.Property<int>("CNPj");
+                    b.Property<string>("CNPj");
 
                     b.Property<int>("CidadeId");
 
@@ -268,6 +268,8 @@ namespace ProjetoPET.Migrations
 
                     b.Property<string>("Endereco");
 
+                    b.Property<int>("EstadoId");
+
                     b.Property<string>("ImagePath");
 
                     b.Property<string>("NomeLoja");
@@ -276,7 +278,7 @@ namespace ProjetoPET.Migrations
 
                     b.Property<string>("RazaoSocial");
 
-                    b.Property<int>("Telefone");
+                    b.Property<string>("Telefone");
 
                     b.Property<DateTime?>("UpdatedData");
 

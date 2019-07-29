@@ -116,9 +116,11 @@ namespace ProjetoPET.Controllers
                     CNPj = model.CNPj,
                     Endereco = model.Endereco,
                     Numero = model.Numero,
+                    Bairro = model.Bairro,
                     Complemento = model.Complemento,
                     CEP = model.CEP,
                     CidadeId = model.CidadeId,
+                    EstadoId = model.EstadoId,
                     Telefone = model.Telefone,
                     Email = model.Email,
                     ImagePath = uniqueFileName
@@ -128,10 +130,6 @@ namespace ProjetoPET.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-
-            ViewBag.EstadoId = new SelectList(_context.Set<Estado>(), "Id", "Nome");
-            ViewBag.CidadeId = new SelectList(_context.Set<Cidade>().Where(p => p.Estado.Nome == "Acre"), "Id", "Nome");
-
             return View();
         }
 
@@ -160,12 +158,16 @@ namespace ProjetoPET.Controllers
                 Complemento = lojas.Complemento,
                 CEP = lojas.CEP,
                 CidadeId = lojas.CidadeId,
+                EstadoId = lojas.EstadoId,
                 Telefone = lojas.Telefone,
                 Email = lojas.Email,
              
 
             };
 
+
+            ViewBag.EstadoId = new SelectList(_context.Set<Estado>(), "Id", "Nome");
+            ViewBag.CidadeId = new SelectList(_context.Set<Cidade>(),"Id", "Nome"); ;
 
             return View(lojaVm);
         }
@@ -240,8 +242,23 @@ namespace ProjetoPET.Controllers
             {
                 return NotFound();
             }
+            var lojaVm = new LojasViewModel
+            {
+                NomeLoja = lojas.NomeLoja,
+                RazaoSocial = lojas.RazaoSocial,
+                CNPj = lojas.CNPj,
+                Endereco = lojas.Endereco,
+                Numero = lojas.Numero,
+                Bairro = lojas.Bairro,
+                Complemento = lojas.Complemento,
+                CEP = lojas.CEP,
+                CidadeId = lojas.CidadeId,
+                EstadoId = lojas.EstadoId,
+                Telefone = lojas.Telefone,
+                Email = lojas.Email,
+            };
 
-            return View(lojas);
+            return View(lojaVm);
         }
 
         // POST: Lojas/Delete/5

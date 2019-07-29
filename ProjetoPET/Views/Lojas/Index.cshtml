@@ -4,31 +4,30 @@
     ViewData["Title"] = "Index";
 
 }
+
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 <link href="~/css/pao_com_geleia.css" rel="stylesheet" />
 <h2>Index</h2>
 
 <p>
-
     <a asp-action="Create">Cadastrar nova Loja</a>
 </p>
-
 
 <div class="row">
     @foreach (var item in Model)
     {
         var photoPath = "~/images/LojasPhotos/" + (item.ImagePath ?? "imagem.png");
-        
+
         <style>
 
             .imagem_loja {
                 width: 100%;
                 height: 100%;
             }
+       
         </style>
 
         <div class="col-md-6 form-group ">
-
             <div class="card mb-3" style="max-width: 540px;">
                 <div class="row no-gutters">
                     <div class="circular--landscape " style="margin:auto">
@@ -36,19 +35,16 @@
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">
-
-
                             <div class="dropdown">
                                 <button class="btn btn-secondary dropdown-toggle btn-sm" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                   Opções
+                                    Opções
                                 </button>
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                    <a asp-action="Edit" asp-route-id="@item.Id" class="dropdown-item">Edit</a> 
-                                    <a asp-action="Details" asp-route-id="@item.Id" class="dropdown-item">Details</a> 
+                                    <a asp-action="Edit" asp-route-id="@item.Id" class="dropdown-item">Edit</a>
+                                    <a asp-action="Details" asp-route-id="@item.Id" class="dropdown-item">Details</a>
                                     <a asp-action="Delete" asp-route-id="@item.Id" class="dropdowntem">Delete</a>
                                 </div>
                             </div>
-                           
 
                             <h3> @Html.DisplayFor(modelItem => item.NomeLoja)</h3>
                             <br />
@@ -57,7 +53,6 @@
                                     @Html.DisplayFor(modelItem => item.Endereco),@Html.DisplayFor(modelItem => item.Numero),@Html.DisplayFor(modelItem => item.Cidade)
                                 </a>
                             </i>
-
                             <br /> <i class="fas fa-phone">@Html.DisplayFor(modelItem => item.Telefone)</i>
                             <br />
                             <i class="fas fa-envelope">@Html.DisplayFor(modelItem => item.Email)</i>
@@ -68,135 +63,32 @@
                     </div>
                 </div>
             </div>
-
         </div>
-        @*<div class="col-md-6 form-group ">
+        <div class="modal fade" id="ExemploModalCentralizado">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="TituloModalCentralizado">@Html.DisplayFor(modelItem => item.Id)</h5>
+                    </div>
+                    <div class="modal-body">
+                        <div id="map_canvas" style="width: 95%; height: 432px"></div>
 
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Fechar</button>
 
-                <div class="card md-8" style="max-width: 500px;">
-                    <div class="row no-gutters">
-                        <div class="col-md-4">
-                            <img src="@photoPath" asp-append-version="true" style="width:150px;height:280px;" />
-                        </div>
-                        <div class="col-md-8">
-                            <div class="card-body">
-
-                                <h5 class="card-title"> @Html.DisplayFor(modelItem => item.NomeLoja)</h5>
-                                <p class="card-text">
-                                    <i class="fas fa-map-marker-alt"></i>
-                                    <a id="endereco" onclick="pinar(this)">
-                                        @Html.DisplayFor(modelItem => item.Endereco),@Html.DisplayFor(modelItem => item.Numero),@Html.DisplayFor(modelItem => item.Cidade)
-                                    </a>
-                                </p>
-                                <p class="card-text"><i class="fas fa-phone"></i>@Html.DisplayFor(modelItem => item.Telefone)</p>
-                                <p>
-                                    <i class="fas fa-envelope"></i>  @Html.DisplayFor(modelItem => item.Email)
-                                </p>
-
-                                <button type="button" class="btn btn-primary" onclick='pinar("@item.Endereco,@item.Numero.ToString(),@item.Cidade")'>
-                                    Visualizar Localização
-                                </button>
-
-                                @if (User.Identity.IsAuthenticated)
-                                {
-                                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a><span>|</span>
-                                    <a asp-action="Details" asp-route-id="@item.Id">Details</a><span>|</span>
-                                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                                }
-
-                            </div>
-                        </div>
                     </div>
                 </div>
-
-            </div>*@
-
-
-    }
-
-</div>
-
-
-<div class="modal fade" id="ExemploModalCentralizado">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="TituloModalCentralizado">Título do modal</h5>
-            </div>
-            <div class="modal-body">
-                <div id="map_canvas" style="width: 95%; height: 432px"></div>
-
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-dismiss="modal">Fechar</button>
-
             </div>
         </div>
-    </div>
+    }
 </div>
+
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAA8hwz5MoE8hs1FwRnJVMhcTQZZVGp9iw&libraries=places&callback=initAutocomplete" async defer></script>
-
-
-
 
 <script>
 
-    let map;
-    let service;
-    let infowindow;
-
-    function initAutocomplete() {
-        map = new google.maps.Map(document.getElementById('map_canvas'), {
-            center: { lat: -20.44278, lng: - 54.64639 },
-            zoom: 15,
-            mapTypeId: 'roadmap'
-        });
-
-        infowindow = new google.maps.InfoWindow();
-
-
-    }
-
-    function pinar(elemento) {
-        var request = {
-            query: elemento,
-            fields: ['name', 'geometry'],
-        };
-
-        service = new google.maps.places.PlacesService(map);
-
-        service.findPlaceFromQuery(request, function (results, status) {
-            if (status === google.maps.places.PlacesServiceStatus.OK) {
-                for (var i = 0; i < results.length; i++) {
-                    createMarker(results[i]);
-                }
-                map.setCenter(results[0].geometry.location);
-            }
-        });
-
-
-
-        $("#ExemploModalCentralizado").modal();
-        $('.modal-backdrop').removeClass("modal-backdrop");
-    }
-
-
-
-
-    function createMarker(place) {
-        var marker = new google.maps.Marker({
-            map: map,
-            position: place.geometry.location,
-
-
-        });
-
-        google.maps.event.addListener(marker, 'click', function () {
-            infowindow.setContent(place.name);
-            infowindow.open(map, this);
-        });
-    }
-
+   
 </script>
 
 

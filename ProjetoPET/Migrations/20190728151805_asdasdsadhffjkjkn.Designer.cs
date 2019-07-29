@@ -9,14 +9,14 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ProjetoPET.Migrations
 {
     [DbContext(typeof(BancoContext))]
-    [Migration("20190628201810_inicial")]
-    partial class inicial
+    [Migration("20190728151805_asdasdsadhffjkjkn")]
+    partial class asdasdsadhffjkjkn
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.1.8-servicing-32085")
+                .HasAnnotation("ProductVersion", "2.1.11-servicing-32099")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -270,6 +270,8 @@ namespace ProjetoPET.Migrations
 
                     b.Property<string>("Endereco");
 
+                    b.Property<int>("EstadoId");
+
                     b.Property<string>("ImagePath");
 
                     b.Property<string>("NomeLoja");
@@ -282,9 +284,13 @@ namespace ProjetoPET.Migrations
 
                     b.Property<DateTime?>("UpdatedData");
 
+                    b.Property<string>("UsuarioId");
+
                     b.HasKey("Id");
 
                     b.HasIndex("CidadeId");
+
+                    b.HasIndex("UsuarioId");
 
                     b.ToTable("Lojas");
                 });
@@ -447,6 +453,10 @@ namespace ProjetoPET.Migrations
                         .WithMany()
                         .HasForeignKey("CidadeId")
                         .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("ProjetoPET.Areas.Identity.Data.Usuario", "Usuario")
+                        .WithMany()
+                        .HasForeignKey("UsuarioId");
                 });
 
             modelBuilder.Entity("ProjetoPET.Models.Telefone", b =>

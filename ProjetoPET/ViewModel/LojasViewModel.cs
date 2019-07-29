@@ -21,7 +21,7 @@ namespace ProjetoPET.ViewModel
 
         [Display(Name = "CNPJ")]
         [Required(ErrorMessage = "* O Campo CNPJ é obrigatório")]
-        public int CNPj { get; set; }
+        public string CNPj { get; set; }
 
         [Display(Name = "Endereço")]
         [Required(ErrorMessage = "* O Campo endereço é obrigatório")]
@@ -41,7 +41,7 @@ namespace ProjetoPET.ViewModel
 
         
         [Required(ErrorMessage = "* O Campo CEP é obrigatório")]
-        public int CEP { get; set; }
+        public string CEP { get; set; }
 
         
         [Required(ErrorMessage = "* O Campo Estado é obrigatório")]
@@ -55,7 +55,7 @@ namespace ProjetoPET.ViewModel
 
        
         [Required(ErrorMessage = "* O Campo Telefone é obrigatório")]
-        public int Telefone { get; set; }
+        public string Telefone { get; set; }
 
         public string Email { get; set; }
         public IFormFile Photo { get; set; }
