@@ -9,6 +9,10 @@ using ProjetoPET.Models;
 
 public class BancoContext : DbContext
 {
+    public BancoContext()
+    {
+    }
+
     public BancoContext(DbContextOptions<BancoContext> options)
         : base(options)
     {
@@ -43,6 +47,20 @@ public class BancoContext : DbContext
         base.OnModelCreating(modelBuilder);
         modelBuilder.Entity<IdentityUserLogin<string>>().HasKey(u => u.UserId);
         modelBuilder.Entity<IdentityUserToken<string>>().HasKey(u => u.UserId);
+    }
+
+    public override int SaveChanges()
+    {
+        foreach (var entry in ChangeTracker.Entries()
+            .Where(entry => entry.Entity.GetType().GetProperty("CreatedDate") != null))
+        {
+            if (entry.State == EntityState.Added)
+                entry.Property("CreatedDate").CurrentValue = DateTime.Now;
+
+            if (entry.State == EntityState.Modified)
+                entry.Property("CreatedDate").IsModified = false;
+        }
+        return base.SaveChanges();  
     }
 }
 

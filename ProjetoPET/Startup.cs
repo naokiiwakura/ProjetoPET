@@ -14,6 +14,9 @@ using ProjetoPET.repository;
 using Microsoft.AspNetCore.Identity;
 using ProjetoPET.Areas.Identity.Data;
 using ProjetoPET.Mock;
+using ProjetoPET.repository.Interfaces;
+using AutoMapper;
+using ProjetoPET.AutoMapper;
 
 namespace ProjetoPET
 {
@@ -48,7 +51,11 @@ namespace ProjetoPET
             services.AddDbContext<BancoContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("BancoContext")));
 
+            services.AddAutoMapper(typeof(DomainToViewModelMappingProfile), typeof(ViewModelToDomainMappingProfile));
+
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+            services.AddScoped<ILojaRepository,LojaRepository>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

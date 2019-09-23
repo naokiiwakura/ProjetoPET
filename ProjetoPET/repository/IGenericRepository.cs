@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 
 namespace ProjetoPET.repository
 {
-    
        public interface IGenericRepository<TEntity> where TEntity : class
     {
             Task<IList<TEntity>> ListarTodos();

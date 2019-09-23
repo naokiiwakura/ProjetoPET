@@ -89,7 +89,24 @@
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 <script>
-    
+    $("#EstadoId").on("change", function () {
+        $list = $("#CidadeId");
+        $.ajax({
+            url: "GetCidades/" + $("#EstadoId").val(),
+            type: "GET",
+            success: function (result) {
+
+                $list.empty();
+                result.forEach((item) => {
+                    $list.append('<option value="' + item.id + '"> ' + item.nome + ' </option>');
+                });
+            },
+            error: function () {
+                alert("Erro ocorreu no processamento");
+            }
+        });
+
+    });
 </script>
 
 

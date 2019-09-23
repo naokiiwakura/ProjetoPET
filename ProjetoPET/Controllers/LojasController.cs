@@ -1,79 +1,45 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ProjetoPET.Models;
+using ProjetoPET.repository.Interfaces;
 using ProjetoPET.ViewModel;
 
 namespace ProjetoPET.Controllers
 {
     public class LojasController : Controller
     {
+        private readonly ILojaRepository _lojasRepository;
+        private readonly IHostingEnvironment host;
         private readonly BancoContext _context;
-        private readonly IHostingEnvironment hostingEnvironment;
+        private readonly IMapper _mapper;
 
-        public LojasController(BancoContext context, IHostingEnvironment hostingEnvironment)
+        public LojasController(IHostingEnvironment hostingEnvironment, ILojaRepository lojasRepository, BancoContext bancoContext, IMapper mapper)
         {
-            _context = context;
-            this.hostingEnvironment = hostingEnvironment;
-            
+            _lojasRepository = lojasRepository;
+            this.host = hostingEnvironment;
+            _context = bancoContext;
+            _mapper = mapper;
+
         }
 
         // GET: Lojas
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Lojas.ToListAsync());
+            return View(await _lojasRepository.GetAll());
         }
 
         // GET: Lojas/Details/5
-        public async Task<IActionResult> Details(int? id, LojasViewModel model)
+        public async Task<IActionResult> Details(int id)
         {
-            if (id == null)
-            {
-                return NotFound();
-
-
-            }
-
-            var lojas = await _context.Lojas
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (lojas == null)
-            {
-                return NotFound();
-            }
-            string uniqueFileName = null;
-            if (model.Photo != null)
-            {
-                string uploadsFolder = Path.Combine(hostingEnvironment.WebRootPath, "images/LojasPhotos");
-                uniqueFileName = Guid.NewGuid().ToString() + "_" + model.Photo.FileName;
-                string filePath = Path.Combine(uploadsFolder, uniqueFileName);
-                model.Photo.CopyTo(new FileStream(filePath, FileMode.Create));
-            }
-            Lojas newLojas = new Lojas
-            {
-                NomeLoja = model.NomeLoja,
-                RazaoSocial = model.RazaoSocial,
-                CNPj = model.CNPj,
-                Endereco = model.Endereco,
-                Numero = model.Numero,
-                Complemento = model.Complemento,
-                CEP = model.CEP,
-                CidadeId = model.CidadeId,
-                Telefone = model.Telefone,
-                Email = model.Email,
-                ImagePath = uniqueFileName
-
-
-
-            };
-
-            return View(model);
+            var loja = await _lojasRepository.GetById(id);
+            var lojaViewModel = _mapper.Map<Lojas, LojasViewModel>(loja);
+            return View(lojaViewModel);
         }
 
 
@@ -96,80 +62,33 @@ namespace ProjetoPET.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost, Authorize, ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(LojasViewModel model)
+        public async Task<IActionResult> Create(LojasViewModel lojaViewModel)
         {
-              if (ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-
-                string uniqueFileName = null;
-                if (model.Photo != null)
+                if (lojaViewModel.Photo != null)
                 {
-                    string uploadsFolder = Path.Combine(hostingEnvironment.WebRootPath, "images/LojasPhotos");
-                    uniqueFileName = Guid.NewGuid().ToString() + "_" + model.Photo.FileName;
-                    string filePath = Path.Combine(uploadsFolder, uniqueFileName);
-                    model.Photo.CopyTo(new FileStream(filePath, FileMode.Create));
+                    string uniqueFileName =  _lojasRepository.ConverterFoto(lojaViewModel.Photo, host.WebRootPath);
+                    var loja = _mapper.Map<LojasViewModel, Lojas>(lojaViewModel);
+                    loja.ImagePath = uniqueFileName;
+                    await _lojasRepository.Add(loja);
                 }
-                Lojas newLojas = new Lojas
-                {
-                    NomeLoja = model.NomeLoja,
-                    RazaoSocial = model.RazaoSocial,
-                    CNPj = model.CNPj,
-                    Endereco = model.Endereco,
-                    Numero = model.Numero,
-                    Bairro = model.Bairro,
-                    Complemento = model.Complemento,
-                    CEP = model.CEP,
-                    CidadeId = model.CidadeId,
-                    EstadoId = model.EstadoId,
-                    Telefone = model.Telefone,
-                    Email = model.Email,
-                    ImagePath = uniqueFileName
-                    
-                };
-                _context.Add(newLojas);
-                await _context.SaveChangesAsync();
+
                 return RedirectToAction(nameof(Index));
             }
             return View();
         }
 
         // GET: Lojas/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> Edit(int id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var lojas = await _context.Lojas.FindAsync(id);
-            if (lojas == null)
-            {
-                return NotFound();
-            }
-
-            var lojaVm = new LojasViewModel
-            {
-                NomeLoja = lojas.NomeLoja,
-                RazaoSocial = lojas.RazaoSocial,
-                CNPj = lojas.CNPj,
-                Endereco = lojas.Endereco,
-                Numero = lojas.Numero,
-                Bairro = lojas.Bairro,
-                Complemento = lojas.Complemento,
-                CEP = lojas.CEP,
-                CidadeId = lojas.CidadeId,
-                EstadoId = lojas.EstadoId,
-                Telefone = lojas.Telefone,
-                Email = lojas.Email,
-             
-
-            };
-
+            var loja = await _lojasRepository.GetById(id);
+            var lojaViewModel = _mapper.Map<Lojas, LojasViewModel>(loja);
 
             ViewBag.EstadoId = new SelectList(_context.Set<Estado>(), "Id", "Nome");
-            ViewBag.CidadeId = new SelectList(_context.Set<Cidade>(),"Id", "Nome"); ;
+            ViewBag.CidadeId = new SelectList(_context.Set<Cidade>(), "Id", "Nome"); ;
 
-            return View(lojaVm);
+            return View(lojaViewModel);
         }
 
         // POST: Lojas/Edit/5
@@ -180,13 +99,13 @@ namespace ProjetoPET.Controllers
         public async Task<IActionResult> Edit(int id, Lojas lojas)
         {
 
-            if(id!= lojas.Id)
+            if (id != lojas.Id)
             {
                 return NotFound();
             }
-            
 
-           
+
+
             if (ModelState.IsValid)
             {
                 var lojaVm = new LojasViewModel
@@ -229,36 +148,12 @@ namespace ProjetoPET.Controllers
         }
 
         // GET: Lojas/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> Delete(int id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            var loja = await _lojasRepository.GetById(id);
+            var lojaViewModel = _mapper.Map<Lojas, LojasViewModel>(loja);
 
-            var lojas = await _context.Lojas
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (lojas == null)
-            {
-                return NotFound();
-            }
-            var lojaVm = new LojasViewModel
-            {
-                NomeLoja = lojas.NomeLoja,
-                RazaoSocial = lojas.RazaoSocial,
-                CNPj = lojas.CNPj,
-                Endereco = lojas.Endereco,
-                Numero = lojas.Numero,
-                Bairro = lojas.Bairro,
-                Complemento = lojas.Complemento,
-                CEP = lojas.CEP,
-                CidadeId = lojas.CidadeId,
-                EstadoId = lojas.EstadoId,
-                Telefone = lojas.Telefone,
-                Email = lojas.Email,
-            };
-
-            return View(lojaVm);
+            return View(lojaViewModel);
         }
 
         // POST: Lojas/Delete/5
