@@ -1,0 +1,18 @@
+﻿@model ProjetoPET.ViewModel.LojaViewModel
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Excluir</h2>
+
+<h3><center>Deseja Excluir esse arquivo?</center></h3>
+<div class="row">
+    <br />
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Excluir" class="btn btn-default" /> |
+        <a asp-action="Index">Voltar</a>
+    </form>
+</div>

@@ -1,10 +1,9 @@
 ﻿using Microsoft.AspNetCore.Http;
 using ProjetoPET.Models;
-using System.Threading.Tasks;
 
-namespace ProjetoPET.repository.Interfaces
+namespace ProjetoPET.Repository.Interfaces
 {
-    public interface ILojaRepository : IRepositoryBase<Lojas>
+    public interface ILojaRepository : IRepositoryBase<Loja>
     {
         string ConverterFoto(IFormFile e, string hosting);
     }

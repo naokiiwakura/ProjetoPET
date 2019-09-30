@@ -8,7 +8,7 @@ namespace ProjetoPET.AutoMapper
     {
         public ViewModelToDomainMappingProfile()
         {
-            CreateMap<LojasViewModel, Lojas>();
+            CreateMap<LojaViewModel, Loja>();
         }
     }
 }

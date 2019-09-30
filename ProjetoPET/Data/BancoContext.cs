@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using ProjetoPET.Areas.Identity.Data;
@@ -9,10 +7,6 @@ using ProjetoPET.Models;
 
 public class BancoContext : DbContext
 {
-    public BancoContext()
-    {
-    }
-
     public BancoContext(DbContextOptions<BancoContext> options)
         : base(options)
     {
@@ -28,7 +22,7 @@ public class BancoContext : DbContext
 
     public DbSet<Eventos> Eventos { get; set; }
 
-    public DbSet<Lojas> Lojas { get; set; }
+    public DbSet<Loja> Lojas { get; set; }
 
     public DbSet<IdentityUserClaim<string>> IdentityUserClaims { get; set; }
 

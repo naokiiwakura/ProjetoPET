@@ -1,14 +1,11 @@
 ﻿using Microsoft.AspNetCore.Http;
 using ProjetoPET.Models;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ProjetoPET.ViewModel
 {
-    public class LojasViewModel : EntityBase
+    public class LojaViewModel : EntityBase
     {
 
         [Display(Name = "Nome da Loja")]
@@ -48,7 +45,9 @@ namespace ProjetoPET.ViewModel
         [Display(Name = "Estado")]
         public int EstadoId { get; set; }
 
-        
+        [ForeignKey("CidadeId")]
+        public Cidade Cidade { get; set; }
+
         [Required(ErrorMessage = "* O Campo Cidade é obrigatório")]
         [Display(Name = "Cidade")]
         public int CidadeId { get; set; }
@@ -60,6 +59,6 @@ namespace ProjetoPET.ViewModel
         public string Email { get; set; }
         public IFormFile Photo { get; set; }
 
-        public string CaminhoDaFoto { get; set; }
+        public string ImagePath { get; set; }
     }
 }

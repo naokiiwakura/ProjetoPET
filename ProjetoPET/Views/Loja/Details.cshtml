@@ -1,8 +1,8 @@
-﻿@model ProjetoPET.ViewModel.LojasViewModel
+﻿@model ProjetoPET.ViewModel.LojaViewModel
 
 @{
     ViewData["Title"] = "Details";
-    var photoPath = "~/images/LojasPhotos/" + (Model.CaminhoDaFoto ?? "imagem.png");
+    var photoPath = "~/images/LojasPhotos/" + (Model.ImagePath ?? "imagem.png");
 }
 
 <h2>Detalhes</h2>
@@ -82,8 +82,8 @@
     </div>
 
     <div>
-        <label>@Html.DisplayNameFor(model => model.CaminhoDaFoto)</label>
-        <label> @Html.DisplayFor(model => model.CaminhoDaFoto)</label>
+        <label>@Html.DisplayNameFor(model => model.ImagePath)</label>
+        <label> @Html.DisplayFor(model => model.ImagePath)</label>
     </div>
 
     <div>

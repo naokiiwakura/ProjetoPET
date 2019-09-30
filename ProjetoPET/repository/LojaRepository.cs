@@ -1,18 +1,16 @@
 ﻿using Microsoft.AspNetCore.Http;
 using ProjetoPET.Models;
-using ProjetoPET.repository.Interfaces;
+using ProjetoPET.Repository.Interfaces;
 using System;
 using System.IO;
-namespace ProjetoPET.repository
+namespace ProjetoPET.Repository
 {
-    public class LojaRepository : RepositoryBase<Lojas>, ILojaRepository
+    public class LojaRepository : RepositoryBase<Loja>, ILojaRepository
     {
-
-        public LojaRepository(BancoContext db) : base(db)
-        {
-        }
+        public LojaRepository(BancoContext db) : base(db) { }
 
         string uniqueFileName = null;
+
         public string ConverterFoto(IFormFile e, string hosting)
         {
             string uploadsFolder = Path.Combine(hosting, "images/LojasPhotos");

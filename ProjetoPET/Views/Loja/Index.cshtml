@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Lojas>
+﻿@model IEnumerable<ProjetoPET.ViewModel.LojaViewModel>
 
 @{
     ViewData["Title"] = "Index";
@@ -19,12 +19,10 @@
         var photoPath = "~/images/LojasPhotos/" + (item.ImagePath ?? "imagem.png");
 
         <style>
-
             .imagem_loja {
                 width: 100%;
                 height: 100%;
             }
-       
         </style>
 
         <div class="col-md-6 form-group ">
@@ -88,10 +86,4 @@
 
 <script>
 
-   
 </script>
-
-
-
-
-

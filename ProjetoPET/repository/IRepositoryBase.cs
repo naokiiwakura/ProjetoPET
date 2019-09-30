@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace ProjetoPET.repository
+namespace ProjetoPET.Repository
 {
     public interface IRepositoryBase<TEntity> where TEntity : class
     {

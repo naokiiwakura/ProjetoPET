@@ -1,22 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using ProjetoPET.repository;
-using Microsoft.AspNetCore.Identity;
-using ProjetoPET.Areas.Identity.Data;
 using ProjetoPET.Mock;
-using ProjetoPET.repository.Interfaces;
 using AutoMapper;
 using ProjetoPET.AutoMapper;
+using ProjetoPET.Repository.Interfaces;
+using ProjetoPET.Repository;
 
 namespace ProjetoPET
 {

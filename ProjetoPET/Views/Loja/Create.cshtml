@@ -1,22 +1,20 @@
-﻿@model ProjetoPET.ViewModel.LojasViewModel
+﻿@model ProjetoPET.ViewModel.LojaViewModel
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Create";
 }
 
-<h2>Editar </h2>
+<h2>Cadastrar nova Loja</h2>
 
 
-<hr />
-
-
-<form enctype="multipart/form-data"  asp-action="Edit">
-    <div class="form-row">
+<form enctype="multipart/form-data" asp-action="Create" class="col-md-12">
+    <div class="row">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="form-group col-md-12">
             <label asp-for="NomeLoja" class="control-label"></label>
             <input asp-for="NomeLoja" class="form-control" />
             <span asp-validation-for="NomeLoja" class="text-danger"></span>
+
         </div>
         <div class="form-group col-md-6">
             <label asp-for="RazaoSocial" class="control-label"></label>
@@ -54,13 +52,14 @@
             <span asp-validation-for="CEP" class="text-danger"></span>
         </div>
         <div class="form-group col-md-4">
-            <label asp-for="EstadoId" class="control-label" ></label>
-            <select asp-for="EstadoId" class="form-control" id="EstadoId" asp-items="ViewBag.EstadoId"></select>
+            <label asp-for="EstadoId" class="control-label"></label>
+            <select asp-for="EstadoId" class="form-control" asp-items="ViewBag.EstadoId"></select>
             <span asp-validation-for="EstadoId" class="text-danger"></span>
         </div>
+
         <div class="form-group col-md-4">
             <label asp-for="CidadeId" class="control-label"></label>
-            <select asp-for="CidadeId" class="form-control" id="CidadeId" asp-items="ViewBag.CidadeId"></select>
+            <select asp-for="CidadeId" class="form-control" asp-items="ViewBag.CidadeId"></select>
             <span asp-validation-for="CidadeId" class="text-danger"></span>
         </div>
         <div class="form-group col-md-5">
@@ -68,43 +67,28 @@
             <input asp-for="Telefone" class="form-control ddd_tel" />
             <span asp-validation-for="Telefone" class="text-danger"></span>
         </div>
-        <div class="form-group col-md-7">
+        <div class="form-group col-md-7" accesskey="">
             <label asp-for="Email" class="control-label"></label>
             <input asp-for="Email" class="form-control" />
             <span asp-validation-for="Email" class="text-danger"></span>
         </div>
         <div class="form-group col-md-12">
             <label asp-for="Photo" class="control-label"></label>
-            <input asp-for="Photo" class="form-control" type="file" />
-            <span asp-validation-for="Photo" class="text-danger"></span>
-        </div>
-        <input type="hidden" asp-for="Id" />
-        @*<div class="form-group">
-            <label asp-for="CreatedDate" class="control-label"></label>
-            <input asp-for="CreatedDate" class="form-control" />
-            <span asp-validation-for="CreatedDate" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="UpdatedData" class="control-label"></label>
-            <input asp-for="UpdatedData" class="form-control" />
-            <span asp-validation-for="UpdatedData" class="text-danger"></span>
-        </div>*@
-        <div class="form-group">
-            <input type="submit" value="Save" class="btn btn-default" />
+            <div class="custom-file">
+                <input asp-for="Photo" id="Photo" name="Photo" type="file" class="custom-file-input" accept="image/png, image/jpeg" onsubmit="Checkfiles(this)">
+                <label class="custom-file-label" for="validatedCustomFile">Choose file...</label>
+            </div>
         </div>
     </div>
+    <div class="row float-right">
+        <input type="submit" value="Cadastrar" class="btn btn-primary" />
+        <a asp-action="Index" class="btn btn-info">Voltar para tela de lojas</a>
+    </div>
 </form>
-
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 <script>
-
     $("#EstadoId").on("change", function () {
         $list = $("#CidadeId");
         $.ajax({
@@ -121,19 +105,10 @@
                 alert("Erro ocorreu no processamento");
             }
         });
+
     });
-
-    function Checkfiles() {
-        var fup = document.getElementById('filename');
-        var fileName = fup.value;
-        var ext = fileName.substring(fileName.lastIndexOf('.') + 1);
-
-        if (ext == "jpeg" || ext == "png") {
-            return true;
-        }
-        else {
-            return false;
-        }
-    }
 </script>
+
+
+
 }

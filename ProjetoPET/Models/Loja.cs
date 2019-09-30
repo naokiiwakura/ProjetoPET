@@ -1,13 +1,9 @@
 ﻿using ProjetoPET.Areas.Identity.Data;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace ProjetoPET.Models
 {
-    public class Lojas : EntityBase
+    public class Loja : EntityBase
     {
         public string NomeLoja { get; set; }
         public string RazaoSocial { get; set; }
