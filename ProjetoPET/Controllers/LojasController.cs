@@ -21,7 +21,7 @@ namespace ProjetoPET.Controllers
         {
             _context = context;
             this.hostingEnvironment = hostingEnvironment;
-            
+
         }
 
         // GET: Lojas
@@ -69,7 +69,7 @@ namespace ProjetoPET.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(LojasViewModel model)
         {
-              if (ModelState.IsValid)
+            if (ModelState.IsValid)
             {
 
                 string uniqueFileName = null;
@@ -93,7 +93,7 @@ namespace ProjetoPET.Controllers
                     Telefone = model.Telefone,
                     Email = model.Email,
                     ImagePath = uniqueFileName
-                    
+
                 };
                 _context.Add(newLojas);
                 await _context.SaveChangesAsync();
