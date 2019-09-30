@@ -26,7 +26,7 @@ namespace Data.Mapping
 
            builder.HasOne(p => p.Endereco).WithMany(p => p.Anuncios).HasForeignKey(p => p.EnderecoId);
 
-           builder.HasMany(p => p.Telefones); // do telefone para o anuncio precisa hasforeignkey
+           builder.HasMany(p => p.Telefones); //TODO do telefone para o anuncio precisa hasforeignkey
         }
     }
 }
