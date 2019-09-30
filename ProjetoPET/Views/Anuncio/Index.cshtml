@@ -1,54 +1,30 @@
 ﻿@model IEnumerable<ProjetoPET.ViewModel.AnuncioViewModel>
 
-@{
-    ViewData["Title"] = "Index";
-}
+<h1> Anúncio </h1>
 
-<h2>Index</h2>
+<form>
+    <div class="form-group">
+        <label for="exampleFormControlInput1">Nome do Animal</label>
+        <input type="email" class="form-control" id="exampleFormControlInput1"  >
+    </div>
+    <div class="form-group">
+        <label for="exampleFormControlSelect1">Selecione a Raça</label>
+         <select class="form-control" id="exampleFormControlSelect1">
+      <option>1</option>
+    </select>
+    </div>
+    
+    <div class="form-group">
+        <label for="exampleFormControlTextarea1">Descrição</label>
+        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+    </div>
+    <div class="form-group">
+        <label> SELECIONE UMA FOTO </label>
+        <input type="file" class="form-control-file" id="exampleFormControlFile1">
+    </div>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.CaminhoDaFoto)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Titulo)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CorpoAnuncio)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.NomeDoPet)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-        <tr>
-            <td>
-                <img src="@item.CaminhoDaFoto" style="width:60px;height:60px;"/>
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Titulo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CorpoAnuncio)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NomeDoPet)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-        }
-    </tbody>
-</table>
+
+</form>
+
+<button type="button" class="btn btn-primary">Anúnciar</button>
+<button type="button" class="btn btn-info">Voltar</button>
