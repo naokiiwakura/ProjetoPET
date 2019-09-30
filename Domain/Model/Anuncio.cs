@@ -27,10 +27,10 @@ namespace Domain.Model
         public int PetId { get; set; }
 
 
-        public Endereco Endereco { get; set; }
+        public virtual Endereco Endereco { get; set; }
 
         public int EnderecoId { get; set; }
 
-        public ICollection<Telefone> Telefones { get; set; }
+        public virtual ICollection<Telefone> Telefones { get; set; }
     }
 }

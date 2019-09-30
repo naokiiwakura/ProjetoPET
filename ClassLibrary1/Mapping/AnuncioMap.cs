@@ -18,17 +18,15 @@ namespace Data.Mapping
             builder.Property(t => t.Titulo)
                     .IsRequired();
 
-            builder.HasOne(p => p.Pet).WithMany(p => p.Anuncios).HasForeignKey(p => p.PetId);
+           builder.HasOne(p => p.Pet).WithMany(p => p.Anuncios).HasForeignKey(p => p.PetId);
 
-            builder.HasOne(p => p.Anunciante).WithMany(p => p.Anuncios).HasForeignKey(p => p.AnuncianteId);
+           builder.HasOne(p => p.Anunciante).WithMany(p => p.Anuncios).HasForeignKey(p => p.AnuncianteId);
 
-            builder.HasOne(p => p.TipoAnuncio).WithMany(p => p.Anuncios).HasForeignKey(p => p.TipoAnuncioId);
+           builder.HasOne(p => p.TipoAnuncio).WithMany(p => p.Anuncios).HasForeignKey(p => p.TipoAnuncioId);
 
            builder.HasOne(p => p.Endereco).WithMany(p => p.Anuncios).HasForeignKey(p => p.EnderecoId);
 
-            builder.HasMany(p => p.Telefones).
-
-
+           builder.HasMany(p => p.Telefones); // do telefone para o anuncio precisa hasforeignkey
         }
     }
 }
