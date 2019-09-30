@@ -15,6 +15,8 @@ namespace Domain.Model
         
         public virtual Pet Pet { get; set; }
 
+        public int AnuncianteId { get; set; }
+
         public virtual Usuario Anunciante { get; set; }
 
 

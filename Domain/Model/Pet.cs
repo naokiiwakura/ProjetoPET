@@ -1,4 +1,6 @@
-﻿namespace Domain.Model
+﻿using System.Collections.Generic;
+
+namespace Domain.Model
 {
     public class Pet : EntityBase
     {
@@ -8,5 +10,6 @@
         public string Sexo{get;set;}
         public string Telefone{get;set;}
         public string Descricao { get; set; }
+        public virtual ICollection<Anuncio> Anuncios { get; set; }
     }
 }

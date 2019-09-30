@@ -1,5 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
-using ProjetoPET.Models;
+﻿using Domain.Model;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;

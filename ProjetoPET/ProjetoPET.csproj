@@ -6,13 +6,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Areas\Identity\Services\**" />
     <Compile Remove="Views\Eventos\**" />
-    <Content Remove="Areas\Identity\Services\**" />
     <Content Remove="Views\Eventos\**" />
-    <EmbeddedResource Remove="Areas\Identity\Services\**" />
     <EmbeddedResource Remove="Views\Eventos\**" />
-    <None Remove="Areas\Identity\Services\**" />
     <None Remove="Views\Eventos\**" />
   </ItemGroup>
 
