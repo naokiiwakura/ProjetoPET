@@ -1,0 +1,23 @@
+﻿@model ProjetoPET.ViewModel.ReacaoViewModel
+@{
+    ViewData["Title"] = "Pesquisa de satisfação";
+}
+
+<h2>Pesquisa de satisfação dos clientes</h2>
+
+<form asp-action="Index">
+    <div class="row">
+        <div class="form-group col-12">
+            <label>Dê-nos sua opinião</label>
+            <textarea asp-for="Descricao" class="form-control"></textarea>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-12">
+            <div class="form-group float-right">
+                <input type="submit" value="Enviar" class="btn btn-primary" />
+                <a class="btn btn-info" asp-action="Index">Voltar a listagem</a>
+            </div>
+        </div>
+    </div>
+</form>
