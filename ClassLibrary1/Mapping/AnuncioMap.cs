@@ -1,9 +1,6 @@
 ﻿using Domain.Model;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 
 namespace Data.Mapping
@@ -24,7 +21,7 @@ namespace Data.Mapping
 
             builder.HasOne(p => p.TipoAnuncio).WithMany(p => p.Anuncios).HasForeignKey(p => p.TipoAnuncioId);
 
-           builder.HasOne(p => p.Endereco).WithMany(p => p.Anuncios).HasForeignKey(p => p.EnderecoId);
+            builder.HasOne(p => p.Endereco).WithMany(p => p.Anuncios).HasForeignKey(p => p.EnderecoId);
 
             builder.HasMany(p => p.Telefones).
 
