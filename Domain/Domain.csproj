@@ -7,7 +7,6 @@
   <ItemGroup>
     <Folder Include="Interface\Infra\" />
     <Folder Include="Interface\Application\" />
-    <Folder Include="Model\" />
   </ItemGroup>
 
 </Project>

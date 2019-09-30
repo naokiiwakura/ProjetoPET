@@ -6,9 +6,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Areas\Identity\Services\**" />
     <Compile Remove="Views\Eventos\**" />
+    <Content Remove="Areas\Identity\Services\**" />
     <Content Remove="Views\Eventos\**" />
+    <EmbeddedResource Remove="Areas\Identity\Services\**" />
     <EmbeddedResource Remove="Views\Eventos\**" />
+    <None Remove="Areas\Identity\Services\**" />
     <None Remove="Views\Eventos\**" />
   </ItemGroup>
 
@@ -28,7 +32,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\Identity\Services\" />
     <Folder Include="Helper\" />
     <Folder Include="wwwroot\images\AdocaoPhotos\" />
     <Folder Include="wwwroot\uploads\" />
@@ -42,6 +45,9 @@
     <None Include="wwwroot\fonts\flaticon\license\license.pdf" />
     <None Include="wwwroot\fonts\icomoon\demo-files\demo.js" />
     <None Include="wwwroot\fonts\icomoon\fonts\icomoon.svg" />
+    <None Include="wwwroot\Imagens\1022162_cute-dog-wallpapers-high-quality-resolution-animal-wallpapers_2560x1600_h.jpg" />
+    <None Include="wwwroot\Imagens\cachorro-mais-feio-morte-chase-26032019162546460.jpeg" />
+    <None Include="wwwroot\Imagens\Puppy-eating-dog-food-11.jpg" />
     <None Include="wwwroot\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.js" />
     <None Include="wwwroot\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.min.js" />
     <None Include="wwwroot\lib\jquery-validation\dist\additional-methods.js" />
@@ -144,6 +150,11 @@
     <None Include="wwwroot\scss\_site-base.scss" />
     <None Include="wwwroot\scss\_site-blocks.scss" />
     <None Include="wwwroot\scss\_site-navbar.scss" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ClassLibrary1\Data.csproj" />
+    <ProjectReference Include="..\Domain\Domain.csproj" />
   </ItemGroup>
 
   <ItemGroup>
