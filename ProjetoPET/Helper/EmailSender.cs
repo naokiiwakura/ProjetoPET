@@ -35,6 +35,7 @@ namespace ProjetoPET.Helper
                 Credentials = new NetworkCredential(userName, password),
                 EnableSsl = enableSSL
             };
+
             return client.SendMailAsync(
                 new MailMessage(userName, email, subject, htmlMessage) { IsBodyHtml = true }
             );

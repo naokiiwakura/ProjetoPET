@@ -1,4 +1,6 @@
-﻿@{
+﻿@model ProjetoPET.ViewModel.ContatoViewModel
+
+@{
     ViewData["Title"] = "Home";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -341,37 +343,36 @@
     <div class="container">
         <div class="row no-gutters">
             <div class="col-lg-6">
-                <form action="#" class="p-5 contact-form">
-
-                    <h2 class="h4 mb-5 heading">Contact Form</h2>
+                <form asp-controller="Contato" asp-action="Enviar" method="post">
+                    <h2 class="h4 mb-5 heading">Contato</h2>
                     <div class="row form-group">
                         <div class="col-md-6 mb-3 mb-md-0">
                             <label for="fname">Nome</label>
-                            <input type="text" id="fname" class="form-control">
+                            <input type="text" name="nome" class="form-control" asp-for="Nome" >
                         </div>
                         <div class="col-md-6">
                             <label for="lname">Sobrenome</label>
-                            <input type="text" id="lname" class="form-control">
+                            <input type="text" name="sobrenome" class="form-control" asp-for="Sobrenome" >
                         </div>
                     </div>
                     <div class="row form-group">
 
                         <div class="col-md-12">
                             <label for="email">Email</label>
-                            <input type="email" id="email" class="form-control">
+                            <input type="email" name="email" class="form-control" asp-for="Email" >
                         </div>
                     </div>
                     <div class="row form-group">
 
                         <div class="col-md-12">
                             <label for="subject">Assunto</label>
-                            <input type="text" id="subject" class="form-control">
+                            <input type="text" name="assunto" class="form-control" asp-for="Assunto" >
                         </div>
                     </div>
                     <div class="row form-group">
                         <div class="col-md-12">
                             <label for="message">Mensagem</label>
-                            <textarea name="message" id="message" cols="30" rows="7" class="form-control" placeholder="Descreva suas anotações ou perguntas..."></textarea>
+                            <textarea name="mensagem" id="message" cols="30" rows="7" class="form-control" placeholder="Descreva suas anotações ou perguntas..."></textarea>
                         </div>
                     </div>
                     <div class="row form-group">
@@ -379,7 +380,6 @@
                             <input type="submit" value="Enviar" class="btn btn-dark btn-md text-white">
                         </div>
                     </div>
-
                 </form>
             </div>
             <div class="col-lg-6">
