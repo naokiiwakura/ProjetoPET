@@ -7,6 +7,7 @@ namespace ProjetoPET.Controllers
 {
     public class ContatoController : Controller
     {
+
         //private readonly BancoContext _context;
         //private readonly EmailSenderService _emailSender;
 
@@ -21,11 +22,12 @@ namespace ProjetoPET.Controllers
         //    return View(await _context.Set<Contato>().ToListAsync());
         //}
 
+        //TODO: REFATORA SAPORRA
         public async Task<string> Enviar(ContatoViewModel contato)
         {
             var conteudo ="<b>Nome:</b>"+ "<p>" + contato.Nome + "</p>" + "<b>Sobrenome:</b>" + "<p>" + contato.Sobrenome + "</p>" + "<b>Email:</b>"  + "<p>" + contato.Email + "</p>" + "<b>Mensagem</b>" + "<p>" +contato.Mensagem+ "</p>";
             var _emailSender = new EmailSenderService();
-            await _emailSender.Send("gmaybatsu@Gmail.com", "gmaybatsu@Gmail.com", contato.Assunto, conteudo );
+            await _emailSender.Send("COLOQUE O EMAIL AQUI", "COLOQUE O EMAIL AQUI", contato.Assunto, conteudo );
             return "Enviado Com Sucesso";
         }
     }
