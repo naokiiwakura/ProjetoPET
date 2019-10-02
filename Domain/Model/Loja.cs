@@ -1,7 +1,6 @@
-﻿
-namespace Domain.Model
+﻿namespace Domain.Model
 {
-    public class Lojas : EntityBase
+    public class Loja : EntityBase
     {
         public string NomeLoja { get; set; }
         public string RazaoSocial { get; set; }

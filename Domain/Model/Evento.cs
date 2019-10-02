@@ -2,7 +2,7 @@
 
 namespace Domain.Model
 {
-    public class Eventos : EntityBase
+    public class Evento : EntityBase
     {
         public string Nome { get; set; }
         public string Descricao { get; set; }

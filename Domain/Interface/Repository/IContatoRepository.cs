@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Domain.Interface.Repository
+﻿namespace Domain.Interface.Repository
 {
-    class IContatoRepository
+    public interface IContatoRepository : IRepositoryBase<Contato>
     {
     }
 }

@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Domain.Interface.Repository;
 
 namespace Repository
 {
-    class ContatoRepository
+    public class ContatoRepository : RepositoryBase<Contato>, IContatoRepository
     {
     }
 }

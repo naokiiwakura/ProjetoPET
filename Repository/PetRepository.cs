@@ -1,8 +1,9 @@
-﻿using Domain.Model;
+﻿using Domain.Interface.Repository;
+using Domain.Model;
 
 namespace Repository
 {
-    public class PetRepository : RepositoryBase<Pet>
+    public class PetRepository : RepositoryBase<Pet>, IPetRepository
     {
     }
 }
