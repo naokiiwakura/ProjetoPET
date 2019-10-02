@@ -10,10 +10,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
-using ProjetoPET.repository;
 using Microsoft.AspNetCore.Identity;
-using ProjetoPET.Areas.Identity.Data;
 using ProjetoPET.Mock;
+using Data;
 
 namespace ProjetoPET
 {
@@ -41,7 +40,6 @@ namespace ProjetoPET
                 googleOptions.ClientId = Configuration["Authentication:Google:ClientId"];
                 googleOptions.ClientSecret = Configuration["Authentication:Google:ClientSecret"];
             });
-
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             
