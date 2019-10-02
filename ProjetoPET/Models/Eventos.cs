@@ -9,7 +9,8 @@ namespace ProjetoPET.Models
     {
         public string Nome { get; set; }
         public string Descricao { get; set; }
-        public DateTime DataHora { get; set; }
+        public DateTime DataHoraInicio { get; set; }
+        public DateTime DataHoraFim { get; set; }
         public string Cidade { get; set; }
         public string Estado { get; set; }
         public string Bairro { get; set; }

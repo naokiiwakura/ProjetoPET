@@ -6,10 +6,10 @@
 
 <link href="~/css/pao_com_geleia.css" rel="stylesheet" />
 
-<h2>Index</h2>
+<h2>Eventos</h2>
 
 <p>
-    <a class="btn btn-light" asp-action="Create">Adicionar</a>
+    <a class="btn btn-primary" asp-action="Create">Cadastrar Evento</a>
 </p>
 @foreach (var item in Model)
 {
@@ -45,8 +45,9 @@
                 @*<p class="card-text"><small class="text-muted">@Html.DisplayFor(modelItem => item.Rua)</small>*@
             </div>
             <div class="col-sm-6">
-                <h5 class="card-title">Data e Hora: @Html.DisplayFor(modelItem => item.DataHora)</h5>
-                <p class="card-text">Descrição: @Html.DisplayFor(modelItem => item.Descricao)</p><a asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
+                <h6 class="card-title">Início do evento: @Html.DisplayFor(modelItem => item.DataHoraInicio)</h6>
+                <h6 class="card-title">Fim do evento: @Html.DisplayFor(modelItem => item.DataHoraFim)</h6>
+                <p class="card-text">Descrição: <br /> @Html.DisplayFor(modelItem => item.Descricao)</p><a asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
                 <a asp-action="Details" asp-route-id="@item.Id">Detalhar</a> |
                 <a asp-action="Delete" asp-route-id="@item.Id">Excluir</a>
 

@@ -227,7 +227,9 @@ namespace ProjetoPET.Migrations
 
                     b.Property<DateTime>("CreatedDate");
 
-                    b.Property<DateTime>("DataHora");
+                    b.Property<DateTime>("DataHoraFim");
+
+                    b.Property<DateTime>("DataHoraInicio");
 
                     b.Property<string>("Descricao");
 

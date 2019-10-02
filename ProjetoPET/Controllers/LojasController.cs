@@ -105,7 +105,7 @@ namespace ProjetoPET.Controllers
                 if (model.Photo != null)
                 {
                     string uploadsFolder = Path.Combine(hostingEnvironment.WebRootPath, "images/LojasPhotos");
-                    uniqueFileName = Guid.NewGuid().ToString() + "_" + model.Photo.FileName;
+                    uniqueFileName = Guid.NewGuid().ToString() + ".png";
                     string filePath = Path.Combine(uploadsFolder, uniqueFileName);
                     model.Photo.CopyTo(new FileStream(filePath, FileMode.Create));
                 }

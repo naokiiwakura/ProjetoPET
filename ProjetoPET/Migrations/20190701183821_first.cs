@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ProjetoPET.Migrations
 {
-    public partial class inicial : Migration
+    public partial class first : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -52,7 +52,8 @@ namespace ProjetoPET.Migrations
                     UpdatedData = table.Column<DateTime>(nullable: true),
                     Nome = table.Column<string>(nullable: true),
                     Descricao = table.Column<string>(nullable: true),
-                    DataHora = table.Column<DateTime>(nullable: false),
+                    DataHoraInicio = table.Column<DateTime>(nullable: false),
+                    DataHoraFim = table.Column<DateTime>(nullable: false),
                     Cidade = table.Column<string>(nullable: true),
                     Estado = table.Column<string>(nullable: true),
                     Bairro = table.Column<string>(nullable: true),

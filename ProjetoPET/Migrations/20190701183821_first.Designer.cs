@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ProjetoPET.Migrations
 {
     [DbContext(typeof(BancoContext))]
-    [Migration("20190628201810_inicial")]
-    partial class inicial
+    [Migration("20190701183821_first")]
+    partial class first
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -229,7 +229,9 @@ namespace ProjetoPET.Migrations
 
                     b.Property<DateTime>("CreatedDate");
 
-                    b.Property<DateTime>("DataHora");
+                    b.Property<DateTime>("DataHoraFim");
+
+                    b.Property<DateTime>("DataHoraInicio");
 
                     b.Property<string>("Descricao");
 

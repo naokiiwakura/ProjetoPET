@@ -24,10 +24,16 @@
             @Html.DisplayFor(model => model.Descricao)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.DataHora)
+            @Html.DisplayNameFor(model => model.DataHoraInicio)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.DataHora)
+            @Html.DisplayFor(model => model.DataHoraInicio)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DataHoraFim)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DataHoraFim)
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.Cidade)
@@ -71,17 +77,17 @@
         <dd>
             @Html.DisplayFor(model => model.CreatedDate)
         </dd>
-        <dt>
+        @*<dt>
             @Html.DisplayNameFor(model => model.UpdatedData)
         </dt>
         <dd>
             @Html.DisplayFor(model => model.UpdatedData)
-        </dd>
+        </dd>*@
     </dl>
     
     <form asp-action="Delete">
         <input type="hidden" asp-for="Id" />
-        <input type="submit" value="Delete" class="btn btn-default" /> |
-        <a asp-action="Index">Back to List</a>
+        <input type="submit" value="Excluir" class="btn btn-default" /> |
+        <a class="btn btn-info" asp-action="Index">Voltar a listagem</a>
     </form>
 </div>
