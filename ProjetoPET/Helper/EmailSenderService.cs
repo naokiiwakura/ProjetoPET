@@ -22,19 +22,22 @@ namespace ProjetoPET.Helper
                     Host = configuration["Email:Host"],
                     Port = int.Parse(configuration["Email:Port"]),
                     EnableSsl = bool.Parse(configuration["Email:SMTP:starttls:enable"]),
+                    UseDefaultCredentials = true,
                     Credentials = new NetworkCredential(username, configuration["Email:Password"])
                 };
                 fromAddress = username;
-                var message = new MailMessage(fromAddress, toAddress);
-                message.Subject = subject;
-                message.Body = content;
-                message.IsBodyHtml = true;
+                var message = new MailMessage(fromAddress, toAddress)
+                {
+                    Subject = subject,
+                    Body = content,
+                    IsBodyHtml = true 
+                };
                 await smtpClient.SendMailAsync(message);
                 return true;
             }
             catch (Exception e)
             {
-                return false;
+                throw e;
             }
         }
     }

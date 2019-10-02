@@ -27,7 +27,7 @@ namespace ProjetoPET.Controllers
         {
             var conteudo ="<b>Nome:</b>"+ "<p>" + contato.Nome + "</p>" + "<b>Sobrenome:</b>" + "<p>" + contato.Sobrenome + "</p>" + "<b>Email:</b>"  + "<p>" + contato.Email + "</p>" + "<b>Mensagem</b>" + "<p>" +contato.Mensagem+ "</p>";
             var _emailSender = new EmailSenderService();
-            await _emailSender.Send("COLOQUE O EMAIL AQUI", "COLOQUE O EMAIL AQUI", contato.Assunto, conteudo );
+            await _emailSender.Send("anapaulaa.apds9292@gmail.com", contato.Email, contato.Assunto, conteudo );
             return "Enviado Com Sucesso";
         }
     }
