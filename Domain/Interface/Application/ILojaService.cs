@@ -1,4 +1,5 @@
 ﻿using Domain.DTO;
+using Domain.Model;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -9,6 +10,6 @@ namespace Domain.Interface.Application
     public interface ILojaService
     {
         Task <bool> CadastrarLoja(DTOLoja loja);
-        
+        Task<bool> CNPJValido(Loja loja);
     }
 }

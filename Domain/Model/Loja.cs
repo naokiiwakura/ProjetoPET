@@ -4,7 +4,7 @@
     {
         public string NomeLoja { get; set; }
         public string RazaoSocial { get; set; }
-        public int CNPj { get; set; }
+        public long CNPj { get; set; }
         public string Endereco { get; set; }
         public int Numero { get; set; }
         public string Bairro { get; set; }
