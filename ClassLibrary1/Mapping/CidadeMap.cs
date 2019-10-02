@@ -8,8 +8,8 @@ namespace Data.Mapping
     {
         public void Configure(EntityTypeBuilder<Cidade> builder)
         {
-            builder.HasKey(p => p.Id);
-            builder.HasOne(p => p.Estado).WithMany(p => p.Cidades).HasForeignKey(p => p.EstadoId);
+            builder.HasKey(c => c.Id);
+            builder.HasOne(c => c.Estado).WithMany(e => e.Cidades).HasForeignKey(c => c.EstadoId);
         }
     }
 }

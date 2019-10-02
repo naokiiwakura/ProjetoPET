@@ -1,7 +1,6 @@
 ﻿using Domain.Model;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
 
 namespace Data.Mapping
 {
@@ -9,8 +8,9 @@ namespace Data.Mapping
     {
         public void Configure(EntityTypeBuilder<Endereco> builder)
         {
-            builder.HasKey(p => p.Id);
-            builder.HasMany(p => p.Anuncios);
+            builder.HasKey(e => e.Id);
+            builder.Property(e => e.Cep).IsRequired();
+            builder.Property(e => e.Rua).IsRequired();
         }
     }
 }

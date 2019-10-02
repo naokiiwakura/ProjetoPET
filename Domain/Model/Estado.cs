@@ -1,5 +1,4 @@
-﻿
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace Domain.Model
 {
@@ -7,7 +6,6 @@ namespace Domain.Model
     {
         public string Nome { get; set; }
         public string Sigla { get; set; }
-
         public ICollection<Cidade> Cidades { get; set; }
     }
 }
