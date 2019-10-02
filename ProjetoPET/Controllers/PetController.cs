@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ProjetoPET.Models;
 using ProjetoPET.repository;
+using ProjetoPET.ViewModel;
 
 namespace ProjetoPET.Controllers
 {
@@ -52,7 +53,7 @@ namespace ProjetoPET.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Nome,Raca,Idade,Sexo,Telefone,Descricao,Id,CreatedDate,UpdatedData")] Pet pet)
+        public async Task<IActionResult> Create([Bind("Nome,Raca,Idade,Sexo,Telefone,Descricao,Id,CreatedDate,UpdatedData")] RacaViewModel pet)
         {
             if (ModelState.IsValid)
             {
@@ -84,7 +85,7 @@ namespace ProjetoPET.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Nome,Raca,Idade,Sexo,Telefone,Descricao,Id,CreatedDate,UpdatedData")] Pet pet)
+        public async Task<IActionResult> Edit(int id, [Bind("Nome,Raca,Idade,Sexo,Telefone,Descricao,Id,CreatedDate,UpdatedData")] RacaViewModel pet)
         {
             if (id != pet.Id)
             {

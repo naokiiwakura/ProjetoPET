@@ -1,4 +1,4 @@
-﻿@model ProjetoPET.Models.Pet
+﻿@model ProjetoPET.ViewModel.RacaViewModel
 
 @{
     ViewData["Title"] = "Create";
@@ -19,11 +19,22 @@
             </div>
             <div class="form-group">
                 <label asp-for="Raca" class="control-label"></label>
-                <select name="Raca" class="form-control valid"id="Raca"aria-invalid="false"
-                 aria-describedby="Raca-erroe"data-val="true">
-                    <option value="Vira-lata">Vira lata</option>
-                    <option value="Pitbul">Pitbul</option>
-                </select>
+                @*<select name="Raca" class="form-control valid" id="Raca" aria-invalid="false"
+                aria-describedby="Raca-erroe" data-val="true">
+            <option value=""></option>
+            <option value="Afegão-Hound">Afegão-Hound</option>
+            <option value="Airedale Terrier">Airedale Terrier</option>
+            <option value="Akita">Akita</option>
+            <option value="American Staffordshire Terrier">American Staffordshire Terrier</option>
+            <option value="Basenji">Basenji</option>
+            <option value="Basset Hound">Basset Hound</option>
+            <option value="Beagle">Beagle</option>
+            <option value="Beagle Harrier">Beagle Harrier</option>
+            <option value="Bearded Collie">Bearded Collie</option>
+            <option value="bedlington terrier">bedlington terrier</option>
+
+        </select>*@
+                <input asp-for="Raca" class="form-control" />
                 <span asp-validation-for="Raca" class="text-danger"></span>
             </div>
             <div class="form-group">
