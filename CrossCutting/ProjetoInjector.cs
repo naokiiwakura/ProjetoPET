@@ -11,7 +11,7 @@ namespace CrossCutting
             services.AddScoped<ILojaRepository, LojaRepository>();
             services.AddScoped<IAnuncioRepository, AnuncioRepository>();
             services.AddScoped<IEventoRepository, EventoRepository>();
-            services.AddScoped<IContatoRepository, ContatoRepository>();
+            //services.AddScoped<IContatoRepository, ContatoRepository>();
             services.AddScoped<IUsuarioRepository, UsuarioRepository>();
             services.AddScoped<IPetRepository, PetRepository>();
         }

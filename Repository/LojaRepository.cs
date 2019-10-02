@@ -5,5 +5,7 @@ namespace Repository
 {
     public class LojaRepository : RepositoryBase<Loja>, ILojaRepository
     {
+
+
     }
 }
