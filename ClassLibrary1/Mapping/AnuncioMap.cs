@@ -1,9 +1,6 @@
 ﻿using Domain.Model;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 
 namespace Data.Mapping
@@ -13,20 +10,12 @@ namespace Data.Mapping
     {
         public void Configure(EntityTypeBuilder<Anuncio> builder)
         {
-            builder.HasKey(p => p.Id);
-
-            builder.Property(t => t.Titulo)
-                    .IsRequired();
-
-           builder.HasOne(p => p.Pet).WithMany(p => p.Anuncios).HasForeignKey(p => p.PetId);
-
-           builder.HasOne(p => p.Anunciante).WithMany(p => p.Anuncios).HasForeignKey(p => p.AnuncianteId);
-
-           builder.HasOne(p => p.TipoAnuncio).WithMany(p => p.Anuncios).HasForeignKey(p => p.TipoAnuncioId);
-
-           builder.HasOne(p => p.Endereco).WithMany(p => p.Anuncios).HasForeignKey(p => p.EnderecoId);
-
-           builder.HasMany(p => p.Telefones); //TODO do telefone para o anuncio precisa hasforeignkey
+            builder.HasKey(a => a.Id);
+            builder.Property(a => a.Titulo).IsRequired();
+            builder.HasOne(a => a.Pet).WithMany(p => p.Anuncios).HasForeignKey(a => a.PetId).IsRequired();
+            builder.HasOne(a => a.TipoAnuncio).WithMany(t => t.Anuncios).HasForeignKey(a => a.TipoAnuncioId).IsRequired();
+            builder.HasOne(a => a.Endereco).WithMany(e => e.Anuncios).HasForeignKey(a => a.EnderecoId);
+            builder.HasOne(a => a.Cidade).WithMany(c => c.Anuncios).HasForeignKey(a => a.CidadeId);
         }
     }
 }

@@ -1,11 +1,15 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.AspNetCore.Identity;
+using System.Collections.Generic;
 
 namespace Domain.Model
 {
-    // Add profile data for application users by adding properties to the Usuario class
-    public partial class Usuario 
+    public partial class Usuario :IdentityUser
     {
-        public Endereco Endereco { get; set; }
+        public string Nome { get; set; }
+        public string CPF { get; set; }
+        public virtual Endereco Endereco { get; set; }
         public virtual ICollection<Anuncio> Anuncios{ get; set; }
+        public virtual TipoUsuario TipoUsuario { get; set; }
+        public int TipoUsuarioId { get; set; }
     }
 }

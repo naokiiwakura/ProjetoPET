@@ -2,7 +2,6 @@
 
 namespace Domain.Model
 {
- 
         public interface IEntity
         {
             int Id { get; set; }
@@ -10,5 +9,3 @@ namespace Domain.Model
             DateTime? UpdatedData { get; set; }
         }
     }
-
-
