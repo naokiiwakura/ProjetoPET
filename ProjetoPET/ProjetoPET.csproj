@@ -6,9 +6,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Helper\**" />
     <Compile Remove="Views\Eventos\**" />
+    <Content Remove="Helper\**" />
     <Content Remove="Views\Eventos\**" />
+    <EmbeddedResource Remove="Helper\**" />
     <EmbeddedResource Remove="Views\Eventos\**" />
+    <None Remove="Helper\**" />
     <None Remove="Views\Eventos\**" />
   </ItemGroup>
 
@@ -23,12 +27,11 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.9" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.3" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Helper\" />
     <Folder Include="wwwroot\images\AdocaoPhotos\" />
     <Folder Include="wwwroot\uploads\" />
   </ItemGroup>
