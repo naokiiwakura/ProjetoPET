@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Domain.Model;
 
 namespace Domain.Interface.Repository
 {
-    interface ITipoUsuarioRepository
+    public interface ITipoUsuarioRepository : IRepositoryBase<TipoUsuario>
     {
     }
 }

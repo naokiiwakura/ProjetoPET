@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Domain.Interface.Repository;
+using Domain.Model;
 
 namespace Repository
 {
-    class TipoAnuncioRepository
+    public class TipoAnuncioRepository : RepositoryBase<TipoAnuncio>, ITipoAnuncioRepository
     {
     }
 }
