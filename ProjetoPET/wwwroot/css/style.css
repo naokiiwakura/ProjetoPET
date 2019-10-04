@@ -44,17 +44,17 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 a {
-    color: #5fcf80;
+    color: #650b16;
 }
 
     a:hover, a:focus {
-        color: #5fcf80;
+        color: #D90E28;
     }
 /***********************************
 Navigation bar
 ************************************/
 .navbar-default .navbar-brand {
-    color: #5FCF80;
+    color: #641D26;
 }
 
 .navbar-default {
@@ -78,26 +78,26 @@ Navigation bar
 }
 
 .navbar-default .navbar-nav > li > a:focus, .navbar-default .navbar-nav > li > a:hover {
-    color: #5FCF80;
+    color: #641D26;
 }
 
 .navbar-nav .active a {
     background: none !important;
-    color: #5FCF80 !important;
+    color: #641D26 !important;
     outline: none;
 }
 
 .btn-trial a {
-    background-color: #5FCF80;
+    background-color: #641D26;
     border-radius: 25px;
     color: #ffffff !important;
-    border: 1px solid #5FCF80;
+    border: 1px solid #641D26;
 }
 
     .btn-trial a:hover, .btn-trial a:focus {
-        border: 1px solid #5FCF80;
+        border: 1px solid #641D26;
         background-color: #fff;
-        color: #5FCF80 !important;
+        color: #641D26 !important;
     }
 
 .navbar-default .navbar-brand {
@@ -129,7 +129,7 @@ Navigation bar
 Banner
 ************************************/
 .banner {
-    background: url('../img/bg-banner.jpg') no-repeat center top;
+    background: url('../images/Chester-The-Cat..jpg') no-repeat center top;
     background-size: cover;
     min-height: 580px;
     position: relative;
@@ -149,9 +149,10 @@ Banner
 }
 
 .text-border {
-    border: 5px solid #5FCF80;
+    border: 5px solid #641D26;
     display: inline-block;
     margin-top: 150px;
+    position: center;
 }
 
 .intro-para {
@@ -291,14 +292,16 @@ Banner
 
 .big-text {
     font-size: 35px;
+    color:black;
 }
 
 .small-text {
     font-size: 16px;
+    color:black;
 }
 
 .quote .btn {
-    background-color: #5fcf80;
+    background-color: #641D26;
     color: #fff;
     -webkit-transition: all 0.3s ease-in-out;
     -moz-transition: all 0.3s ease-in-out;
@@ -308,7 +311,7 @@ Banner
 
     .quote .btn:hover, .quote .btn:focus {
         background-color: #fff;
-        color: #5fcf80;
+        color: #641D26;
         border-color: #fff;
         -webkit-transition: all 0.3s ease-in-out;
         -moz-transition: all 0.3s ease-in-out;
@@ -342,7 +345,7 @@ h2 {
 
 .fea i {
     font-size: 39px;
-    color: #5FCF80;
+    color: #641D26;
     margin-top: 7px;
 }
 
@@ -366,7 +369,7 @@ h2 {
 }
 
 .orga-stru {
-    background-color: #5FCF80;
+    background-color: #641D26;
     width: 109px;
     height: auto;
     padding: 10px 10px 25px 10px;
@@ -404,7 +407,7 @@ h3.det-txt {
 }
 
 h4.sm-txt {
-    color: #5FCF80;
+    color: #641D26;
     font-size: 24px;
 }
 
@@ -439,7 +442,7 @@ Cta
     min-width: 280px;
     margin-left: -4px;
     margin-bottom: 2px;
-    border: 1px solid #5fcf80;
+    border: 1px solid #641D26;
     background-color: rgb(247, 247, 247);
     border-radius: 30px 0px 0px 30px;
 }
@@ -448,7 +451,7 @@ Cta
     font-size: 18px;
     text-transform: capitalize;
     color: #fff;
-    background-color: #5fcf80;
+    background-color: #641D26;
     border: 2px solid #fff;
     padding: 14px 30px;
     margin-left: -4px;
@@ -473,7 +476,7 @@ Work Shop
 }
 
 .icon-box i {
-    color: #5FCF80;
+    color: #641D26;
     font-size: 65px;
 }
 
@@ -521,11 +524,11 @@ Mentor Team
 Testimonial
 ************************************/
 #testimonial {
-    background-color: #111;
+    background-color: white;
 }
 
 .bg-white {
-    background-color: #fff !important;
+    background-color: white !important;
 }
 
 .text-comment {
@@ -541,11 +544,11 @@ Testimonial
 Course
 ************************************/
 [class*=" imghvr-"] figcaption, [class^="imghvr-"] figcaption {
-    background-color: #5FCF80;
+    background-color: #641D26;
 }
 
 [class*=" imghvr-"], [class^="imghvr-"] {
-    background-color: #5FCF80;
+    background-color: #641D26;
     color: #fff;
 }
 /***********************************
@@ -595,8 +598,9 @@ Price Table
     padding: 20px 0px;
     font-weight: bold !important;
     font-size: 14px;
-    background-color: #5fcf80;
+    background-color: #641D26;
 }
+
 /***********************************
 Contact Us
 ************************************/
@@ -629,7 +633,7 @@ Contact Us
 }
 
 .white {
-    color: #fff !important;
+    color: black !important;
 }
 
 .validation {
@@ -723,7 +727,7 @@ Footer
     }
 
 .btn-submit:hover, .btn-submit:focus {
-    background-color: #5fcf80;
+    background-color: #641D26;
     color: #fff;
 }
 
@@ -731,7 +735,7 @@ Footer
     padding: 14px 12px;
     border-radius: 50px;
     text-transform: uppercase;
-    background-color: #5fcf80;
+    background-color: #641D26;
     color: #fff;
 }
 
@@ -788,7 +792,7 @@ Footer
 }
 
 .light-form-button {
-    background: #5fcf80;
+    background: #641D26;
     border: 1px solid rgba(119, 81, 81, 0.34);
     width: 24%;
     padding: 10px 10px;
@@ -804,7 +808,7 @@ Footer
 }
 
 .btn-green, .btn-green:hover {
-    background-color: #5fcf80;
+    background-color: #641D26;
     color: #fff;
 }
 
