@@ -1,33 +1,23 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using ProjetoPET.Helper;
+using ProjetoPET.Models;
 using ProjetoPET.ViewModel;
 
 namespace ProjetoPET.Controllers
 {
     public class ContatoController : Controller
     {
+        private readonly IEmailSender _emailSender;
 
-        //private readonly BancoContext _context;
-        //private readonly EmailSenderService _emailSender;
+        public ContatoController(IEmailSender emailSender) =>
+            _emailSender = emailSender;
 
-        //public ContatoController(EmailSenderService emailSender)
-        //{
-        //    //_context = context;
-        //    _emailSender = emailSender;
-        //}
-
-        //public Task<IActionResult> Index()
-        //{
-        //    return View(await _context.Set<Contato>().ToListAsync());
-        //}
-
-        //TODO: REFATORA SAPORRA
         public async Task<string> Enviar(ContatoViewModel contato)
         {
-            var conteudo ="<b>Nome:</b>"+ "<p>" + contato.Nome + "</p>" + "<b>Sobrenome:</b>" + "<p>" + contato.Sobrenome + "</p>" + "<b>Email:</b>"  + "<p>" + contato.Email + "</p>" + "<b>Mensagem</b>" + "<p>" +contato.Mensagem+ "</p>";
-            var _emailSender = new EmailSenderService();
-            await _emailSender.Send("anapaulaa.apds9292@gmail.com", contato.Email, contato.Assunto, conteudo );
+            var help = new ResumirMensagem();
+            var conteudo = help.Resumir(contato.Nome, contato.Sobrenome, contato.Mensagem, contato.Email);
+            await _emailSender.EnviarEmail("anapaulaa.apds9292@gmail.com", "anapaulaa.apds9292@gmail.com", contato.Assunto, conteudo);
             return "Enviado Com Sucesso";
         }
     }

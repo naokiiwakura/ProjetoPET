@@ -14,6 +14,8 @@ using ProjetoPET.repository;
 using Microsoft.AspNetCore.Identity;
 using ProjetoPET.Areas.Identity.Data;
 using ProjetoPET.Mock;
+using ProjetoPET.Models;
+using ProjetoPET.Helper;
 
 namespace ProjetoPET
 {
@@ -49,6 +51,7 @@ namespace ProjetoPET
                     options.UseSqlServer(Configuration.GetConnectionString("BancoContext")));
 
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+            services.AddScoped<IEmailSender,EmailSenderService>(); 
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

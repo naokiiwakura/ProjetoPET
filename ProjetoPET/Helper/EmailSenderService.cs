@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Configuration;
+using ProjetoPET.Models;
 using System;
 using System.IO;
 using System.Net;
@@ -7,9 +8,10 @@ using System.Threading.Tasks;
 
 namespace ProjetoPET.Helper
 {
-    public class EmailSenderService
+    public class EmailSenderService : IEmailSender
+
     {
-        public async Task<bool> Send(string fromAddress, string toAddress, string subject, string content)
+        public async Task<bool> EnviarEmail(string fromAddress, string toAddress, string subject, string content)
         {
             try
             {
