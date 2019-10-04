@@ -1,6 +1,5 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using ProjetoPET.Helper;
 using ProjetoPET.Models;
 using ProjetoPET.ViewModel;
 
