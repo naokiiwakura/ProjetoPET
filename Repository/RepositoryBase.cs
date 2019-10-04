@@ -8,9 +8,7 @@ namespace Repository
 {
     public class RepositoryBase<TEntity> : IRepositoryBase<TEntity> where TEntity : class
     {
-        private readonly BancoContext _db;
-        public RepositoryBase() =>
-            _db = new BancoContext();
+        public BancoContext _db;
 
         public async Task<TEntity> GetById(int id) =>
              await _db.Set<TEntity>().FindAsync(id);
