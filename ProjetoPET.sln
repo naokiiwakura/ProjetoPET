@@ -35,7 +35,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Repository", "Repository", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Data", "ClassLibrary1\Data.csproj", "{B0F01A51-FE30-4324-BD9B-CA8AE52ABF9D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XUnitTestProjetoPET", "XUnitTestProjetoPET\XUnitTestProjetoPET.csproj", "{E55C3ED2-AB9D-4A98-B219-1C6A013DB09B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XUnitTestProjetoPET", "XUnitTestProjetoPET\XUnitTestProjetoPET.csproj", "{E55C3ED2-AB9D-4A98-B219-1C6A013DB09B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
