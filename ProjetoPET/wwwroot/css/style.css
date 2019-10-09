@@ -5,6 +5,19 @@
     Author URL: https://bootstrapmade.com
 */
 
+::-webkit-scrollbar-track {
+    background-color: #F4F4F4;
+}
+
+::-webkit-scrollbar {
+    width: 2px;
+    background: #D90E28;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #D90E28;
+}
+
 body {
     font-size: 15px;
     line-height: 1.52;
@@ -129,15 +142,16 @@ Navigation bar
 Banner
 ************************************/
 .banner {
-    background: url('../images/Chester-The-Cat..jpg') no-repeat center top;
+    /*background: url('../images/happy-cat-blog-cover.jpg') no-repeat center top;*/
     background-size: cover;
-    min-height: 580px;
+    min-height: 300px;
     position: relative;
 }
 
 .bg-color {
-    background-color: RGBA(12, 11, 11, 0.82);
-    min-height: 580px;
+    background-color: RGBA(12, 11, 11, 0.50);
+   
+    min-height: 300px;
 }
 
 .text-dec {
@@ -153,6 +167,10 @@ Banner
     display: inline-block;
     margin-top: 150px;
     position: center;
+}
+.text-center {
+    
+    margin-top: 65px;
 }
 
 .intro-para {
@@ -292,12 +310,12 @@ Banner
 
 .big-text {
     font-size: 35px;
-    color:black;
+    color:white;
 }
 
 .small-text {
     font-size: 16px;
-    color:black;
+    color:white;
 }
 
 .quote .btn {
@@ -808,7 +826,7 @@ Footer
 }
 
 .btn-green, .btn-green:hover {
-    background-color: #641D26;
+    background-color: #FFC300;
     color: #fff;
 }
 
@@ -944,4 +962,11 @@ Responsive media queries
     .navbar-default .navbar-nav > li > a {
         text-align: center;
     }
+}
+.rounded-circle{
+    max-height:200px;
+    min-height:200px;
+    min-width:200px;
+    max-width:200px;
+    margin-bottom:20px;
 }
