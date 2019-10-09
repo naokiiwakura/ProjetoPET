@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29306.81
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.421
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProjetoPET", "ProjetoPET\ProjetoPET.csproj", "{29C2EE76-B191-471D-8E45-21D188BDCBB6}"
 EndProject
@@ -17,13 +17,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5-CrossCutting", "5-CrossCu
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "6-Test", "6-Test", "{B0E9BA4D-A575-44B0-9A61-BFB19181503A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{6C711B1D-42E6-4124-823D-F52D9E206DDF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csproj", "{6C711B1D-42E6-4124-823D-F52D9E206DDF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repository", "Repository\Repository.csproj", "{6BF8F57B-80DE-4447-A148-4CF1259944FC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Repository", "Repository\Repository.csproj", "{6BF8F57B-80DE-4447-A148-4CF1259944FC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service", "Service\Service.csproj", "{62A114A3-98FB-4658-B154-8DA3D4B7E8CA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Service", "Service\Service.csproj", "{62A114A3-98FB-4658-B154-8DA3D4B7E8CA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CrossCutting", "CrossCutting\CrossCutting.csproj", "{6B9B5051-157D-49D0-ADC4-2854AC19E158}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CrossCutting", "CrossCutting\CrossCutting.csproj", "{6B9B5051-157D-49D0-ADC4-2854AC19E158}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TestDomain", "TestDomain", "{D15799C5-642F-4732-9C75-409FA5640224}"
 EndProject
@@ -33,7 +33,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{90C22F03-C
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Repository", "Repository", "{B65F1A3D-9D20-49F5-A5F7-A4037C094453}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data", "ClassLibrary1\Data.csproj", "{B0F01A51-FE30-4324-BD9B-CA8AE52ABF9D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Data", "ClassLibrary1\Data.csproj", "{B0F01A51-FE30-4324-BD9B-CA8AE52ABF9D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XUnitTestProjetoPET", "XUnitTestProjetoPET\XUnitTestProjetoPET.csproj", "{E55C3ED2-AB9D-4A98-B219-1C6A013DB09B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -65,6 +67,10 @@ Global
 		{B0F01A51-FE30-4324-BD9B-CA8AE52ABF9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B0F01A51-FE30-4324-BD9B-CA8AE52ABF9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B0F01A51-FE30-4324-BD9B-CA8AE52ABF9D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E55C3ED2-AB9D-4A98-B219-1C6A013DB09B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E55C3ED2-AB9D-4A98-B219-1C6A013DB09B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E55C3ED2-AB9D-4A98-B219-1C6A013DB09B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E55C3ED2-AB9D-4A98-B219-1C6A013DB09B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -80,6 +86,7 @@ Global
 		{90C22F03-C0AC-49C5-81C1-D71421949E5B} = {B49CE558-BEAD-4F96-8BA9-03D20C8F388C}
 		{B65F1A3D-9D20-49F5-A5F7-A4037C094453} = {B49CE558-BEAD-4F96-8BA9-03D20C8F388C}
 		{B0F01A51-FE30-4324-BD9B-CA8AE52ABF9D} = {90C22F03-C0AC-49C5-81C1-D71421949E5B}
+		{E55C3ED2-AB9D-4A98-B219-1C6A013DB09B} = {B0E9BA4D-A575-44B0-9A61-BFB19181503A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A0B83187-2571-48C7-B080-63FDFFE1EC01}
