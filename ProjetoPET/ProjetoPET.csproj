@@ -8,12 +8,20 @@
   <ItemGroup>
     <Compile Remove="Helper\**" />
     <Compile Remove="Views\Eventos\**" />
+    <Compile Remove="Views\NovaPasta1\**" />
+    <Compile Remove="Views\NovaPasta\**" />
     <Content Remove="Helper\**" />
     <Content Remove="Views\Eventos\**" />
+    <Content Remove="Views\NovaPasta1\**" />
+    <Content Remove="Views\NovaPasta\**" />
     <EmbeddedResource Remove="Helper\**" />
     <EmbeddedResource Remove="Views\Eventos\**" />
+    <EmbeddedResource Remove="Views\NovaPasta1\**" />
+    <EmbeddedResource Remove="Views\NovaPasta\**" />
     <None Remove="Helper\**" />
     <None Remove="Views\Eventos\**" />
+    <None Remove="Views\NovaPasta1\**" />
+    <None Remove="Views\NovaPasta\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -32,6 +40,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Views\Loja\" />
     <Folder Include="wwwroot\images\AdocaoPhotos\" />
     <Folder Include="wwwroot\uploads\" />
   </ItemGroup>
