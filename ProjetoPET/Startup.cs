@@ -8,6 +8,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using ProjetoPET.Mock;
 using Data;
+using ProjetoPET.Middleware;
+
 namespace ProjetoPET
 {
     public class Startup
@@ -27,11 +29,11 @@ namespace ProjetoPET
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
-            services.AddAuthentication().AddGoogle(googleOptions =>
-            {
-                googleOptions.ClientId = Configuration["Authentication:Google:ClientId"];
-                googleOptions.ClientSecret = Configuration["Authentication:Google:ClientSecret"];
-            });
+            //services.AddAuthentication().AddGoogle(googleOptions =>
+            //{
+            //    googleOptions.ClientId = Configuration["Authentication:Google:ClientId"];
+            //    googleOptions.ClientSecret = Configuration["Authentication:Google:ClientSecret"];
+            //});
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             
             services.AddDbContext<BancoContext>(options =>
@@ -52,9 +54,10 @@ namespace ProjetoPET
                 app.UseExceptionHandler("/Home/Error");
                 app.UseHsts();
             }
-            app.UseHttpsRedirection();
             app.UseStaticFiles();
-            app.UseAuthentication();
+
+            app.UseNodeModules(env.ContentRootPath);
+
             app.UseCookiePolicy();
 
             app.UseMvc(routes =>
