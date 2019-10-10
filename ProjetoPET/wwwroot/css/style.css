@@ -963,10 +963,31 @@ Responsive media queries
         text-align: center;
     }
 }
-.rounded-circle{
-    max-height:200px;
-    min-height:200px;
-    min-width:200px;
-    max-width:200px;
-    margin-bottom:20px;
+.cover-img:after {
+   
+}
+.rounded-circle {
+   
+    border-radius: 50%;
+    border: 1px solid rgba(170,130,19,0.6);
+    max-height: 200px;
+    min-height: 200px;
+    min-width: 200px;
+    max-width: 200px;
+    margin-bottom: 20px;
+}
+/*::after {
+   
+    animation: ripple 2s linear normal 1s infinite;
+    content: '';
+    display: block;
+    position: absolute;
+   
+    border-radius: 10%;
+    border: 1px solid rgba(170,130,19,1);
+    border: 1px solid rgba(170,130,19,0.6);
+}*/
+.contact{
+    height:900px;
+    background-color:white;
 }

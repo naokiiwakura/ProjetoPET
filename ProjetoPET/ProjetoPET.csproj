@@ -7,9 +7,21 @@
 
   <ItemGroup>
     <Compile Remove="Views\Eventos\**" />
+    <Compile Remove="wwwroot\images\NovaPasta1\**" />
+    <Compile Remove="wwwroot\images\NovaPasta2\**" />
+    <Compile Remove="wwwroot\images\NovaPasta\**" />
     <Content Remove="Views\Eventos\**" />
+    <Content Remove="wwwroot\images\NovaPasta1\**" />
+    <Content Remove="wwwroot\images\NovaPasta2\**" />
+    <Content Remove="wwwroot\images\NovaPasta\**" />
     <EmbeddedResource Remove="Views\Eventos\**" />
+    <EmbeddedResource Remove="wwwroot\images\NovaPasta1\**" />
+    <EmbeddedResource Remove="wwwroot\images\NovaPasta2\**" />
+    <EmbeddedResource Remove="wwwroot\images\NovaPasta\**" />
     <None Remove="Views\Eventos\**" />
+    <None Remove="wwwroot\images\NovaPasta1\**" />
+    <None Remove="wwwroot\images\NovaPasta2\**" />
+    <None Remove="wwwroot\images\NovaPasta\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -31,7 +43,6 @@
     <Folder Include="Areas\Identity\Services\" />
     <Folder Include="Helper\" />
     <Folder Include="wwwroot\images\AdocaoPhotos\" />
-    <Folder Include="wwwroot\images\NovaPasta\" />
     <Folder Include="wwwroot\uploads\" />
   </ItemGroup>
 
