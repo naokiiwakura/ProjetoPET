@@ -12,6 +12,10 @@ public class BancoContext : DbContext
     {
     }
 
+    public BancoContext()
+    {
+    }
+
     public DbSet<Usuario> Usuario { get; set; }
 
     public DbSet<TipoUsuario> UsuarioBusiness { get; set; }

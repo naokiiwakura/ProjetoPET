@@ -246,7 +246,7 @@ namespace ProjetoPET.Migrations
                     b.ToTable("Eventos");
                 });
 
-            modelBuilder.Entity("ProjetoPET.Models.Lojas", b =>
+            modelBuilder.Entity("ProjetoPET.Models.Loja", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -445,7 +445,7 @@ namespace ProjetoPET.Migrations
                         .HasForeignKey("EstadoId");
                 });
 
-            modelBuilder.Entity("ProjetoPET.Models.Lojas", b =>
+            modelBuilder.Entity("ProjetoPET.Models.Loja", b =>
                 {
                     b.HasOne("ProjetoPET.Models.Cidade", "Cidade")
                         .WithMany()

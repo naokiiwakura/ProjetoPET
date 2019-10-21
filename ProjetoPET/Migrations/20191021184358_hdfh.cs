@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ProjetoPET.Migrations
 {
-    public partial class asdasdsadhffjkjk : Migration
+    public partial class hdfh : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -84,10 +84,10 @@ namespace ProjetoPET.Migrations
                 name: "IdentityUserLogins",
                 columns: table => new
                 {
+                    UserId = table.Column<string>(nullable: false),
                     LoginProvider = table.Column<string>(nullable: true),
                     ProviderKey = table.Column<string>(nullable: true),
-                    ProviderDisplayName = table.Column<string>(nullable: true),
-                    UserId = table.Column<string>(nullable: false)
+                    ProviderDisplayName = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -213,15 +213,16 @@ namespace ProjetoPET.Migrations
                     UpdatedData = table.Column<DateTime>(nullable: true),
                     NomeLoja = table.Column<string>(nullable: true),
                     RazaoSocial = table.Column<string>(nullable: true),
-                    CNPj = table.Column<int>(nullable: false),
+                    CNPj = table.Column<string>(nullable: true),
                     Endereco = table.Column<string>(nullable: true),
                     Numero = table.Column<int>(nullable: false),
                     Bairro = table.Column<string>(nullable: true),
                     Complemento = table.Column<string>(nullable: true),
-                    CEP = table.Column<int>(nullable: false),
+                    CEP = table.Column<string>(nullable: true),
                     UsuarioId = table.Column<string>(nullable: true),
                     CidadeId = table.Column<int>(nullable: false),
-                    Telefone = table.Column<int>(nullable: false),
+                    EstadoId = table.Column<int>(nullable: false),
+                    Telefone = table.Column<string>(nullable: true),
                     Email = table.Column<string>(nullable: true),
                     ImagePath = table.Column<string>(nullable: true)
                 },

@@ -6,7 +6,7 @@ namespace ProjetoPET.Repository
 {
     public class RepositoryBase<TEntity> : IRepositoryBase<TEntity> where TEntity : class
     {
-        private readonly BancoContext _db;
+        public readonly BancoContext _db;
         public RepositoryBase(BancoContext db) =>
             _db = db;
 

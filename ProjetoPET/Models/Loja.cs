@@ -14,8 +14,10 @@ namespace ProjetoPET.Models
         public string Complemento { get; set; }
         public string CEP { get; set; }
 
+        [ForeignKey("UsuarioId")]
         public Usuario Usuario { get; set; }
-        
+        public string UsuarioId { get; set; }
+
         [ForeignKey("CidadeId")]
         public Cidade Cidade { get; set; }
 

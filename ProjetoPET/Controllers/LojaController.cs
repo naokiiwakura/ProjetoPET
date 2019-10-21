@@ -1,12 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Principal;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using ProjetoPET.Areas.Identity.Data;
 using ProjetoPET.Models;
 using ProjetoPET.Repository.Interfaces;
 using ProjetoPET.ViewModel;
@@ -19,14 +22,17 @@ namespace ProjetoPET.Controllers
         private readonly IHostingEnvironment host;
         private readonly BancoContext _context;
         private readonly IMapper _mapper;
+        private readonly UserManager<Usuario> _userManager;
 
         public LojaController(IHostingEnvironment hostingEnvironment, ILojaRepository lojasRepository,
-            BancoContext bancoContext, IMapper mapper)
+            BancoContext bancoContext, IMapper mapper, UserManager<Usuario> userManager)
         {
             _lojasRepository = lojasRepository;
             this.host = hostingEnvironment;
             _context = bancoContext;
             _mapper = mapper;
+            _userManager = userManager;
+
         }
 
         public async Task<IActionResult> Index()
@@ -60,13 +66,16 @@ namespace ProjetoPET.Controllers
         [HttpPost, Authorize, ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(LojaViewModel lojaViewModel)
         {
+            var _currentUser = await _userManager.GetUserAsync(HttpContext.User);
+
             if (ModelState.IsValid)
             {
                 if (lojaViewModel.Photo != null)
                 {
-                    string uniqueFileName =  _lojasRepository.ConverterFoto(lojaViewModel.Photo, host.WebRootPath);
+                    string uniqueFileName = _lojasRepository.ConverterFoto(lojaViewModel.Photo, host.WebRootPath);
                     var loja = _mapper.Map<LojaViewModel, Loja>(lojaViewModel);
                     loja.ImagePath = uniqueFileName;
+                    loja.UsuarioId = _currentUser.Id;
                     await _lojasRepository.Add(loja);
                 }
 
@@ -78,6 +87,7 @@ namespace ProjetoPET.Controllers
         [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
+
             var loja = await _lojasRepository.GetById(id);
             var lojaViewModel = _mapper.Map<Loja, LojaViewModel>(loja);
 
@@ -115,6 +125,14 @@ namespace ProjetoPET.Controllers
             _context.Lojas.Remove(lojas);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
+        }
+
+        [Authorize]
+        public async Task<IActionResult> MinhasLojas()
+        {
+            var _currentUser = await _userManager.GetUserAsync(HttpContext.User);
+            var lojas = _lojasRepository.MinhasLojas(_currentUser.Id);
+            return  View(lojas);
         }
 
         private bool LojasExists(int id)
