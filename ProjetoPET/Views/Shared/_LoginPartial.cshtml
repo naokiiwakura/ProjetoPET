@@ -5,13 +5,28 @@
 
 @if (SignInManager.IsSignedIn(User))
 {
-    <li class="nav-item">
-        <a class="nav-link" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">@UserManager.GetUserName(User)</a>
+
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            @UserManager.GetUserName(User)
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" asp-area="" asp-controller="Loja" asp-action="MinhasLojas">Minhas Lojas</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Something else here</a>
+        </div>
     </li>
+    @*<li class="nav-item">
+            <a class="nav-link" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">@UserManager.GetUserName(User)</a>
+        </li>*@
     <li class="nav-item">
         @*<button type="submit" class="btn btn-link navbar-btn nav-link" asp-area="Identity" asp-page="/Account/Logout">Sair</button>*@
         <a href="javascript:document.getElementById('logoutForm').submit()">Sair</a>
     </li>
+
+
+
 }
 else
 {

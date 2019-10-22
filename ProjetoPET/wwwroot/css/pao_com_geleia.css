@@ -82,16 +82,17 @@ html, body {
 #target {
     width: 345px;
 }
+
 .circular--landscape {
     display: inline-block;
     position: relative;
     width: 150px;
     height: 150px;
     overflow: hidden;
-    
 }
+
 .circular--landscape img {
         width: auto;
         height: 100%;
         margin-left: -50px;
-    }
+}
