@@ -1,0 +1,15 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
+using ProjetoPET.Models;
+
+namespace ProjetoPET.Areas.Identity.Data
+{
+    // Add profile data for application users by adding properties to the Usuario class
+    public class Usuario : IdentityUser
+    {
+        public Endereco Endereco { get; set; }
+    }
+}

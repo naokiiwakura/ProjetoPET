@@ -1,18 +1,14 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
     <UserSecretsId>d46a35ad-1bfc-4c80-ad40-7fb30b51a56c</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Helper\**" />
     <Compile Remove="Views\Eventos\**" />
-    <Content Remove="Helper\**" />
     <Content Remove="Views\Eventos\**" />
-    <EmbeddedResource Remove="Helper\**" />
     <EmbeddedResource Remove="Views\Eventos\**" />
-    <None Remove="Helper\**" />
     <None Remove="Views\Eventos\**" />
   </ItemGroup>
 
@@ -26,12 +22,14 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
-    <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.3" />
+    <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.1" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.9" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Areas\Identity\Services\" />
+    <Folder Include="Helper\" />
     <Folder Include="wwwroot\images\AdocaoPhotos\" />
     <Folder Include="wwwroot\uploads\" />
   </ItemGroup>
@@ -44,9 +42,6 @@
     <None Include="wwwroot\fonts\flaticon\license\license.pdf" />
     <None Include="wwwroot\fonts\icomoon\demo-files\demo.js" />
     <None Include="wwwroot\fonts\icomoon\fonts\icomoon.svg" />
-    <None Include="wwwroot\Imagens\1022162_cute-dog-wallpapers-high-quality-resolution-animal-wallpapers_2560x1600_h.jpg" />
-    <None Include="wwwroot\Imagens\cachorro-mais-feio-morte-chase-26032019162546460.jpeg" />
-    <None Include="wwwroot\Imagens\Puppy-eating-dog-food-11.jpg" />
     <None Include="wwwroot\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.js" />
     <None Include="wwwroot\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.min.js" />
     <None Include="wwwroot\lib\jquery-validation\dist\additional-methods.js" />
@@ -149,11 +144,6 @@
     <None Include="wwwroot\scss\_site-base.scss" />
     <None Include="wwwroot\scss\_site-blocks.scss" />
     <None Include="wwwroot\scss\_site-navbar.scss" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\ClassLibrary1\Data.csproj" />
-    <ProjectReference Include="..\Domain\Domain.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -4,6 +4,7 @@
     <title>ProjetoPET &mdash; Fábrica de software</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700, 900|Vollkorn:400i" rel="stylesheet">
     <link rel="stylesheet" href="~/fonts/icomoon/style.css">
     <link rel="stylesheet" href="~/css/bootstrap.min.css">
@@ -27,6 +28,7 @@
     <script src="~/js/jquery.fancybox.min.js"></script>
     <script src="~/js/jquery.sticky.js"></script>
     <script src="~/js/isotope.pkgd.min.js"></script>
+
 </head>
 <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300" id="home-section">
 
@@ -60,8 +62,7 @@
                                 <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Pet" asp-action="Index">Cadastre seu PeT</a></li>
                                 <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Evento" asp-action="Index">Eventos</a></li>
                                 <li class="nav-item">
-                                    <a class="nav-link" asp-area="" asp-controller="Lojas" asp-action="Index">Lojas</a>
-                                </li>
+                                <a class="nav-link" asp-area="" asp-controller="Lojas" asp-action="Index">Lojas</a></li>
 
                                 <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Anuncio" asp-action="Index">Anúncio</a></li>
                                 @await Html.PartialAsync("_LoginPartial")
@@ -72,21 +73,25 @@
                     <div class="col-6 d-inline-block d-xl-none ml-md-0 py-3" style="position: relative; top: 3px;"><a href="#" class="site-menu-toggle js-menu-toggle float-right"><span class="icon-menu h3"></span></a></div>
                 </div>
             </div>
+
         </header>
+
         <section class="site-section">
             <div class="container">
                 @RenderBody()
             </div>
-        </section>
+        </section>        
+
         @*<div class="site-blocks-cover bg-light" data-aos="fade">
-                <div class="container">
-                    <div class="row ">
-                        <div class="col-md-12 mt-lg-5 ">
-                            @RenderBody()
-                        </div>
+            <div class="container">
+                <div class="row ">
+                    <div class="col-md-12 mt-lg-5 ">
+                        @RenderBody()
                     </div>
                 </div>
-            </div>*@
+            </div>
+        </div>*@
+
         <footer class="site-footer">
             <div class="container">
                 <div class="row">
