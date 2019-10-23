@@ -1,12 +1,12 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Data;
+using Domain.Model;
+using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
-using ProjetoPET.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace ProjetoPET.Mock
 {
@@ -16,10 +16,8 @@ namespace ProjetoPET.Mock
         {
             var context = serviceProvider.GetRequiredService<BancoContext>();
             context.Database.EnsureCreated();
-
-
             //Realiza a carga de cidades e estados
-            if (!context.Estado.Any())
+            if (!context.Estados.Any())
             {
                 // deserialize JSON directly from a file
                 //using (StreamReader file = File.OpenText(@"Mock\Jsons\cidadeEstado.json"))
@@ -27,7 +25,6 @@ namespace ProjetoPET.Mock
                 {
                     JsonSerializer serializer = new JsonSerializer();
                     CargaCidadeEstado ListaDeEstados = (CargaCidadeEstado)serializer.Deserialize(file, typeof(CargaCidadeEstado));
-
                     foreach (var estado in ListaDeEstados.Estados)
                     {
                         var estadoInsert = new Estado
@@ -49,29 +46,25 @@ namespace ProjetoPET.Mock
                             estadoInsert.Cidades.Add(cidadeInsert);
                         }
 
-                        context.Estado.Add(estadoInsert);
+                        context.Estados.Add(estadoInsert);
                     }
                 }                
             }
-
             //Realiza a carga de tipos de anúncio
-            if(!context.TipoAnuncio.Any())
+            if(!context.TipoAnuncios.Any())
             {
-                context.TipoAnuncio.Add(new TipoAnuncio { Descricao = "Adoção", CreatedDate = DateTime.Now});
-                context.TipoAnuncio.Add(new TipoAnuncio { Descricao = "Venda", CreatedDate = DateTime.Now });
+                context.TipoAnuncios.Add(new TipoAnuncio { Descricao = "Adoção", CreatedDate = DateTime.Now});
+                context.TipoAnuncios.Add(new TipoAnuncio { Descricao = "Venda", CreatedDate = DateTime.Now });
             }
-
             context.SaveChanges();
         }
     }
-
     public class EstadoCarga
     {
         public string Sigla { get; set; }
         public string Nome { get; set; }
         public List<string> Cidades { get; set; }
     }
-
     public class CargaCidadeEstado
     {
         public List<EstadoCarga> Estados { get; set; }
