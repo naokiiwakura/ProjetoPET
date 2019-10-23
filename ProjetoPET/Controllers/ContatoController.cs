@@ -16,7 +16,7 @@ namespace ProjetoPET.Controllers
         {
             var help = new ResumirMensagem();
             var conteudo = help.Resumir(contato.Nome, contato.Sobrenome, contato.Mensagem, contato.Email);
-            await _emailSender.EnviarEmail("anapaulaa.apds9292@gmail.com", "anapaulaa.apds9292@gmail.com", contato.Assunto, conteudo);
+            await _emailSender.EnviarEmail("projetopet123@gmail.com", "projetopet123@gmail.com", contato.Assunto,conteudo);
             return "Enviado Com Sucesso";
         }
     }
