@@ -341,6 +341,7 @@ Features
 h2 {
     font-size: 24px;
     padding-bottom: 15px;
+    padding-top:15px;
 }
 
 .bottom-line {
@@ -990,4 +991,8 @@ Responsive media queries
 .contact{
     height:900px;
     background-color:white;
+}
+
+.site-navbar {
+    background-color: #FFC300;
 }
