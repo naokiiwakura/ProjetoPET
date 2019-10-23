@@ -624,7 +624,7 @@ body:after {
         -ms-transform: rotate(-10deg);
         transform: rotate(-10deg); } }
   .site-blocks-cover p {
-    color: #999999;
+    color: #ffffff;
     font-size: 1.2rem;
     line-height: 1.5;
     font-weight: 300; }
@@ -661,11 +661,27 @@ body:after {
         right: -90px; } }
 
 .bg-light {
-  background: #ccc; }
+    background: #ccc;
+    position: relative;
+    z-index: 1;
+}
+
+.img-equipe:after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-image: url('../images/equipe.jpg');
+    opacity: .7;
+}
 
 .site-blocks-vs .bg-image {
-  padding-top: 3em;
-  padding-bottom: 3em; }
+    padding-top: 3em;
+    padding-bottom: 3em;
+}
   @media (min-width: 992px) {
     .site-blocks-vs .bg-image {
       padding-top: 5em;
