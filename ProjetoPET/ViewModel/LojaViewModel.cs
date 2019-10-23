@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using ProjetoPET.Areas.Identity.Data;
 using ProjetoPET.Models;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -44,6 +45,10 @@ namespace ProjetoPET.ViewModel
         [Required(ErrorMessage = "* O Campo Estado é obrigatório")]
         [Display(Name = "Estado")]
         public int EstadoId { get; set; }
+
+        [ForeignKey("UsuarioId")]
+        public Usuario Usuario { get; set; }
+        public string UsuarioId { get; set; }
 
         [ForeignKey("CidadeId")]
         public Cidade Cidade { get; set; }

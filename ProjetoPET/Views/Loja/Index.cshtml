@@ -1,4 +1,8 @@
 ﻿@model IEnumerable<ProjetoPET.ViewModel.LojaViewModel>
+@using Microsoft.AspNetCore.Identity
+@using ProjetoPET.Areas.Identity.Data
+@inject SignInManager<Usuario> SignInManager
+@inject UserManager<Usuario> UserManager
 
 @{
     ViewData["Title"] = "Index";
@@ -8,6 +12,11 @@
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 <link href="~/css/pao_com_geleia.css" rel="stylesheet" />
 <h2>Lojas</h2>
+
+
+@*@if (item.UsuarioId == UserManager.GetUserId(User))
+    {*@
+
 
 @*<p>
         <a asp-action="Create">Cadastrar nova Loja</a>
@@ -32,13 +41,18 @@
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">
+                            @if(item.UsuarioId == UserManager.GetUserId(User)) { 
                             <div class="dropdown">
-                                @*<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                        <a asp-action="Edit" asp-route-id="@item.Id" class="dropdown-item">Edit</a>
-                                        <a asp-action="Details" asp-route-id="@item.Id" class="dropdown-item">Details</a>
-                                        <a asp-action="Delete" asp-route-id="@item.Id" class="dropdowntem">Delete</a>
-                                    </div>*@
+                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Dropdown button
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <a asp-action="Edit" asp-route-id="@item.Id" class="dropdown-item">Edit</a>
+                                    <a asp-action="Details" asp-route-id="@item.Id" class="dropdown-item">Details</a>
+                                    <a asp-action="Delete" asp-route-id="@item.Id" class="dropdowntem">Delete</a>
+                                </div>
                             </div>
+                            }
                             <h3> @Html.DisplayFor(modelItem => item.NomeLoja)</h3>
                             <br />
                             <i class="fas fa-map-marker-alt">
@@ -78,7 +92,3 @@
 </div>
 
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAA8hwz5MoE8hs1FwRnJVMhcTQZZVGp9iw&libraries=places&callback=initAutocomplete" async defer></script>
-
-<script>
-
-</script>

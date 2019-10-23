@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ProjetoPET.Migrations
 {
     [DbContext(typeof(BancoContext))]
-    [Migration("20191021184358_hdfh")]
-    partial class hdfh
+    [Migration("20191023193234_teste")]
+    partial class teste
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
