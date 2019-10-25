@@ -675,6 +675,9 @@ body:after {
     left: 0;
     right: 0;
     background-image: url('../images/equipe.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100%;
     opacity: .7;
 }
 
